@@ -889,6 +889,7 @@ body {
 }
 
 .media-name {
+    display: none !important;
     overflow: hidden;
 
     white-space: nowrap;
@@ -3271,7 +3272,60 @@ function drawFullOverlay(ctx,img,w,h,opacity,blend,rotate90=false){ctx.save();ct
 function drawCornerMark(ctx,img,w,h,side="left",scale=.30,opacity=1,blend="source-over"){const ratio=img.naturalWidth/img.naturalHeight||1;const mh=Math.max(1,h*scale),mw=mh*ratio,margin=Math.max(18,Math.round(Math.min(w,h)*.035));const x=side==="right"?w-mw-margin:margin,y=h-mh-margin;ctx.save();ctx.globalAlpha=opacity;ctx.globalCompositeOperation=blend;ctx.drawImage(img,x,y,mw,mh);ctx.restore();ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;}
 async function makeWatermarkedImage(src,chef){const cfg=WATERMARK_CONFIG[chef];const source=await loadImageForCanvas(src);const w=source.naturalWidth||source.width,h=source.naturalHeight||source.height,landscape=isLandscapeRatio(w,h);const c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d");ctx.drawImage(source,0,0,w,h);const bg=await loadImageForCanvas(cfg.background);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);const mark=await loadImageForCanvas(cfg.mark);if(landscape){if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");}drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}else{if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");}drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}return c.toDataURL("image/webp",.92);}
 async function fileToWatermarkedImage(file,chef){const original=await fileToOriginalDataURL(file);return {original,watermarked:await makeWatermarkedImage(original,chef)};}
-async function makeWatermarkedVideo(file,chef){if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频自动打水印");const cfg=WATERMARK_CONFIG[chef],url=URL.createObjectURL(file),video=document.createElement("video");video.src=url;video.playsInline=true;video.preload="auto";await new Promise((res,rej)=>{video.onloadedmetadata=res;video.onerror=()=>rej(new Error("视频读取失败"));});await video.play().catch(()=>{});const w=video.videoWidth,h=video.videoHeight,c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d"),stream=c.captureStream(30),srcStream=video.captureStream?video.captureStream():null;if(srcStream)srcStream.getAudioTracks().forEach(t=>stream.addTrack(t));const types=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"],mime=types.find(m=>MediaRecorder.isTypeSupported(m))||"",rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined),chunks=[];rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};const done=new Promise(r=>rec.onstop=r);rec.start(250);const bg=await loadImageForCanvas(cfg.background),mark=await loadImageForCanvas(cfg.mark),shadow=cfg.shadow?await loadImageForCanvas(cfg.shadow):null,landscape=isLandscapeRatio(w,h);await new Promise(resolve=>{const draw=()=>{if(video.ended||video.currentTime>=video.duration-.03){resolve();return;}ctx.clearRect(0,0,w,h);ctx.drawImage(video,0,0,w,h);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);if(landscape){if(shadow)drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}else{if(shadow)drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}requestAnimationFrame(draw)};draw();});rec.stop();await done;video.pause();URL.revokeObjectURL(url);return new Blob(chunks,{type:mime||"video/webm"});}
+async function makeWatermarkedVideo(file,chef){
+    if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频自动打水印");
+    const cfg=WATERMARK_CONFIG[chef];
+    const url=URL.createObjectURL(file);
+    const video=document.createElement("video");
+    video.src=url; video.playsInline=true; video.preload="auto"; video.muted=true;
+    try{
+        await new Promise((resolve,reject)=>{video.onloadedmetadata=resolve;video.onerror=()=>reject(new Error("视频读取失败"));});
+        await new Promise((resolve,reject)=>{video.oncanplay=resolve;video.onerror=()=>reject(new Error("视频无法开始播放"));video.load();});
+        const w=video.videoWidth,h=video.videoHeight;
+        if(!w||!h||!Number.isFinite(video.duration)||video.duration<=0)throw new Error("视频信息不完整");
+        const c=document.createElement("canvas");
+        c.width=w;c.height=h;
+        const ctx=c.getContext("2d",{alpha:false});
+        if(!ctx)throw new Error("浏览器无法创建视频画布");
+        const stream=c.captureStream(30);
+        const srcStream=video.captureStream?video.captureStream():null;
+        if(srcStream)srcStream.getAudioTracks().forEach(t=>stream.addTrack(t));
+        const types=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"];
+        const mime=types.find(m=>MediaRecorder.isTypeSupported(m))||"";
+        if(!mime)throw new Error("当前浏览器不支持可用的视频录制格式");
+        const rec=new MediaRecorder(stream,{mimeType:mime});
+        const chunks=[];
+        rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+        const stopped=new Promise((resolve,reject)=>{rec.onstop=resolve;rec.onerror=e=>reject(e.error||new Error("视频录制失败"));});
+        const bg=await loadImageForCanvas(cfg.background),mark=await loadImageForCanvas(cfg.mark),shadow=cfg.shadow?await loadImageForCanvas(cfg.shadow):null;
+        const landscape=isLandscapeRatio(w,h);
+        let drawing=true;
+        rec.start(250);
+        await video.play();
+        await new Promise((resolve,reject)=>{
+            let lastTime=-1,stalled=0;
+            const draw=()=>{
+                if(!drawing)return;
+                if(video.ended||video.currentTime>=video.duration-0.03){resolve();return;}
+                if(video.currentTime===lastTime)stalled++; else stalled=0;
+                lastTime=video.currentTime;
+                if(stalled>180){reject(new Error("视频播放处理超时"));return;}
+                ctx.clearRect(0,0,w,h);ctx.drawImage(video,0,0,w,h);
+                drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);
+                if(landscape){if(shadow)drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}
+                else{if(shadow)drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}
+                requestAnimationFrame(draw);
+            };
+            video.onended=()=>resolve();
+            video.onerror=()=>reject(new Error("视频播放处理失败"));
+            draw();
+        });
+        drawing=false;video.pause();rec.stop();await stopped;
+        const blob=new Blob(chunks,{type:mime});
+        if(!blob.size)throw new Error("没有生成有效的打水印视频");
+        return blob;
+    }finally{video.pause();URL.revokeObjectURL(url);}
+}
 async function fileToWatermarkedVideo(file,chef){
     const blob=await makeWatermarkedVideo(file,chef);
     return {originalBlob:file,watermarkedBlob:blob};
@@ -3297,7 +3351,19 @@ async function handleUpload(files,target){
                         showToast(`正在为视频 ${file.name} 自动打水印…`);
                         ({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef));
                     }else originalBlob=file;
-                    const playbackBlob=watermarkedBlob||originalBlob;
+                    let playbackBlob=originalBlob;
+                    let watermarkPlayable=false;
+                    if(watermarkedBlob){
+                        const testUrl=URL.createObjectURL(watermarkedBlob);
+                        try{
+                            const testVideo=document.createElement("video");
+                            testVideo.muted=true;testVideo.playsInline=true;testVideo.preload="metadata";testVideo.src=testUrl;
+                            await new Promise((resolve,reject)=>{testVideo.onloadedmetadata=resolve;testVideo.onerror=()=>reject(new Error("当前浏览器无法直接播放打水印版本"));setTimeout(()=>reject(new Error("打水印视频兼容性检测超时")),5000);});
+                            watermarkPlayable=!!testVideo.videoWidth;
+                            if(watermarkPlayable)playbackBlob=watermarkedBlob;
+                        }catch(testError){console.warn("打水印视频可播放性检测失败，将保留原视频播放：",testError);}
+                        URL.revokeObjectURL(testUrl);
+                    }
                     poster=await getVideoPoster(playbackBlob);
                     const originalKey=await saveVideoBlob(originalBlob);
                     const watermarkedKey=watermarkedBlob?await saveVideoBlob(watermarkedBlob):null;
@@ -3305,8 +3371,9 @@ async function handleUpload(files,target){
                         id:Date.now()+Math.random(),type:"video",name:file.name,
                         src:null,originalSrc:null,watermarkedSrc:null,
                         videoOriginalKey:originalKey,videoWatermarkedKey:watermarkedKey,
-                        poster,watermarkApplied:!!watermarkedBlob,chef,home:false
+                        poster,watermarkApplied:watermarkPlayable,chef,home:false
                     });
+                    if(watermarkedBlob&&!watermarkPlayable)showToast("水印视频已生成，但当前浏览器无法直接播放该格式；页面将播放原视频，打水印版仍可下载");
                 }else{
                     if(shouldWatermark){showToast(`正在为图片 ${file.name} 自动打水印…`);({original,watermarked}=await fileToWatermarkedImage(file,chef));}
                     else original=await fileToDataURL(file);
@@ -4614,5 +4681,22 @@ renderChefArchives(
 
 </script>
 
+
+<script>
+(function(){
+  let deferredInstall=null;
+  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;showAppButtons();});
+  function showAppButtons(){const b=document.getElementById("appInstallButton");if(b)b.hidden=false;}
+  function makeAppButton(){
+    if(document.getElementById("appInstallButton"))return;
+    const wrap=document.createElement("div");wrap.id="appTools";wrap.innerHTML='<button id="appInstallButton" hidden>＋ 添加到主屏幕</button><button id="appFullscreenButton" title="全屏显示">⛶ 全屏</button>';
+    document.body.appendChild(wrap);
+    const style=document.createElement("style");style.textContent=`#appTools{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:99999;display:flex;gap:8px;align-items:center}#appTools button{border:0;border-radius:999px;padding:9px 13px;background:rgba(255,255,255,.88);color:#6f5555;box-shadow:0 4px 18px rgba(80,40,40,.12);backdrop-filter:blur(10px);font-size:13px}#appTools button[hidden]{display:none}@media(max-width:600px){#appTools button{font-size:12px;padding:8px 11px}}`;document.head.appendChild(style);
+    document.getElementById("appInstallButton").onclick=async()=>{if(!deferredInstall)return;deferredInstall.prompt();try{await deferredInstall.userChoice}catch(_){}deferredInstall=null;document.getElementById("appInstallButton").hidden=true;};
+    document.getElementById("appFullscreenButton").onclick=async()=>{try{if(!document.fullscreenElement){await document.documentElement.requestFullscreen();}else{await document.exitFullscreen();}}catch(_){showToast("当前浏览器不允许网页直接进入全屏，请使用“添加到主屏幕”打开落泪餐厅");}};
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",makeAppButton);else makeAppButton();
+})();
+</script>
 </body>
 </html>
