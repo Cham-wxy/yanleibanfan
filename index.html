@@ -1401,6 +1401,8 @@ html.standalone-mode, html.standalone-mode body{
 @media (display-mode: standalone){
     #appTools{display:none !important;}
 }
+
+.music-controls{display:inline-flex;align-items:center;gap:8px;margin-left:6px;vertical-align:middle;flex-wrap:wrap}.music-volume-label,.music-original-label{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:inherit;white-space:nowrap}.music-volume{width:78px;height:14px;accent-color:currentColor}.music-volume-value{min-width:30px;text-align:right;font-variant-numeric:tabular-nums}.music-original-toggle{margin:0}.music-cancel{margin-left:2px}.music-status{line-height:1.5}
 </style>
 </head>
 
@@ -3357,15 +3359,19 @@ function setMusicStatus(chef,file){
     if(!status)return;
     if(file){
         status.hidden=false;status.classList.add("music-active");
-        status.innerHTML=`已提取音乐 · ${escapeHtml(file.name)} <button type="button" class="music-cancel" title="取消背景音乐">×</button>`;
+        status.innerHTML=`已提取音乐 · ${escapeHtml(file.name)} <span class="music-controls"><label class="music-volume-label">音量 <input class="music-volume" type="range" min="0" max="100" value="32" step="1"><span class="music-volume-value">32%</span></label><label class="music-original-label"><input class="music-original-toggle" type="checkbox"> 保留原视频声音</label><button type="button" class="music-cancel" title="取消背景音乐">×</button></span>`;
         status.querySelector(".music-cancel").addEventListener("click",()=>clearBackgroundMusic(chef));
+        const state=backgroundMusicState[chef];
+        const volume=status.querySelector(".music-volume"), volumeValue=status.querySelector(".music-volume-value"), original=status.querySelector(".music-original-toggle");
+        if(volume){volume.value=Math.round((state?.volume ?? .32)*100); volumeValue.textContent=volume.value+"%"; volume.addEventListener("input",()=>{if(backgroundMusicState[chef])backgroundMusicState[chef].volume=Number(volume.value)/100; volumeValue.textContent=volume.value+"%";});}
+        if(original){original.checked=state?.keepOriginal!==false; original.addEventListener("change",()=>{if(backgroundMusicState[chef])backgroundMusicState[chef].keepOriginal=original.checked;});}
     }else{status.hidden=true;status.textContent="";status.classList.remove("music-active");}
 }
 function escapeHtml(value){return String(value||"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));}
 function clearBackgroundMusic(chef){
     const state=backgroundMusicState[chef];
     if(state?.url)URL.revokeObjectURL(state.url);
-    backgroundMusicState[chef]=null;setMusicStatus(chef,null);showToast("已取消背景音乐，下一段视频将保留原声音");
+    backgroundMusicState[chef]=null;setMusicStatus(chef,null);showToast("已取消背景音乐，下一段视频将保留原视频声音音");
 }
 async function extractMusicSource(file,chef){
     if(!file||!file.type.startsWith("video/"))throw new Error("请选择视频文件");
@@ -3378,10 +3384,10 @@ async function extractMusicSource(file,chef){
         // 某些浏览器不暴露 audioTracks，因此仍允许继续，后续混音时若没有音轨会给出明确提示。
         if(!hasAudio&&v.audioTracks&&v.audioTracks.length===0)console.warn("浏览器未暴露音轨信息，将在混音阶段继续检测");
         const old=backgroundMusicState[chef];if(old?.url)URL.revokeObjectURL(old.url);
-        backgroundMusicState[chef]={blob:file,url, name:file.name};setMusicStatus(chef,file);showToast("音乐已提取，将用于下一段上传的视频");
+        backgroundMusicState[chef]={blob:file,url, name:file.name, volume:0.32, keepOriginal:true};setMusicStatus(chef,file);showToast("音乐已提取，将用于下一段上传的视频");
     }finally{v.remove();}
 }
-async function mixVideoWithMusic(file,musicBlob,chef){
+async function mixVideoWithMusic(file,musicBlob,chef,musicVolume=0.32,keepOriginal=true){
     if(!musicBlob) return null;
     if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频背景音乐合成");
     const url=URL.createObjectURL(file),musicUrl=URL.createObjectURL(musicBlob);
@@ -3400,7 +3406,7 @@ async function mixVideoWithMusic(file,musicBlob,chef){
         const videoSource=ctx.createMediaElementSource(video);
         const musicSource=ctx.createMediaElementSource(music);
         const originalGain=ctx.createGain(),musicGain=ctx.createGain();
-        originalGain.gain.value=1;musicGain.gain.value=.32;
+        originalGain.gain.value=keepOriginal?1:0;musicGain.gain.value=Math.max(0,Math.min(1,Number(musicVolume)||0));
         videoSource.connect(originalGain).connect(dest);
         musicSource.connect(musicGain).connect(dest);
         const audioTracks=dest.stream.getAudioTracks();if(!audioTracks.length)throw new Error("无法创建混合音轨");
@@ -3434,7 +3440,7 @@ function drawFullOverlay(ctx,img,w,h,opacity,blend,rotate90=false){ctx.save();ct
 function drawCornerMark(ctx,img,w,h,side="left",scale=.30,opacity=1,blend="source-over"){const ratio=img.naturalWidth/img.naturalHeight||1;const mh=Math.max(1,h*scale),mw=mh*ratio,margin=Math.max(18,Math.round(Math.min(w,h)*.035));const x=side==="right"?w-mw-margin:margin,y=h-mh-margin;ctx.save();ctx.globalAlpha=opacity;ctx.globalCompositeOperation=blend;ctx.drawImage(img,x,y,mw,mh);ctx.restore();ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;}
 async function makeWatermarkedImage(src,chef){const cfg=WATERMARK_CONFIG[chef];const source=await loadImageForCanvas(src);const w=source.naturalWidth||source.width,h=source.naturalHeight||source.height,landscape=isLandscapeRatio(w,h);const c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d");ctx.drawImage(source,0,0,w,h);const bg=await loadImageForCanvas(cfg.background);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);const mark=await loadImageForCanvas(cfg.mark);if(landscape){if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");}drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}else{if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");}drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}return c.toDataURL("image/webp",.92);}
 async function fileToWatermarkedImage(file,chef){const original=await fileToOriginalDataURL(file);return {original,watermarked:await makeWatermarkedImage(original,chef)};}
-async function makeWatermarkedVideo(file,chef,musicBlob=null){
+async function makeWatermarkedVideo(file,chef,musicBlob=null,musicVolume=0.32,keepOriginal=true){
     if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频自动打水印");
     const cfg=WATERMARK_CONFIG[chef];
     const url=URL.createObjectURL(file);
@@ -3461,7 +3467,7 @@ async function makeWatermarkedVideo(file,chef,musicBlob=null){
                 const dest=audioCtx.createMediaStreamDestination();
                 const originalSource=audioCtx.createMediaElementSource(video);
                 const musicSource=audioCtx.createMediaElementSource(music);
-                const og=audioCtx.createGain(),mg=audioCtx.createGain();og.gain.value=1;mg.gain.value=.32;
+                const og=audioCtx.createGain(),mg=audioCtx.createGain();og.gain.value=keepOriginal?1:0;mg.gain.value=Math.max(0,Math.min(1,Number(musicVolume)||0));
                 originalSource.connect(og).connect(dest);musicSource.connect(mg).connect(dest);
                 dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
                 await audioCtx.resume();
@@ -3507,8 +3513,8 @@ async function makeWatermarkedVideo(file,chef,musicBlob=null){
         return blob;
     }finally{video.pause();if(video.__musicElement)video.__musicElement.pause();if(video.__musicUrl)URL.revokeObjectURL(video.__musicUrl);try{video.__audioCtx?.close()}catch(_){}URL.revokeObjectURL(url);}
 }
-async function fileToWatermarkedVideo(file,chef,musicBlob=null){
-    const blob=await makeWatermarkedVideo(file,chef,musicBlob);
+async function fileToWatermarkedVideo(file,chef,musicBlob=null,musicVolume=0.32,keepOriginal=true){
+    const blob=await makeWatermarkedVideo(file,chef,musicBlob,musicVolume,keepOriginal);
     return {originalBlob:file,watermarkedBlob:blob};
 }
 function currentChefFromTarget(target){return target===baiRecords?"bai":target===leiRecords?"lei":null;}
@@ -3521,7 +3527,10 @@ async function handleUpload(files,target){
     if(!files||!files.length)return;
     if(!target[selectedDate])target[selectedDate]=[];
     const fileArray=Array.from(files),chef=currentChefFromTarget(target),shouldWatermark=chef?getWatermarkEnabled(chef):false;
-    let activeMusicBlob=chef?backgroundMusicState[chef]?.blob:null;
+    let activeMusicState=chef?backgroundMusicState[chef]:null;
+    let activeMusicBlob=activeMusicState?.blob||null;
+    const activeMusicVolume=activeMusicState?.volume??0.32;
+    const keepOriginal=activeMusicState?.keepOriginal!==false;
     let successCount=0;
     try{
         for(const file of fileArray){
@@ -3531,10 +3540,10 @@ async function handleUpload(files,target){
                 if(isVideo){
                     if(shouldWatermark){
                         showToast(activeMusicBlob?`正在为视频 ${file.name} 添加背景音乐并自动打水印…`:`正在为视频 ${file.name} 自动打水印…`);
-                        ({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef,activeMusicBlob));
+                        ({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef,activeMusicBlob,activeMusicVolume,keepOriginal));
                     }else if(activeMusicBlob){
                         showToast(`正在为视频 ${file.name} 添加背景音乐…`);
-                        originalBlob=await mixVideoWithMusic(file,activeMusicBlob,chef);
+                        originalBlob=await mixVideoWithMusic(file,activeMusicBlob,chef,activeMusicVolume,keepOriginal);
                     }else originalBlob=file;
                     let playbackBlob=originalBlob;
                     let watermarkPlayable=false;
