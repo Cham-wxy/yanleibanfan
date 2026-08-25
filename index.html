@@ -1404,6 +1404,109 @@ html.standalone-mode, html.standalone-mode body{
 
 .music-controls{display:inline-flex;align-items:center;gap:8px;margin-left:6px;vertical-align:middle;flex-wrap:wrap}.music-volume-label,.music-original-label{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:inherit;white-space:nowrap}.music-volume{width:78px;height:14px;accent-color:currentColor}.music-volume-value{min-width:30px;text-align:right;font-variant-numeric:tabular-nums}.music-original-toggle{margin:0}.music-cancel{margin-left:2px}.music-status{line-height:1.5}
 </style>
+
+<style id="music-mobile-fix">
+/* 提取音乐控制区：移动端不再和上传/折叠按钮抢同一行 */
+.music-status{
+    min-width:0;
+    box-sizing:border-box;
+}
+@media (max-width:700px){
+    .upload-box{
+        align-items:stretch;
+        row-gap:8px;
+    }
+    .upload-box .music-status{
+        flex:1 1 100%;
+        width:100%;
+        max-width:none;
+        min-width:0;
+        display:flex;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:6px 8px;
+        white-space:normal;
+        overflow:visible;
+        text-overflow:clip;
+        line-height:1.5;
+        padding:7px 9px;
+        border:1px solid #f0dfdb;
+        border-radius:11px;
+        background:#fffaf8;
+    }
+    .upload-box .music-status.music-active{
+        color:#c86f76;
+    }
+    .music-controls{
+        flex:1 1 100%;
+        width:100%;
+        min-width:0;
+        margin-left:0;
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto;
+        grid-template-areas:
+            "volume cancel"
+            "original cancel";
+        align-items:center;
+        column-gap:8px;
+        row-gap:6px;
+    }
+    .music-volume-label{
+        grid-area:volume;
+        width:100%;
+        min-width:0;
+        display:grid;
+        grid-template-columns:auto minmax(80px,1fr) auto;
+        align-items:center;
+        gap:6px;
+    }
+    .music-volume{
+        width:100%;
+        min-width:0;
+    }
+    .music-original-label{
+        grid-area:original;
+        min-width:0;
+    }
+    .music-cancel{
+        grid-area:cancel;
+        align-self:center;
+        justify-self:center;
+        width:32px;
+        height:32px;
+        border-radius:10px;
+        background:#fff0ef;
+        font-size:18px;
+        line-height:1;
+    }
+}
+@media (max-width:380px){
+    .music-volume-label{
+        grid-template-columns:auto minmax(65px,1fr) auto;
+        gap:4px;
+        font-size:10px;
+    }
+    .music-original-label{
+        font-size:10px;
+    }
+}
+</style>
+
+
+<style id="music-name-fix">
+.music-file-name{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+@media(max-width:700px){
+    .music-file-name{
+        width:100%;
+        max-width:none;
+        white-space:normal;
+        overflow:visible;
+        overflow-wrap:anywhere;
+        word-break:break-word;
+    }
+}
+</style>
+
 </head>
 
 
@@ -3359,7 +3462,7 @@ function setMusicStatus(chef,file){
     if(!status)return;
     if(file){
         status.hidden=false;status.classList.add("music-active");
-        status.innerHTML=`已提取音乐 · ${escapeHtml(file.name)} <span class="music-controls"><label class="music-volume-label">音量 <input class="music-volume" type="range" min="0" max="100" value="32" step="1"><span class="music-volume-value">32%</span></label><label class="music-original-label"><input class="music-original-toggle" type="checkbox"> 保留原视频声音</label><button type="button" class="music-cancel" title="取消背景音乐">×</button></span>`;
+        status.innerHTML=`<span class="music-file-name">已提取音乐 · ${escapeHtml(file.name)}</span><span class="music-controls"><label class="music-volume-label">音量 <input class="music-volume" type="range" min="0" max="100" value="32" step="1"><span class="music-volume-value">32%</span></label><label class="music-original-label"><input class="music-original-toggle" type="checkbox"> 保留原视频声音</label><button type="button" class="music-cancel" title="取消背景音乐">×</button></span>`;
         status.querySelector(".music-cancel").addEventListener("click",()=>clearBackgroundMusic(chef));
         const state=backgroundMusicState[chef];
         const volume=status.querySelector(".music-volume"), volumeValue=status.querySelector(".music-volume-value"), original=status.querySelector(".music-original-toggle");
@@ -3392,8 +3495,8 @@ async function mixVideoWithMusic(file,musicBlob,chef,musicVolume=0.32,keepOrigin
     if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频背景音乐合成");
     const url=URL.createObjectURL(file),musicUrl=URL.createObjectURL(musicBlob);
     const video=document.createElement("video"),music=document.createElement("video");
-    video.src=url;video.playsInline=true;video.preload="auto";video.muted=true;
-    music.src=musicUrl;music.playsInline=true;music.preload="auto";music.muted=false;
+    video.src=url;video.playsInline=true;video.preload="auto";video.muted=false;video.volume=1;
+    music.src=musicUrl;music.playsInline=true;music.preload="auto";music.muted=false;music.volume=1;
     let ctx=null;
     try{
         await new Promise((resolve,reject)=>{video.onloadedmetadata=resolve;video.onerror=()=>reject(new Error("视频读取失败"));});
@@ -3416,6 +3519,8 @@ async function mixVideoWithMusic(file,musicBlob,chef,musicVolume=0.32,keepOrigin
         const rec=new MediaRecorder(stream,{mimeType:mime}),chunks=[];rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};
         const stopped=new Promise((resolve,reject)=>{rec.onstop=resolve;rec.onerror=e=>reject(e.error||new Error("背景音乐合成失败"));});
         await ctx.resume();
+        video.muted=false; video.volume=1;
+        music.muted=false; music.volume=1;
         music.currentTime=0;
         // 背景音乐从头开始；不足视频长度时循环，超过则在视频结束时停止。
         music.loop=true;
@@ -3445,7 +3550,7 @@ async function makeWatermarkedVideo(file,chef,musicBlob=null,musicVolume=0.32,ke
     const cfg=WATERMARK_CONFIG[chef];
     const url=URL.createObjectURL(file);
     const video=document.createElement("video");
-    video.src=url; video.playsInline=true; video.preload="auto"; video.muted=true;
+    video.src=url; video.playsInline=true; video.preload="auto"; video.muted=false; video.volume=1;
     try{
         await new Promise((resolve,reject)=>{video.onloadedmetadata=resolve;video.onerror=()=>reject(new Error("视频读取失败"));});
         await new Promise((resolve,reject)=>{video.oncanplay=resolve;video.onerror=()=>reject(new Error("视频无法开始播放"));video.load();});
