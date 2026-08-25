@@ -1390,7 +1390,7 @@ body {
 /* =========================================================
    WATERMARK / PREVIEW
 ========================================================= */
-.watermark-control{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;font-size:11px;cursor:pointer;user-select:none}.watermark-control input{accent-color:#d98287}.watermark-control.active{background:#fff0ef;color:#c86f76;border-color:#f0c6c4}.media-clickable{cursor:zoom-in}.collage-cell .media-clickable{cursor:zoom-in}.preview-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(34,27,25,.72);backdrop-filter:blur(8px);z-index:7000;opacity:0;pointer-events:none;transition:.22s ease}.preview-modal.show{opacity:1;pointer-events:auto}.preview-box{width:min(96vw,1100px);max-height:94vh;display:flex;flex-direction:column;background:#fffaf8;border-radius:22px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.28)}.preview-media-wrap{position:relative;min-height:180px;max-height:78vh;display:flex;align-items:center;justify-content:center;background:#1f1b1a;overflow:auto}.preview-media-wrap img,.preview-media-wrap video{max-width:100%;max-height:76vh;width:auto;height:auto;display:block;object-fit:contain}.preview-video-stage{position:relative;display:flex;align-items:center;justify-content:center;max-width:100%;max-height:76vh;line-height:0}.preview-video-stage video{max-width:100%;max-height:76vh}.preview-video-stage .video-play-button{left:50%;top:50%;right:auto;bottom:auto}.preview-info{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.preview-name{min-width:0;font-size:12px;color:#665b57;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.preview-actions{display:flex;gap:7px;flex-wrap:wrap}.preview-actions button{border:0;border-radius:10px;padding:8px 11px;font-size:11px;cursor:pointer}.preview-download{background:#ffe9e6;color:#c96f76;font-weight:700}.preview-original{background:#f4f1ef;color:#786b66}.preview-close{background:#514946;color:white}.preview-hint{width:100%;font-size:10px;color:#a69792}@media(max-width:700px){.preview-modal{padding:10px}.preview-box{border-radius:17px}.preview-media-wrap{max-height:72vh}.preview-media-wrap img,.preview-media-wrap video{max-height:70vh}.preview-info{padding:10px}.preview-actions{width:100%}.preview-actions button{flex:1 1 30%}}
+.watermark-control{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;font-size:11px;cursor:pointer;user-select:none}.music-control-wrap{display:inline-flex;align-items:center;gap:6px}.music-btn{border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;padding:7px 10px;font-size:11px;cursor:pointer}.music-btn:hover{background:#fff4f1}.music-status{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#9a8b86;max-width:170px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-cancel{border:0;background:transparent;color:#c97b80;font-size:13px;cursor:pointer;padding:0 2px}.music-active{color:#c86f76;font-weight:600}.watermark-control input{accent-color:#d98287}.watermark-control.active{background:#fff0ef;color:#c86f76;border-color:#f0c6c4}.media-clickable{cursor:zoom-in}.collage-cell .media-clickable{cursor:zoom-in}.preview-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(34,27,25,.72);backdrop-filter:blur(8px);z-index:7000;opacity:0;pointer-events:none;transition:.22s ease}.preview-modal.show{opacity:1;pointer-events:auto}.preview-box{width:min(96vw,1100px);max-height:94vh;display:flex;flex-direction:column;background:#fffaf8;border-radius:22px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.28)}.preview-media-wrap{position:relative;min-height:180px;max-height:78vh;display:flex;align-items:center;justify-content:center;background:#1f1b1a;overflow:auto}.preview-media-wrap img,.preview-media-wrap video{max-width:100%;max-height:76vh;width:auto;height:auto;display:block;object-fit:contain}.preview-video-stage{position:relative;display:flex;align-items:center;justify-content:center;max-width:100%;max-height:76vh;line-height:0}.preview-video-stage video{max-width:100%;max-height:76vh}.preview-video-stage .video-play-button{left:50%;top:50%;right:auto;bottom:auto}.preview-info{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.preview-name{min-width:0;font-size:12px;color:#665b57;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.preview-actions{display:flex;gap:7px;flex-wrap:wrap}.preview-actions button{border:0;border-radius:10px;padding:8px 11px;font-size:11px;cursor:pointer}.preview-download{background:#ffe9e6;color:#c96f76;font-weight:700}.preview-original{background:#f4f1ef;color:#786b66}.preview-close{background:#514946;color:white}.preview-hint{width:100%;font-size:10px;color:#a69792}@media(max-width:700px){.preview-modal{padding:10px}.preview-box{border-radius:17px}.preview-media-wrap{max-height:72vh}.preview-media-wrap img,.preview-media-wrap video{max-height:70vh}.preview-info{padding:10px}.preview-actions{width:100%}.preview-actions button{flex:1 1 30%}}
 
 /* =========================================================
    STANDALONE APP MODE
@@ -1694,6 +1694,10 @@ html.standalone-mode, html.standalone-mode body{
 
             </button>
 
+            <button class="music-btn" id="baiMusicButton" type="button">♫ 提取音乐</button>
+            <input type="file" accept="video/*" class="hidden-file-input" id="baiMusicUpload">
+            <span class="music-status" id="baiMusicStatus" hidden></span>
+
 
             <input
                 type="file"
@@ -1796,6 +1800,10 @@ html.standalone-mode, html.standalone-mode body{
                 ＋ 上传视频
 
             </button>
+
+            <button class="music-btn" id="leiMusicButton" type="button">♫ 提取音乐</button>
+            <input type="file" accept="video/*" class="hidden-file-input" id="leiMusicUpload">
+            <span class="music-status" id="leiMusicStatus" hidden></span>
 
 
             <input
@@ -3203,6 +3211,20 @@ document
 
 
 /* =========================================================
+   MUSIC INPUT EVENTS
+========================================================= */
+function bindMusicButton(chef){
+    document.getElementById(chef+"MusicButton")?.addEventListener("click",()=>{
+        requestUploadPermission(document.getElementById(chef+"MusicUpload"));
+    });
+    document.getElementById(chef+"MusicUpload")?.addEventListener("change",async e=>{
+        const file=e.target.files?.[0];e.target.value="";if(!file)return;
+        try{await extractMusicSource(file,chef);}catch(err){console.error("提取音乐失败",err);showToast("提取音乐失败：该视频可能没有可用音轨");}
+    });
+}
+bindMusicButton("bai");bindMusicButton("lei");
+
+/* =========================================================
    FILE INPUT EVENTS
 ========================================================= */
 
@@ -3325,6 +3347,83 @@ document
 
 
 /* =========================================================
+   BACKGROUND MUSIC
+   “提取音乐”内部保存的是视频的音轨来源；真正导入下一段视频时，
+   再把该音轨与原视频声音混合，不改变现有自动水印流程。
+========================================================= */
+const backgroundMusicState={bai:null,lei:null};
+function setMusicStatus(chef,file){
+    const status=document.getElementById(chef+"MusicStatus");
+    if(!status)return;
+    if(file){
+        status.hidden=false;status.classList.add("music-active");
+        status.innerHTML=`已提取音乐 · ${escapeHtml(file.name)} <button type="button" class="music-cancel" title="取消背景音乐">×</button>`;
+        status.querySelector(".music-cancel").addEventListener("click",()=>clearBackgroundMusic(chef));
+    }else{status.hidden=true;status.textContent="";status.classList.remove("music-active");}
+}
+function escapeHtml(value){return String(value||"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));}
+function clearBackgroundMusic(chef){
+    const state=backgroundMusicState[chef];
+    if(state?.url)URL.revokeObjectURL(state.url);
+    backgroundMusicState[chef]=null;setMusicStatus(chef,null);showToast("已取消背景音乐，下一段视频将保留原声音");
+}
+async function extractMusicSource(file,chef){
+    if(!file||!file.type.startsWith("video/"))throw new Error("请选择视频文件");
+    // 先用视频元素读取并确认存在音轨，再保留原 Blob 作为下一段视频的背景音源。
+    const url=URL.createObjectURL(file),v=document.createElement("video");
+    v.src=url;v.preload="metadata";v.playsInline=true;
+    try{
+        await new Promise((resolve,reject)=>{v.onloadedmetadata=resolve;v.onerror=()=>reject(new Error("无法读取该视频"));setTimeout(()=>reject(new Error("读取视频超时")),8000);});
+        const hasAudio=v.mozHasAudio||v.webkitAudioDecodedByteCount>0||!!(v.audioTracks&&v.audioTracks.length);
+        // 某些浏览器不暴露 audioTracks，因此仍允许继续，后续混音时若没有音轨会给出明确提示。
+        if(!hasAudio&&v.audioTracks&&v.audioTracks.length===0)console.warn("浏览器未暴露音轨信息，将在混音阶段继续检测");
+        const old=backgroundMusicState[chef];if(old?.url)URL.revokeObjectURL(old.url);
+        backgroundMusicState[chef]={blob:file,url, name:file.name};setMusicStatus(chef,file);showToast("音乐已提取，将用于下一段上传的视频");
+    }finally{v.remove();}
+}
+async function mixVideoWithMusic(file,musicBlob,chef){
+    if(!musicBlob) return null;
+    if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频背景音乐合成");
+    const url=URL.createObjectURL(file),musicUrl=URL.createObjectURL(musicBlob);
+    const video=document.createElement("video"),music=document.createElement("video");
+    video.src=url;video.playsInline=true;video.preload="auto";video.muted=true;
+    music.src=musicUrl;music.playsInline=true;music.preload="auto";music.muted=false;
+    let ctx=null;
+    try{
+        await new Promise((resolve,reject)=>{video.onloadedmetadata=resolve;video.onerror=()=>reject(new Error("视频读取失败"));});
+        await new Promise((resolve,reject)=>{music.onloadedmetadata=resolve;music.onerror=()=>reject(new Error("背景音乐读取失败"));setTimeout(()=>reject(new Error("背景音乐读取超时")),8000);});
+        const w=video.videoWidth,h=video.videoHeight;if(!w||!h||!video.duration)throw new Error("视频信息不完整");
+        const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;const c=canvas.getContext("2d",{alpha:false});
+        const stream=canvas.captureStream(30);
+        ctx=new (window.AudioContext||window.webkitAudioContext)();
+        const dest=ctx.createMediaStreamDestination();
+        const videoSource=ctx.createMediaElementSource(video);
+        const musicSource=ctx.createMediaElementSource(music);
+        const originalGain=ctx.createGain(),musicGain=ctx.createGain();
+        originalGain.gain.value=1;musicGain.gain.value=.32;
+        videoSource.connect(originalGain).connect(dest);
+        musicSource.connect(musicGain).connect(dest);
+        const audioTracks=dest.stream.getAudioTracks();if(!audioTracks.length)throw new Error("无法创建混合音轨");
+        audioTracks.forEach(t=>stream.addTrack(t));
+        const types=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"];const mime=types.find(m=>MediaRecorder.isTypeSupported(m))||"";
+        if(!mime)throw new Error("当前浏览器不支持可用的视频录制格式");
+        const rec=new MediaRecorder(stream,{mimeType:mime}),chunks=[];rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};
+        const stopped=new Promise((resolve,reject)=>{rec.onstop=resolve;rec.onerror=e=>reject(e.error||new Error("背景音乐合成失败"));});
+        await ctx.resume();
+        music.currentTime=0;
+        // 背景音乐从头开始；不足视频长度时循环，超过则在视频结束时停止。
+        music.loop=true;
+        rec.start(250);
+        await video.play();
+        if(video.__musicElement){try{video.__musicElement.currentTime=0;await video.__musicElement.play();}catch(e){throw new Error("浏览器阻止了背景音乐播放，请重新点击上传视频后重试");}}
+        try{await music.play();}catch(e){throw new Error("浏览器阻止了背景音乐播放，请重新点击上传视频后重试");}
+        await new Promise((resolve,reject)=>{let last=-1,stalled=0;const draw=()=>{if(video.ended||video.currentTime>=video.duration-.03){resolve();return;}if(video.currentTime===last)stalled++;else stalled=0;last=video.currentTime;if(stalled>180){reject(new Error("视频处理超时"));return;}c.drawImage(video,0,0,w,h);requestAnimationFrame(draw)};video.onerror=()=>reject(new Error("视频播放处理失败"));draw();});
+        video.pause();music.pause();rec.stop();await stopped;
+        const out=new Blob(chunks,{type:mime});if(!out.size)throw new Error("没有生成有效的背景音乐视频");return out;
+    }finally{try{video.pause();music.pause();}catch(_){}try{ctx?.close();}catch(_){}URL.revokeObjectURL(url);URL.revokeObjectURL(musicUrl);}
+}
+
+/* =========================================================
    WATERMARK ENGINE
 ========================================================= */
 function getWatermarkEnabled(chef){return watermarkSettings[chef]!==false;}
@@ -3335,7 +3434,7 @@ function drawFullOverlay(ctx,img,w,h,opacity,blend,rotate90=false){ctx.save();ct
 function drawCornerMark(ctx,img,w,h,side="left",scale=.30,opacity=1,blend="source-over"){const ratio=img.naturalWidth/img.naturalHeight||1;const mh=Math.max(1,h*scale),mw=mh*ratio,margin=Math.max(18,Math.round(Math.min(w,h)*.035));const x=side==="right"?w-mw-margin:margin,y=h-mh-margin;ctx.save();ctx.globalAlpha=opacity;ctx.globalCompositeOperation=blend;ctx.drawImage(img,x,y,mw,mh);ctx.restore();ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;}
 async function makeWatermarkedImage(src,chef){const cfg=WATERMARK_CONFIG[chef];const source=await loadImageForCanvas(src);const w=source.naturalWidth||source.width,h=source.naturalHeight||source.height,landscape=isLandscapeRatio(w,h);const c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d");ctx.drawImage(source,0,0,w,h);const bg=await loadImageForCanvas(cfg.background);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);const mark=await loadImageForCanvas(cfg.mark);if(landscape){if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");}drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}else{if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");}drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}return c.toDataURL("image/webp",.92);}
 async function fileToWatermarkedImage(file,chef){const original=await fileToOriginalDataURL(file);return {original,watermarked:await makeWatermarkedImage(original,chef)};}
-async function makeWatermarkedVideo(file,chef){
+async function makeWatermarkedVideo(file,chef,musicBlob=null){
     if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频自动打水印");
     const cfg=WATERMARK_CONFIG[chef];
     const url=URL.createObjectURL(file);
@@ -3351,8 +3450,27 @@ async function makeWatermarkedVideo(file,chef){
         const ctx=c.getContext("2d",{alpha:false});
         if(!ctx)throw new Error("浏览器无法创建视频画布");
         const stream=c.captureStream(30);
-        const srcStream=video.captureStream?video.captureStream():null;
-        if(srcStream)srcStream.getAudioTracks().forEach(t=>stream.addTrack(t));
+        let audioCtx=null;
+        if(musicBlob){
+            const musicUrl=URL.createObjectURL(musicBlob);
+            const music=document.createElement("video");
+            music.src=musicUrl;music.preload="auto";music.playsInline=true;music.loop=true;music.muted=false;
+            try{
+                await new Promise((resolve,reject)=>{music.onloadedmetadata=resolve;music.onerror=()=>reject(new Error("背景音乐读取失败"));setTimeout(()=>reject(new Error("背景音乐读取超时")),8000);});
+                audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+                const dest=audioCtx.createMediaStreamDestination();
+                const originalSource=audioCtx.createMediaElementSource(video);
+                const musicSource=audioCtx.createMediaElementSource(music);
+                const og=audioCtx.createGain(),mg=audioCtx.createGain();og.gain.value=1;mg.gain.value=.32;
+                originalSource.connect(og).connect(dest);musicSource.connect(mg).connect(dest);
+                dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
+                await audioCtx.resume();
+                video.__musicElement=music;video.__musicUrl=musicUrl;video.__audioCtx=audioCtx;
+            }catch(e){URL.revokeObjectURL(musicUrl);try{audioCtx?.close()}catch(_){}throw e;}
+        }else{
+            const srcStream=video.captureStream?video.captureStream():null;
+            if(srcStream)srcStream.getAudioTracks().forEach(t=>stream.addTrack(t));
+        }
         const types=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"];
         const mime=types.find(m=>MediaRecorder.isTypeSupported(m))||"";
         if(!mime)throw new Error("当前浏览器不支持可用的视频录制格式");
@@ -3383,14 +3501,14 @@ async function makeWatermarkedVideo(file,chef){
             video.onerror=()=>reject(new Error("视频播放处理失败"));
             draw();
         });
-        drawing=false;video.pause();rec.stop();await stopped;
+        drawing=false;video.pause();if(video.__musicElement)video.__musicElement.pause();rec.stop();await stopped;
         const blob=new Blob(chunks,{type:mime});
         if(!blob.size)throw new Error("没有生成有效的打水印视频");
         return blob;
-    }finally{video.pause();URL.revokeObjectURL(url);}
+    }finally{video.pause();if(video.__musicElement)video.__musicElement.pause();if(video.__musicUrl)URL.revokeObjectURL(video.__musicUrl);try{video.__audioCtx?.close()}catch(_){}URL.revokeObjectURL(url);}
 }
-async function fileToWatermarkedVideo(file,chef){
-    const blob=await makeWatermarkedVideo(file,chef);
+async function fileToWatermarkedVideo(file,chef,musicBlob=null){
+    const blob=await makeWatermarkedVideo(file,chef,musicBlob);
     return {originalBlob:file,watermarkedBlob:blob};
 }
 function currentChefFromTarget(target){return target===baiRecords?"bai":target===leiRecords?"lei":null;}
@@ -3403,6 +3521,7 @@ async function handleUpload(files,target){
     if(!files||!files.length)return;
     if(!target[selectedDate])target[selectedDate]=[];
     const fileArray=Array.from(files),chef=currentChefFromTarget(target),shouldWatermark=chef?getWatermarkEnabled(chef):false;
+    let activeMusicBlob=chef?backgroundMusicState[chef]?.blob:null;
     let successCount=0;
     try{
         for(const file of fileArray){
@@ -3411,8 +3530,11 @@ async function handleUpload(files,target){
                 let original=null,watermarked=null,originalBlob=null,watermarkedBlob=null,poster=null;
                 if(isVideo){
                     if(shouldWatermark){
-                        showToast(`正在为视频 ${file.name} 自动打水印…`);
-                        ({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef));
+                        showToast(activeMusicBlob?`正在为视频 ${file.name} 添加背景音乐并自动打水印…`:`正在为视频 ${file.name} 自动打水印…`);
+                        ({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef,activeMusicBlob));
+                    }else if(activeMusicBlob){
+                        showToast(`正在为视频 ${file.name} 添加背景音乐…`);
+                        originalBlob=await mixVideoWithMusic(file,activeMusicBlob,chef);
                     }else originalBlob=file;
                     let playbackBlob=originalBlob;
                     let watermarkPlayable=false;
@@ -3448,6 +3570,10 @@ async function handleUpload(files,target){
                         videoOriginalKey:originalKey,videoWatermarkedKey:watermarkedKey,
                         poster,watermarkApplied:watermarkPlayable,chef,home:false
                     });
+                    if(activeMusicBlob){
+                        clearBackgroundMusic(chef);
+                        activeMusicBlob=null;
+                    }
                     if(watermarkedBlob&&!watermarkPlayable)showToast("水印视频已生成，但当前浏览器无法直接播放该格式；页面将播放原视频，打水印版仍可下载");
                 }else{
                     if(shouldWatermark){showToast(`正在为图片 ${file.name} 自动打水印…`);({original,watermarked}=await fileToWatermarkedImage(file,chef));}
