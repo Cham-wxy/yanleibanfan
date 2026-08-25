@@ -5,7 +5,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>开饭记录 yummy</title>
+<title>落泪餐厅</title>
+<link rel="icon" type="image/png" href="https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png">
+<link rel="apple-touch-icon" href="https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png">
+<meta name="apple-mobile-web-app-title" content="落泪餐厅">
+<meta name="application-name" content="落泪餐厅">
+<meta name="theme-color" content="#fffaf8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href='data:application/manifest+json,{"name":"落泪餐厅","short_name":"落泪餐厅","start_url":".","display":"standalone","background_color":"#fffaf8","theme_color":"#fffaf8","icons":[{"src":"https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png","sizes":"512x512","type":"image/png"}]}'>
 
 <style>
 
@@ -765,6 +773,7 @@ body {
         brightness(1.12)
         opacity(.38);
 }
+.media-card.home-state .video-stage video{filter:none;opacity:1}
 
 .home-overlay {
     position: absolute;
@@ -1378,7 +1387,7 @@ body {
 /* =========================================================
    WATERMARK / PREVIEW
 ========================================================= */
-.watermark-control{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;font-size:11px;cursor:pointer;user-select:none}.watermark-control input{accent-color:#d98287}.watermark-control.active{background:#fff0ef;color:#c86f76;border-color:#f0c6c4}.media-clickable{cursor:zoom-in}.collage-cell .media-clickable{cursor:zoom-in}.preview-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(34,27,25,.72);backdrop-filter:blur(8px);z-index:7000;opacity:0;pointer-events:none;transition:.22s ease}.preview-modal.show{opacity:1;pointer-events:auto}.preview-box{width:min(96vw,1100px);max-height:94vh;display:flex;flex-direction:column;background:#fffaf8;border-radius:22px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.28)}.preview-media-wrap{position:relative;min-height:180px;max-height:78vh;display:flex;align-items:center;justify-content:center;background:#1f1b1a;overflow:auto}.preview-media-wrap img,.preview-media-wrap video{max-width:100%;max-height:76vh;width:auto;height:auto;display:block;object-fit:contain}.preview-info{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.preview-name{min-width:0;font-size:12px;color:#665b57;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.preview-actions{display:flex;gap:7px;flex-wrap:wrap}.preview-actions button{border:0;border-radius:10px;padding:8px 11px;font-size:11px;cursor:pointer}.preview-download{background:#ffe9e6;color:#c96f76;font-weight:700}.preview-original{background:#f4f1ef;color:#786b66}.preview-close{background:#514946;color:white}.preview-hint{width:100%;font-size:10px;color:#a69792}@media(max-width:700px){.preview-modal{padding:10px}.preview-box{border-radius:17px}.preview-media-wrap{max-height:72vh}.preview-media-wrap img,.preview-media-wrap video{max-height:70vh}.preview-info{padding:10px}.preview-actions{width:100%}.preview-actions button{flex:1 1 30%}}
+.watermark-control{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;font-size:11px;cursor:pointer;user-select:none}.watermark-control input{accent-color:#d98287}.watermark-control.active{background:#fff0ef;color:#c86f76;border-color:#f0c6c4}.media-clickable{cursor:zoom-in}.collage-cell .media-clickable{cursor:zoom-in}.preview-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(34,27,25,.72);backdrop-filter:blur(8px);z-index:7000;opacity:0;pointer-events:none;transition:.22s ease}.preview-modal.show{opacity:1;pointer-events:auto}.preview-box{width:min(96vw,1100px);max-height:94vh;display:flex;flex-direction:column;background:#fffaf8;border-radius:22px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.28)}.preview-media-wrap{position:relative;min-height:180px;max-height:78vh;display:flex;align-items:center;justify-content:center;background:#1f1b1a;overflow:auto}.preview-media-wrap img,.preview-media-wrap video{max-width:100%;max-height:76vh;width:auto;height:auto;display:block;object-fit:contain}.preview-video-stage{position:relative;display:flex;align-items:center;justify-content:center;max-width:100%;max-height:76vh;line-height:0}.preview-video-stage video{max-width:100%;max-height:76vh}.preview-video-stage .video-play-button{left:50%;top:50%;right:auto;bottom:auto}.preview-info{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.preview-name{min-width:0;font-size:12px;color:#665b57;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.preview-actions{display:flex;gap:7px;flex-wrap:wrap}.preview-actions button{border:0;border-radius:10px;padding:8px 11px;font-size:11px;cursor:pointer}.preview-download{background:#ffe9e6;color:#c96f76;font-weight:700}.preview-original{background:#f4f1ef;color:#786b66}.preview-close{background:#514946;color:white}.preview-hint{width:100%;font-size:10px;color:#a69792}@media(max-width:700px){.preview-modal{padding:10px}.preview-box{border-radius:17px}.preview-media-wrap{max-height:72vh}.preview-media-wrap img,.preview-media-wrap video{max-height:70vh}.preview-info{padding:10px}.preview-actions{width:100%}.preview-actions button{flex:1 1 30%}}
 </style>
 </head>
 
@@ -1989,6 +1998,80 @@ function readStoredJSON(
     }
 }
 
+
+/* =========================================================
+   VIDEO STORAGE
+   视频不再塞进 localStorage：改用 IndexedDB 保存 Blob，
+   避免刷新后丢失、超出 localStorage 配额以及巨型 Base64 卡顿。
+========================================================= */
+const VIDEO_DB_NAME="yummyVideoDB";
+const VIDEO_DB_VERSION=1;
+const VIDEO_STORE="videos";
+let videoDBPromise=null;
+function openVideoDB(){
+    if(videoDBPromise)return videoDBPromise;
+    videoDBPromise=new Promise((resolve,reject)=>{
+        if(!window.indexedDB){reject(new Error("当前浏览器不支持 IndexedDB"));return;}
+        const req=indexedDB.open(VIDEO_DB_NAME,VIDEO_DB_VERSION);
+        req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(VIDEO_STORE))db.createObjectStore(VIDEO_STORE);};
+        req.onsuccess=()=>resolve(req.result);
+        req.onerror=()=>reject(req.error||new Error("IndexedDB 打开失败"));
+    });
+    return videoDBPromise;
+}
+async function saveVideoBlob(blob){
+    const key=`video-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const db=await openVideoDB();
+    await new Promise((resolve,reject)=>{
+        const tx=db.transaction(VIDEO_STORE,"readwrite");
+        tx.objectStore(VIDEO_STORE).put(blob,key);
+        tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||new Error("视频保存失败"));
+    });
+    return key;
+}
+async function getVideoBlob(key){
+    if(!key)return null;
+    const db=await openVideoDB();
+    return await new Promise((resolve,reject)=>{
+        const tx=db.transaction(VIDEO_STORE,"readonly"),req=tx.objectStore(VIDEO_STORE).get(key);
+        req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error||new Error("视频读取失败"));
+    });
+}
+async function deleteVideoBlob(key){
+    if(!key)return;
+    try{const db=await openVideoDB();await new Promise((resolve,reject)=>{const tx=db.transaction(VIDEO_STORE,"readwrite");tx.objectStore(VIDEO_STORE).delete(key);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}catch(e){console.warn("删除视频 Blob 失败",e);}
+}
+async function getVideoObjectURL(record,watermarked=false){
+    const key=watermarked?record.videoWatermarkedKey:record.videoOriginalKey;
+    if(key){const blob=await getVideoBlob(key);if(blob)return URL.createObjectURL(blob);}
+    const legacy=watermarked?(record.watermarkedSrc||null):(record.originalSrc||record.src||null);
+    return legacy||null;
+}
+function fileToVideoBlob(file){return Promise.resolve(file);}
+async function getVideoPoster(source){
+    const url=source instanceof Blob?URL.createObjectURL(source):source;
+    const video=document.createElement("video");
+    video.muted=true;video.playsInline=true;video.preload="auto";
+    try{
+        video.src=url;
+        await new Promise((resolve,reject)=>{video.onloadedmetadata=resolve;video.onerror=()=>reject(new Error("视频首帧读取失败"));});
+        await new Promise(resolve=>{
+            const done=()=>resolve();
+            if(video.readyState>=2){try{video.currentTime=0;}catch(_){done();}}
+            video.onseeked=done;
+            setTimeout(done,1500);
+        });
+        const w=video.videoWidth||640,h=video.videoHeight||360,scale=Math.min(1,1280/Math.max(w,h));
+        const canvas=document.createElement("canvas");canvas.width=Math.max(1,Math.round(w*scale));canvas.height=Math.max(1,Math.round(h*scale));
+        canvas.getContext("2d").drawImage(video,0,0,canvas.width,canvas.height);
+        return canvas.toDataURL("image/jpeg",.9);
+    }finally{video.pause();if(source instanceof Blob)URL.revokeObjectURL(url);}
+}
+function allStoredVideoRecords(){
+    const out=[];
+    for(const records of [baiRecords,leiRecords])for(const date of Object.keys(records||{}))for(const r of (records[date]||[]))if(r.type==="video")out.push(r);
+    return out;
+}
 
 let calendarMarks =
     readStoredJSON("calendarMarks");
@@ -3189,14 +3272,55 @@ function drawCornerMark(ctx,img,w,h,side="left",scale=.30,opacity=1,blend="sourc
 async function makeWatermarkedImage(src,chef){const cfg=WATERMARK_CONFIG[chef];const source=await loadImageForCanvas(src);const w=source.naturalWidth||source.width,h=source.naturalHeight||source.height,landscape=isLandscapeRatio(w,h);const c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d");ctx.drawImage(source,0,0,w,h);const bg=await loadImageForCanvas(cfg.background);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);const mark=await loadImageForCanvas(cfg.mark);if(landscape){if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");}drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}else{if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");}drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}return c.toDataURL("image/webp",.92);}
 async function fileToWatermarkedImage(file,chef){const original=await fileToOriginalDataURL(file);return {original,watermarked:await makeWatermarkedImage(original,chef)};}
 async function makeWatermarkedVideo(file,chef){if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频自动打水印");const cfg=WATERMARK_CONFIG[chef],url=URL.createObjectURL(file),video=document.createElement("video");video.src=url;video.playsInline=true;video.preload="auto";await new Promise((res,rej)=>{video.onloadedmetadata=res;video.onerror=()=>rej(new Error("视频读取失败"));});await video.play().catch(()=>{});const w=video.videoWidth,h=video.videoHeight,c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d"),stream=c.captureStream(30),srcStream=video.captureStream?video.captureStream():null;if(srcStream)srcStream.getAudioTracks().forEach(t=>stream.addTrack(t));const types=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"],mime=types.find(m=>MediaRecorder.isTypeSupported(m))||"",rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined),chunks=[];rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};const done=new Promise(r=>rec.onstop=r);rec.start(250);const bg=await loadImageForCanvas(cfg.background),mark=await loadImageForCanvas(cfg.mark),shadow=cfg.shadow?await loadImageForCanvas(cfg.shadow):null,landscape=isLandscapeRatio(w,h);await new Promise(resolve=>{const draw=()=>{if(video.ended||video.currentTime>=video.duration-.03){resolve();return;}ctx.clearRect(0,0,w,h);ctx.drawImage(video,0,0,w,h);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);if(landscape){if(shadow)drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}else{if(shadow)drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}requestAnimationFrame(draw)};draw();});rec.stop();await done;video.pause();URL.revokeObjectURL(url);return new Blob(chunks,{type:mime||"video/webm"});}
-async function fileToWatermarkedVideo(file,chef){const original=await fileToOriginalDataURL(file),blob=await makeWatermarkedVideo(file,chef),watermarked=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(blob)});return {original,watermarked};}
+async function fileToWatermarkedVideo(file,chef){
+    const blob=await makeWatermarkedVideo(file,chef);
+    return {originalBlob:file,watermarkedBlob:blob};
+}
 function currentChefFromTarget(target){return target===baiRecords?"bai":target===leiRecords?"lei":null;}
 
 /* =========================================================
    HANDLE UPLOAD
 ========================================================= */
 
-async function handleUpload(files,target){if(!files||!files.length)return;if(!target[selectedDate])target[selectedDate]=[];const fileArray=Array.from(files),chef=currentChefFromTarget(target),shouldWatermark=chef?getWatermarkEnabled(chef):false;let successCount=0;try{for(const file of fileArray){try{const isVideo=file.type.startsWith("video/");let original,watermarked=null;if(shouldWatermark){showToast(isVideo?`正在为视频 ${file.name} 自动打水印…`:`正在为图片 ${file.name} 自动打水印…`);if(isVideo)({original,watermarked}=await fileToWatermarkedVideo(file,chef));else({original,watermarked}=await fileToWatermarkedImage(file,chef));}else original=isVideo?await fileToOriginalDataURL(file):await fileToDataURL(file);target[selectedDate].push({id:Date.now()+Math.random(),type:isVideo?"video":"image",name:file.name,src:watermarked||original,originalSrc:original,watermarkedSrc:watermarked,watermarkApplied:!!watermarked,chef,home:false});successCount++;}catch(e){console.error("单个文件导入失败：",file.name,e);}}if(!successCount){showToast(shouldWatermark?"自动打水印失败，请确认水印素材可跨域读取或换一张素材再试":"图片导入失败，请换一张图片再试");return;}saveData();renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();showToast(`已导入 ${successCount} 个文件${shouldWatermark?" · 已自动打水印":" · 未打水印"} · ${formatChineseDate(selectedDate)}`);}catch(e){console.error("批量导入失败：",e);showToast("导入失败：浏览器存储空间可能不足");}}
+async function handleUpload(files,target){
+    if(!files||!files.length)return;
+    if(!target[selectedDate])target[selectedDate]=[];
+    const fileArray=Array.from(files),chef=currentChefFromTarget(target),shouldWatermark=chef?getWatermarkEnabled(chef):false;
+    let successCount=0;
+    try{
+        for(const file of fileArray){
+            try{
+                const isVideo=file.type.startsWith("video/");
+                let original=null,watermarked=null,originalBlob=null,watermarkedBlob=null,poster=null;
+                if(isVideo){
+                    if(shouldWatermark){
+                        showToast(`正在为视频 ${file.name} 自动打水印…`);
+                        ({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef));
+                    }else originalBlob=file;
+                    const playbackBlob=watermarkedBlob||originalBlob;
+                    poster=await getVideoPoster(playbackBlob);
+                    const originalKey=await saveVideoBlob(originalBlob);
+                    const watermarkedKey=watermarkedBlob?await saveVideoBlob(watermarkedBlob):null;
+                    target[selectedDate].push({
+                        id:Date.now()+Math.random(),type:"video",name:file.name,
+                        src:null,originalSrc:null,watermarkedSrc:null,
+                        videoOriginalKey:originalKey,videoWatermarkedKey:watermarkedKey,
+                        poster,watermarkApplied:!!watermarkedBlob,chef,home:false
+                    });
+                }else{
+                    if(shouldWatermark){showToast(`正在为图片 ${file.name} 自动打水印…`);({original,watermarked}=await fileToWatermarkedImage(file,chef));}
+                    else original=await fileToDataURL(file);
+                    target[selectedDate].push({id:Date.now()+Math.random(),type:"image",name:file.name,src:watermarked||original,originalSrc:original,watermarkedSrc:watermarked,watermarkApplied:!!watermarked,chef,home:false});
+                }
+                successCount++;
+            }catch(e){console.error("单个文件导入失败：",file.name,e);}
+        }
+        if(!successCount){showToast("导入失败，请检查视频格式或浏览器存储权限");return;}
+        saveData();
+        renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
+        showToast(`已导入 ${successCount} 个文件${shouldWatermark?" · 已自动打水印":""} · ${formatChineseDate(selectedDate)}`);
+    }catch(e){console.error("批量导入失败：",e);showToast("导入失败：浏览器存储空间可能不足");}
+}
 
 /* =========================================================
    FOUR IMAGE COLLAGE UPLOAD
@@ -3517,20 +3641,50 @@ const previewModal=document.getElementById("previewModal"),previewMediaWrap=docu
 function getOriginalSrc(r){return r.originalSrc||r.src} function getWatermarkedSrc(r){return r.watermarkedSrc||(r.watermarkApplied?r.src:null)}
 function downloadDataURL(dataUrl,filename){if(!dataUrl)return;const a=document.createElement("a");a.href=dataUrl;a.download=filename||"yummy-media";document.body.appendChild(a);a.click();a.remove()}
 async function downloadRecord(r,wm=false){
-    let src=wm?getWatermarkedSrc(r):getOriginalSrc(r);
-    if(!src){showToast(wm?"这条记录没有可下载的打水印版本":"这条记录没有可下载的原图");return}
     try{
+        let src=await getVideoObjectURL(r,wm);
+        if(r.type!=="video")src=wm?getWatermarkedSrc(r):getOriginalSrc(r);
+        if(!src){showToast(wm?"这条记录没有可下载的打水印版本":"这条记录没有可下载的原图");return}
         const number=r.__downloadNumber!=null?r.__downloadNumber:null;
         if(number!=null)src=await numberAwareSource(r,src,number);
-        const suffix=wm?"-已打水印":"-原图",base=(r.name||"美食记录").replace(/\.[^.]+$/,""),mime=(src.match(/^data:([^;]+)/)||[])[1]||"image/webp";
+        const suffix=wm?"-已打水印":"-原图",base=(r.name||"美食记录").replace(/\.[^.]+$/,"");
+        if(r.type==="video"&&!number){
+            const blob=await getVideoBlob(wm?r.videoWatermarkedKey:r.videoOriginalKey);
+            if(blob){const u=URL.createObjectURL(blob);const a=document.createElement("a");a.href=u;a.download=`${base}${suffix}.${blob.type.includes("webm")?"webm":"mp4"}`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);return;}
+        }
+        const mime=(src.match(/^data:([^;]+)/)||[])[1]||"image/webp";
         const ext=mime.includes("webm")?".webm":mime.includes("png")?".png":mime.includes("jpeg")||mime.includes("jpg")?".jpg":".webp";
         downloadDataURL(src,`${base}${suffix}${number!=null?`-${number}`:""}${ext}`);
     }catch(e){console.error("下载失败：",e);showToast("下载失败，请重试");}
 }
-function openMediaPreview(r,nameOverride){previewState={record:r};previewMediaWrap.innerHTML="";const original=getOriginalSrc(r),wm=getWatermarkedSrc(r),src=wm||original;if(r.type==="video"){const v=document.createElement("video");v.src=src;v.controls=true;v.autoplay=true;v.playsInline=true;previewMediaWrap.appendChild(v)}else{const img=document.createElement("img");img.src=src;img.alt=r.name||"美食记录";previewMediaWrap.appendChild(img)}previewName.textContent=nameOverride||r.name||"美食记录";previewHint.textContent=wm?"当前预览为打水印版本；可选择下载原图或打水印图。":"当前记录没有单独保存打水印版本，因此只提供原图下载。";previewWatermarkedBtn.style.display=wm?"inline-block":"none";previewOriginalBtn.style.display=original?"inline-block":"none";previewModal.classList.add("show")}
+async function openMediaPreview(r,nameOverride){
+    previewState={record:r};previewMediaWrap.innerHTML="";
+    if(r.type==="video"){
+        const stage=document.createElement("div");stage.className="preview-video-stage";
+        const v=document.createElement("video");v.playsInline=true;v.preload="metadata";v.poster=r.poster||"";
+        const src=await getVideoObjectURL(r,!!r.watermarkApplied);if(src)v.src=src;
+        const play=document.createElement("button");play.className="video-play-button center";play.type="button";play.textContent="▶";play.title="播放";
+        play.addEventListener("click",async e=>{e.stopPropagation();try{await v.play();stage.classList.add("playing");v.controls=true;}catch(_){showToast("当前浏览器无法播放此视频");}});
+        v.addEventListener("play",()=>stage.classList.add("playing"));v.addEventListener("pause",()=>stage.classList.remove("playing"));
+        stage.addEventListener("click",e=>{if(e.target===stage||e.target===v){}});
+        stage.appendChild(v);stage.appendChild(play);previewMediaWrap.appendChild(stage);
+    }else{const img=document.createElement("img");img.src=getWatermarkedSrc(r)||getOriginalSrc(r);img.alt=r.name||"美食记录";previewMediaWrap.appendChild(img)}
+    previewName.textContent=nameOverride||r.name||"美食记录";
+    const hasWm=!!(r.type==="video"?r.videoWatermarkedKey||r.watermarkedSrc:r.watermarkedSrc);
+    const hasOriginal=!!(r.type==="video"?r.videoOriginalKey||r.originalSrc||r.src:getOriginalSrc(r));
+    previewHint.textContent=hasWm?"当前预览为打水印版本；可选择下载原图或打水印图。":"当前记录没有单独保存打水印版本，因此只提供原图下载。";
+    previewWatermarkedBtn.style.display=hasWm?"inline-block":"none";previewOriginalBtn.style.display=hasOriginal?"inline-block":"none";previewModal.classList.add("show");
+}
 function openCollageItemPreview(item){const temp={type:"image",name:item.name,src:item.src,originalSrc:item.originalSrc||item.src,watermarkedSrc:item.watermarkedSrc||null,watermarkApplied:!!item.watermarkApplied,__downloadNumber:item.__downloadNumber??null};openMediaPreview(temp,item.name||"拼图图片")}
-previewWatermarkedBtn.addEventListener("click",()=>{if(previewState?.record)downloadRecord(previewState.record,true)});previewOriginalBtn.addEventListener("click",()=>{if(previewState?.record){pendingOriginalDownload=previewState.record;openPasswordModal("originalDownload")}});previewCloseBtn.addEventListener("click",()=>previewModal.classList.remove("show"));previewModal.addEventListener("click",e=>{if(e.target===previewModal)previewModal.classList.remove("show")});document.addEventListener("keydown",e=>{if(e.key==="Escape")previewModal.classList.remove("show")});
+previewWatermarkedBtn.addEventListener("click",()=>{if(previewState?.record)downloadRecord(previewState.record,true)});previewOriginalBtn.addEventListener("click",()=>{if(previewState?.record){pendingOriginalDownload=previewState.record;openPasswordModal("originalDownload")}});previewCloseBtn.addEventListener("click",()=>{previewModal.classList.remove("show");previewMediaWrap.innerHTML=""});previewModal.addEventListener("click",e=>{if(e.target===previewModal){previewModal.classList.remove("show");previewMediaWrap.innerHTML=""}});document.addEventListener("keydown",e=>{if(e.key==="Escape"){previewModal.classList.remove("show");previewMediaWrap.innerHTML=""}});
 
+async function hydrateVideoElement(record,video){
+    try{
+        const src=await getVideoObjectURL(record,!!record.watermarkApplied);
+        if(!src)return;
+        video.dataset.objectUrl=src;video.src=src;video.load();
+    }catch(e){console.warn("视频读取失败",e);showToast("视频读取失败，请重新导入该视频");}
+}
 
 function createMediaCard(
     record,
@@ -3738,40 +3892,34 @@ function createMediaCard(
 
     let media;
 
+    let videoStage=null,videoPlayButton=null;
     if (record.type === "video") {
-
-        media =
-            document.createElement("video");
-
-        media.src =
-            record.src;
-
-        media.controls =
-            true;
-
-        media.preload =
-            "metadata";
-
-    }
-    else {
-
-        media =
-            document.createElement("img");
-
-        media.src =
-            record.src;
-
-        media.loading =
-            "lazy";
-    }
-
-    if (record.type !== "video") {
+        videoStage=document.createElement("div");
+        videoStage.className="video-stage";
+        media=document.createElement("video");
+        media.poster=record.poster||"";
+        media.preload="metadata";
+        media.playsInline=true;
+        media.muted=false;
+        const playbackSrc=record.watermarkApplied?getWatermarkedSrc(record):getOriginalSrc(record);
+        if(playbackSrc)media.src=playbackSrc;
+        videoPlayButton=document.createElement("button");
+        videoPlayButton.type="button";videoPlayButton.className="video-play-button corner";videoPlayButton.textContent="▶";videoPlayButton.title="播放";
+        videoPlayButton.addEventListener("click",async event=>{event.stopPropagation();try{await media.play();videoStage.classList.add("playing");media.controls=true;}catch(_){showToast("当前浏览器无法播放此视频");}});
+        media.addEventListener("play",()=>videoStage.classList.add("playing"));
+        media.addEventListener("pause",()=>videoStage.classList.remove("playing"));
+        media.addEventListener("ended",()=>videoStage.classList.remove("playing"));
+        videoStage.addEventListener("click",event=>{if(!videoStage.classList.contains("playing")&&(event.target===videoStage||event.target===media)){event.stopPropagation();openMediaPreview(record);}});
+        videoStage.appendChild(media);videoStage.appendChild(videoPlayButton);card.appendChild(videoStage);
+        if(record.videoOriginalKey||record.videoWatermarkedKey) hydrateVideoElement(record,media);
+    } else {
+        media=document.createElement("img");
+        media.src=record.src;
+        media.loading="lazy";
         media.classList.add("media-clickable");
-        media.addEventListener("click", event => { event.stopPropagation(); openMediaPreview(record); });
+        media.addEventListener("click",event=>{event.stopPropagation();openMediaPreview(record);});
+        card.appendChild(media);
     }
-    card.appendChild(media);
-    media.classList.add("media-clickable");
-    media.addEventListener("click",event=>{event.stopPropagation();openMediaPreview(record);});
     const ordinaryNumber=getRecordNumber(record,records,date);
     record.__downloadNumber=ordinaryNumber;
     const ordinaryBadge=createNumberBadge(ordinaryNumber);
@@ -3898,14 +4046,13 @@ function deleteMedia(
         );
 
 
-    if (
-        index !== -1
-    ) {
-
-        list.splice(
-            index,
-            1
-        );
+    if (index !== -1) {
+        const removed=list[index];
+        list.splice(index,1);
+        if(removed?.type==="video"){
+            deleteVideoBlob(removed.videoOriginalKey);
+            deleteVideoBlob(removed.videoWatermarkedKey);
+        }
     }
 
 
