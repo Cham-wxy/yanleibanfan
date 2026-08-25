@@ -13,7 +13,9 @@
 <meta name="theme-color" content="#fffaf8">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="manifest" href='data:application/manifest+json,{"name":"落泪餐厅","short_name":"落泪餐厅","start_url":".","display":"standalone","background_color":"#fffaf8","theme_color":"#fffaf8","icons":[{"src":"https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png","sizes":"512x512","type":"image/png"}]}'>
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href='data:application/manifest+json,{"name":"落泪餐厅","short_name":"落泪餐厅","start_url":".","display":"standalone","scope":"./","orientation":"portrait-primary","background_color":"#fffaf8","theme_color":"#fffaf8","icons":[{"src":"https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png","sizes":"512x512","type":"image/png"}]}'>
 
 <style>
 
@@ -1389,6 +1391,16 @@ body {
    WATERMARK / PREVIEW
 ========================================================= */
 .watermark-control{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;font-size:11px;cursor:pointer;user-select:none}.watermark-control input{accent-color:#d98287}.watermark-control.active{background:#fff0ef;color:#c86f76;border-color:#f0c6c4}.media-clickable{cursor:zoom-in}.collage-cell .media-clickable{cursor:zoom-in}.preview-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(34,27,25,.72);backdrop-filter:blur(8px);z-index:7000;opacity:0;pointer-events:none;transition:.22s ease}.preview-modal.show{opacity:1;pointer-events:auto}.preview-box{width:min(96vw,1100px);max-height:94vh;display:flex;flex-direction:column;background:#fffaf8;border-radius:22px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.28)}.preview-media-wrap{position:relative;min-height:180px;max-height:78vh;display:flex;align-items:center;justify-content:center;background:#1f1b1a;overflow:auto}.preview-media-wrap img,.preview-media-wrap video{max-width:100%;max-height:76vh;width:auto;height:auto;display:block;object-fit:contain}.preview-video-stage{position:relative;display:flex;align-items:center;justify-content:center;max-width:100%;max-height:76vh;line-height:0}.preview-video-stage video{max-width:100%;max-height:76vh}.preview-video-stage .video-play-button{left:50%;top:50%;right:auto;bottom:auto}.preview-info{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.preview-name{min-width:0;font-size:12px;color:#665b57;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.preview-actions{display:flex;gap:7px;flex-wrap:wrap}.preview-actions button{border:0;border-radius:10px;padding:8px 11px;font-size:11px;cursor:pointer}.preview-download{background:#ffe9e6;color:#c96f76;font-weight:700}.preview-original{background:#f4f1ef;color:#786b66}.preview-close{background:#514946;color:white}.preview-hint{width:100%;font-size:10px;color:#a69792}@media(max-width:700px){.preview-modal{padding:10px}.preview-box{border-radius:17px}.preview-media-wrap{max-height:72vh}.preview-media-wrap img,.preview-media-wrap video{max-height:70vh}.preview-info{padding:10px}.preview-actions{width:100%}.preview-actions button{flex:1 1 30%}}
+
+/* =========================================================
+   STANDALONE APP MODE
+========================================================= */
+html.standalone-mode, html.standalone-mode body{
+    overscroll-behavior-y:none;
+}
+@media (display-mode: standalone){
+    #appTools{display:none !important;}
+}
 </style>
 </head>
 
@@ -2052,22 +2064,73 @@ function fileToVideoBlob(file){return Promise.resolve(file);}
 async function getVideoPoster(source){
     const url=source instanceof Blob?URL.createObjectURL(source):source;
     const video=document.createElement("video");
-    video.muted=true;video.playsInline=true;video.preload="auto";
+    video.muted=true;video.playsInline=true;video.preload="auto";video.src=url;
     try{
-        video.src=url;
-        await new Promise((resolve,reject)=>{video.onloadedmetadata=resolve;video.onerror=()=>reject(new Error("视频首帧读取失败"));});
-        await new Promise(resolve=>{
-            const done=()=>resolve();
-            if(video.readyState>=2){try{video.currentTime=0;}catch(_){done();}}
-            video.onseeked=done;
-            setTimeout(done,1500);
+        await new Promise((resolve,reject)=>{
+            let done=false;
+            const ok=()=>{if(!done){done=true;resolve();}};
+            const fail=()=>{if(!done){done=true;reject(new Error("视频封面读取失败"));}};
+            video.onloadedmetadata=ok;video.onerror=fail;
+            setTimeout(()=>fail(),5000);
         });
-        const w=video.videoWidth||640,h=video.videoHeight||360,scale=Math.min(1,1280/Math.max(w,h));
-        const canvas=document.createElement("canvas");canvas.width=Math.max(1,Math.round(w*scale));canvas.height=Math.max(1,Math.round(h*scale));
-        canvas.getContext("2d").drawImage(video,0,0,canvas.width,canvas.height);
-        return canvas.toDataURL("image/jpeg",.9);
-    }finally{video.pause();if(source instanceof Blob)URL.revokeObjectURL(url);}
+
+        const w=video.videoWidth||640,h=video.videoHeight||360;
+        const scale=Math.min(1,1280/Math.max(w,h));
+        const canvas=document.createElement("canvas");
+        canvas.width=Math.max(1,Math.round(w*scale));
+        canvas.height=Math.max(1,Math.round(h*scale));
+        const ctx=canvas.getContext("2d",{willReadFrequently:true});
+        if(!ctx)throw new Error("无法创建封面画布");
+
+        // 不再死磕“严格 0 秒”。某些浏览器/编码器的 0 秒会是黑帧，
+        // 尤其是 MediaRecorder 生成的视频。我们尝试多个时间点，
+        // 自动选择一张真正有画面的帧；首帧正常时仍优先使用首帧。
+        const duration=Number.isFinite(video.duration)?video.duration:0;
+        const candidates=[0,0.08,0.20,0.50];
+        if(duration>0.8)candidates.push(Math.max(0.1,duration-0.25));
+        if(duration>0.2)candidates.push(Math.max(0.05,duration-0.05));
+
+        let bestData=null,bestScore=-1;
+        for(const t of [...new Set(candidates.map(x=>Math.max(0,Math.min(duration||x,x))))]){
+            try{
+                video.currentTime=t;
+                await new Promise(resolve=>{
+                    let settled=false;
+                    const done=()=>{if(!settled){settled=true;resolve();}};
+                    video.onseeked=done;
+                    if("requestVideoFrameCallback" in video)video.requestVideoFrameCallback(()=>done());
+                    setTimeout(done,900);
+                });
+                if(video.readyState<2)continue;
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                ctx.drawImage(video,0,0,canvas.width,canvas.height);
+                const pixels=ctx.getImageData(0,0,Math.min(canvas.width,320),Math.min(canvas.height,180)).data;
+                let sum=0,nonBlack=0;
+                for(let i=0;i<pixels.length;i+=4){
+                    const lum=(pixels[i]*299+pixels[i+1]*587+pixels[i+2]*114)/1000;
+                    sum+=lum;
+                    if(lum>18)nonBlack++;
+                }
+                const avg=sum/(pixels.length/4);
+                const ratio=nonBlack/(pixels.length/4);
+                // 平均亮度 + 非黑像素比例；对明显黑屏给予强烈惩罚。
+                const score=avg*0.65+ratio*100*0.35;
+                if(score>bestScore){
+                    bestScore=score;
+                    bestData=canvas.toDataURL("image/jpeg",.92);
+                }
+                // 0 秒已经是正常画面，就直接采用它，不为了“更亮”去换掉真正首帧。
+                if(t===0 && avg>22 && ratio>0.12)break;
+            }catch(_){ }
+        }
+        if(!bestData)throw new Error("没有取得有效视频画面");
+        return bestData;
+    }finally{
+        video.pause();video.removeAttribute("src");video.load();
+        if(source instanceof Blob)URL.revokeObjectURL(url);
+    }
 }
+
 function allStoredVideoRecords(){
     const out=[];
     for(const records of [baiRecords,leiRecords])for(const date of Object.keys(records||{}))for(const r of (records[date]||[]))if(r.type==="video")out.push(r);
@@ -3364,7 +3427,19 @@ async function handleUpload(files,target){
                         }catch(testError){console.warn("打水印视频可播放性检测失败，将保留原视频播放：",testError);}
                         URL.revokeObjectURL(testUrl);
                     }
-                    poster=await getVideoPoster(playbackBlob);
+                    // 封面永远取“原视频”的真实首帧，而不是取打水印后的 WebM。
+                    // MediaRecorder 生成的水印视频开头有时会先写入一帧黑画面，
+                    // 如果直接从 watermarkedBlob 截图，就会把这张黑帧当成封面。
+                    // 封面优先从原视频生成；如果原视频首帧/解码器异常，
+                    // 再尝试打水印视频的“非黑帧”，绝不让黑屏封面进入记录。
+                    try{
+                        poster=await getVideoPoster(originalBlob);
+                    }catch(posterError){
+                        console.warn("原视频封面生成失败，尝试打水印版本：",posterError);
+                        if(watermarkedBlob){
+                            try{poster=await getVideoPoster(watermarkedBlob);}catch(_){poster=null;}
+                        }
+                    }
                     const originalKey=await saveVideoBlob(originalBlob);
                     const watermarkedKey=watermarkedBlob?await saveVideoBlob(watermarkedBlob):null;
                     target[selectedDate].push({
@@ -4684,18 +4759,35 @@ renderChefArchives(
 
 <script>
 (function(){
+  const standalone = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  if(standalone) document.documentElement.classList.add("standalone-mode");
   let deferredInstall=null;
   window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;showAppButtons();});
   function showAppButtons(){const b=document.getElementById("appInstallButton");if(b)b.hidden=false;}
   function makeAppButton(){
     if(document.getElementById("appInstallButton"))return;
-    const wrap=document.createElement("div");wrap.id="appTools";wrap.innerHTML='<button id="appInstallButton" hidden>＋ 添加到主屏幕</button><button id="appFullscreenButton" title="全屏显示">⛶ 全屏</button>';
+    const wrap=document.createElement("div");wrap.id="appTools";
+    wrap.innerHTML='<button id="appInstallButton" hidden>＋ 添加到主屏幕</button><button id="appFullscreenButton" title="进入网页全屏">⛶ 全屏</button>';
     document.body.appendChild(wrap);
-    const style=document.createElement("style");style.textContent=`#appTools{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:99999;display:flex;gap:8px;align-items:center}#appTools button{border:0;border-radius:999px;padding:9px 13px;background:rgba(255,255,255,.88);color:#6f5555;box-shadow:0 4px 18px rgba(80,40,40,.12);backdrop-filter:blur(10px);font-size:13px}#appTools button[hidden]{display:none}@media(max-width:600px){#appTools button{font-size:12px;padding:8px 11px}}`;document.head.appendChild(style);
-    document.getElementById("appInstallButton").onclick=async()=>{if(!deferredInstall)return;deferredInstall.prompt();try{await deferredInstall.userChoice}catch(_){}deferredInstall=null;document.getElementById("appInstallButton").hidden=true;};
-    document.getElementById("appFullscreenButton").onclick=async()=>{try{if(!document.fullscreenElement){await document.documentElement.requestFullscreen();}else{await document.exitFullscreen();}}catch(_){showToast("当前浏览器不允许网页直接进入全屏，请使用“添加到主屏幕”打开落泪餐厅");}};
+    const style=document.createElement("style");
+    style.textContent=`#appTools{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:99999;display:flex;gap:8px;align-items:center}#appTools button{border:0;border-radius:999px;padding:9px 13px;background:rgba(255,255,255,.88);color:#6f5555;box-shadow:0 4px 18px rgba(80,40,40,.12);backdrop-filter:blur(10px);font-size:13px}#appTools button[hidden]{display:none}@media(max-width:600px){#appTools button{font-size:12px;padding:8px 11px}}`;
+    document.head.appendChild(style);
+    const install=document.getElementById("appInstallButton");
+    install.onclick=async()=>{
+      if(deferredInstall){deferredInstall.prompt();try{await deferredInstall.userChoice}catch(_){}deferredInstall=null;install.hidden=true;return;}
+      showToast("请在浏览器菜单中选择“添加到主屏幕”。如果打开后仍有地址栏，说明当前浏览器把它作为普通网页快捷方式打开，而不是独立 App 模式。");
+    };
+    document.getElementById("appFullscreenButton").onclick=async()=>{
+      try{
+        if(document.fullscreenElement){await document.exitFullscreen();return;}
+        if(document.documentElement.requestFullscreen){await document.documentElement.requestFullscreen();showToast("已进入网页全屏");}
+        else showToast("当前 iPhone Safari 不支持网页强制全屏；请使用“添加到主屏幕”的独立 App 模式");
+      }catch(_){showToast("当前浏览器不允许网页全屏；请使用“添加到主屏幕”的独立 App 模式");}
+    };
   }
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",makeAppButton);else makeAppButton();
+  if(!standalone){
+    if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",makeAppButton);else makeAppButton();
+  }
 })();
 </script>
 </body>
