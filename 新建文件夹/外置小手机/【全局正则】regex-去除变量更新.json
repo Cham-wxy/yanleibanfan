@@ -1,0 +1,18 @@
+{
+    "id": "619c4874-17e9-4ad1-a8d0-e9275424cd97",
+    "scriptName": "去除变量更新",
+    "findRegex": "/<UpdateVariable>[\\s\\S]*?</UpdateVariable>/gm",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+        1,
+        2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": true,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+}

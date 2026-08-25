@@ -1,0 +1,55 @@
+{
+  "id": "1b170bdb-ae79-4589-95c2-ef57fc7e9eb7",
+  "scriptName": "【无有居】一步隐藏正则",
+  "findRegex": "/(<thinking>[\\s\\S]*?<\\/thinking>)|(<disclaimer>[\\s\\S]*?<\\/disclaimer>)/gs",
+  "replaceString": "",
+  "trimStrings": [],
+  "placement": [
+    2
+  ],
+  "disabled": false,
+  "markdownOnly": true,
+  "promptOnly": false,
+  "runOnEdit": true,
+  "substituteRegex": 0,
+  "minDepth": null,
+  "maxDepth": null,
+  "extensions": {
+    "regex_scripts": [
+      {
+        "id": "MTQzNjAxMTc0NTY0NTk1MzI0NjoxNzgyMTA5NDYx",
+        "scriptName": "格式优化",
+        "findRegex": "\\s{2,}",
+        "replaceString": " ",
+        "trimStrings": [],
+        "placement": [
+          1
+        ],
+        "disabled": true,
+        "markdownOnly": false,
+        "promptOnly": false,
+        "runOnEdit": false,
+        "substituteRegex": false,
+        "minDepth": 0,
+        "maxDepth": 0
+      }
+    ],
+    "depth_prompt": {
+      "prompts": [
+        {
+          "prompt": "​​‌​​‌‌​‌​‌​‌​‌​​​‌​‌​​​‌​‌‌‌‌​‌​​‌​​‌‌‌​​‌‌​‌​‌​​‌​​​​​‌​‌‌‌‌​​​​‌​​‌‌​‌​‌​‌​‌​​​‌‌​​​‌‌​​‌‌​​​​​‌​​‌‌‌​​‌​‌​‌​​​‌​‌‌​​‌​​‌‌​​​​​‌​​‌‌‌​​‌​‌​‌​​​‌‌​‌​‌‌​​‌‌​​​‌​‌​​‌‌​‌​‌‌‌‌​‌​​‌​​‌​​‌​​‌‌​​​​​‌​​‌‌‌​​‌‌​‌​‌​​‌‌​‌‌‌‌​‌‌‌‌​​​​‌​​‌‌‌​​‌‌‌‌​‌​​‌‌​​‌‌‌​‌‌‌‌​​‌​‌​​‌‌​‌​‌​‌​‌​​​‌​​​​​‌​​‌‌​‌​‌​‌​​‌‌‌​​‌​​​‌​​​‌​‌‌​​‌​‌‌‌‌​​​​",
+          "depth": 4,
+          "role": "system"
+        }
+      ]
+    },
+    "puppybot": {
+      "uid": "MTQzNjAxMTc0NTY0NTk1MzI0Ng==",
+      "ts": 1782109461
+    }
+  },
+  "__watermark__": {
+    "user_id": "1436011745645953246",
+    "timestamp": 1782109461
+  }
+}

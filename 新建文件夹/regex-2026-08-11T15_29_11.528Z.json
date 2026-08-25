@@ -1,0 +1,37 @@
+[
+    {
+        "id": "4d3d4cef-d637-4549-93ac-86895f34534a",
+        "scriptName": "【隐藏|柚月小手机标签🏷️①】",
+        "findRegex": "/(?:```\\w*\\s*)?(?:<|&lt;)(wechat|论坛|信笺|短信|快递投递|回复.*?)(?:>|&gt;)[\\s\\S]*?(?:(?:<|&lt;)\\/\\1(?:>|&gt;)|$)(?:\\s*```)?/gi",
+        "replaceString": "",
+        "trimStrings": [],
+        "placement": [
+            1,
+            2
+        ],
+        "disabled": false,
+        "markdownOnly": true,
+        "promptOnly": false,
+        "runOnEdit": true,
+        "substituteRegex": 0,
+        "minDepth": null,
+        "maxDepth": null
+    },
+    {
+        "id": "35a50f8b-cfb2-4cc8-af40-0c068fcff30f",
+        "scriptName": "【删除|柚月小手机标签🏷️②】",
+        "findRegex": "/(?:```\\w*\\s*)?(?:<|&lt;)(music|phone|信笺|短信|快递投递|论坛|wechat)(?:>|&gt;)[\\s\\S]*?(?:(?:<|&lt;)\\/\\1(?:>|&gt;)|$)(?:\\s*```)?|\\[手机来电通话\\].*/gi",
+        "replaceString": "",
+        "trimStrings": [],
+        "placement": [
+            2
+        ],
+        "disabled": false,
+        "markdownOnly": true,
+        "promptOnly": true,
+        "runOnEdit": true,
+        "substituteRegex": 0,
+        "minDepth": null,
+        "maxDepth": null
+    }
+]
