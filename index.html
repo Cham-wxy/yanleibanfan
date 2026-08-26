@@ -1356,6 +1356,165 @@ body {
     }
 }
 
+
+/* =========================================================
+   NEW BLUE GRAY THEME OVERRIDE
+   日历标记颜色保持原设定
+========================================================= */
+
+body {
+    background: #eaeef7;
+    color: #3f4b5f;
+}
+
+.sidebar {
+    background: rgba(255,255,255,.94);
+    border-right-color: #dbe4f2;
+}
+
+.logo-sub {
+    color: #9bb4d3;
+}
+
+.nav-item {
+    color: #73839a;
+}
+
+.nav-item:hover {
+    background: #e1effa;
+    color: #6f8fb8;
+}
+
+.nav-item.active {
+    background: #e1effa;
+    color: #6f8fb8;
+}
+
+.calendar-section {
+    background: #ffffff;
+    border-color: #dbe4f2;
+    box-shadow: 0 15px 45px rgba(95,120,150,.08);
+}
+
+.calendar-title span {
+    color: #9bb4d3;
+}
+
+.calendar-control button {
+    background: #e1effa;
+    color: #6f8fb8;
+}
+
+.calendar-note {
+    color: #8b9ab0;
+}
+
+.weekdays div {
+    color: #9bb4d3;
+}
+
+.calendar-day {
+    background: #f7f9fd;
+}
+
+.calendar-day:hover {
+    border-color: #9bb4d3;
+}
+
+.day-number {
+    color: #64748b;
+}
+
+.section-title-wrap h2 {
+    color: #3f4b5f;
+}
+
+.section-title-wrap p {
+    color: #8b9ab0;
+}
+
+.section-collapse {
+    background: #e1effa;
+    color: #6f8fb8;
+}
+
+.section-collapse:hover {
+    background: #d7e8f8;
+}
+
+.upload-btn {
+    border-color: #d6e2f0;
+    background: #ffffff;
+    color: #6f8fb8;
+}
+
+.upload-btn:hover {
+    background: #e1effa;
+}
+
+.media-card {
+    background: #ffffff;
+    border-color: #dbe4f2;
+    box-shadow: 0 8px 25px rgba(80,110,145,.06);
+}
+
+.media-card img,
+.media-card video {
+    background: #eaeef7;
+}
+
+.media-info {
+    color: #8b9ab0;
+}
+
+.daily-empty,
+.chef-empty {
+    border-color: #cbd8e8;
+    background: #ffffff;
+    color: #8b9ab0;
+}
+
+.chef-date-group {
+    border-color: #dbe4f2;
+    background: #ffffff;
+}
+
+.chef-date-header {
+    background: #ffffff;
+    color: #3f4b5f;
+}
+
+.chef-date-header:hover {
+    background: #f7f9fd;
+}
+
+.date-icon {
+    background: #e1effa;
+}
+
+.password-box {
+    background: #ffffff;
+}
+
+.password-input {
+    border-color: #d6e2f0;
+    color: #3f4b5f;
+}
+
+.password-cancel {
+    background: #eaeef7;
+    color: #73839a;
+}
+
+.password-confirm {
+    background: #e1effa;
+    color: #6f8fb8;
+}
+
+.toast {
+    background: #3f4b5f;
+}
+
 </style>
 </head>
 
@@ -1421,16 +1580,6 @@ body {
             白咪饭大厨
 
         </button>
-
-
-        <button
-            class="nav-item"
-            data-target="lei">
-
-            泪懵懵大厨
-
-        </button>
-
     </nav>
 
 </aside>
@@ -1484,7 +1633,7 @@ body {
     <div class="calendar-note">
 
         <span class="note-pink">
-            粉色日期为〈你怎么泪懵懵〉老师放饭
+            粉色日期为放饭记录
         </span>
 
         <span class="note-green">
@@ -1696,105 +1845,6 @@ body {
 </section>
 
 
-<!-- =========================================================
-     泪懵懵大厨
-========================================================= -->
-
-<section
-    class="category-section"
-    id="lei">
-
-    <div class="section-head">
-
-        <div class="section-title-wrap">
-
-            <h2>
-                泪懵懵大厨
-            </h2>
-
-            <p>
-                泪懵懵大厨的单人盛宴
-            </p>
-
-        </div>
-
-
-        <div class="upload-box">
-
-            <button
-                class="upload-btn"
-                id="leiImageButton">
-
-                ＋ 上传图片
-
-            </button>
-
-            <button
-                class="upload-btn upload-collage-btn"
-                id="leiCollageButton">
-
-                ✦ 四图拼图
-
-            </button>
-
-
-            <button
-                class="upload-btn"
-                id="leiVideoButton">
-
-                ＋ 上传视频
-
-            </button>
-
-
-            <input
-                type="file"
-                accept="image/*"
-                multiple
-                class="hidden-file-input"
-                id="leiImageUpload">
-
-            <input
-                type="file"
-                accept="image/*"
-                multiple
-                class="hidden-file-input"
-                id="leiCollageUpload">
-
-
-            <input
-                type="file"
-                accept="video/*"
-                multiple
-                class="hidden-file-input"
-                id="leiVideoUpload">
-
-
-            <button
-                class="section-collapse"
-                data-section="lei"
-                title="展开 / 收缩">
-
-                <span class="arrow">
-                    ▼
-                </span>
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="section-body">
-
-        <div id="leiArchive"></div>
-
-    </div>
-
-</section>
-
-
 </div>
 
 </main>
@@ -1927,10 +1977,6 @@ let baiRecords =
     readStoredJSON("baiRecords");
 
 
-let leiRecords =
-    readStoredJSON("leiRecords");
-
-
 /*
     =====================================================
     两个完全独立的免密计时器
@@ -2024,11 +2070,6 @@ const baiArchive =
         "baiArchive"
     );
 
-const leiArchive =
-    document.getElementById(
-        "leiArchive"
-    );
-
 const toast =
     document.getElementById(
         "toast"
@@ -2089,11 +2130,6 @@ function saveData() {
         localStorage.setItem(
             "baiRecords",
             JSON.stringify(baiRecords)
-        );
-
-        localStorage.setItem(
-            "leiRecords",
-            JSON.stringify(leiRecords)
         );
 
         return true;
@@ -2925,64 +2961,6 @@ document
 
 
 /* =========================================================
-   泪懵懵大厨上传
-========================================================= */
-
-document
-    .getElementById(
-        "leiImageButton"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            requestUploadPermission(
-                document.getElementById(
-                    "leiImageUpload"
-                )
-            );
-
-        }
-    );
-
-
-document
-    .getElementById(
-        "leiCollageButton"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            requestUploadPermission(
-                document.getElementById(
-                    "leiCollageUpload"
-                )
-            );
-
-        }
-    );
-
-
-document
-    .getElementById(
-        "leiVideoButton"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            requestUploadPermission(
-                document.getElementById(
-                    "leiVideoUpload"
-                )
-            );
-
-        }
-    );
-
-
-/* =========================================================
    FILE INPUT EVENTS
 ========================================================= */
 
@@ -3045,63 +3023,7 @@ document
     );
 
 
-document
-    .getElementById(
-        "leiImageUpload"
-    )
-    .addEventListener(
-        "change",
-        event => {
 
-            handleUpload(
-                event.target.files,
-                leiRecords
-            );
-
-            event.target.value =
-                "";
-
-        }
-    );
-
-
-document
-    .getElementById(
-        "leiCollageUpload"
-    )
-    .addEventListener(
-        "change",
-        event => {
-
-            handleCollageUpload(
-                event.target.files,
-                leiRecords
-            );
-
-            event.target.value = "";
-
-        }
-    );
-
-
-document
-    .getElementById(
-        "leiVideoUpload"
-    )
-    .addEventListener(
-        "change",
-        event => {
-
-            handleUpload(
-                event.target.files,
-                leiRecords
-            );
-
-            event.target.value =
-                "";
-
-        }
-    );
 
 
 /* =========================================================
@@ -3181,11 +3103,6 @@ async function handleUpload(
         renderChefArchives(
             baiRecords,
             baiArchive
-        );
-
-        renderChefArchives(
-            leiRecords,
-            leiArchive
         );
 
         renderDaily();
@@ -3334,7 +3251,6 @@ async function handleCollageUpload(
         saveData();
 
         renderChefArchives(baiRecords, baiArchive);
-        renderChefArchives(leiRecords, leiArchive);
         renderDaily();
 
         showToast(
@@ -3365,15 +3281,9 @@ function getDailyRecords() {
             selectedDate
         ] || [];
 
-    const lei =
-        leiRecords[
-            selectedDate
-        ] || [];
-
 
     return [
         ...bai,
-        ...lei
     ];
 }
 
@@ -3962,11 +3872,6 @@ function deleteMedia(
         baiArchive
     );
 
-    renderChefArchives(
-        leiRecords,
-        leiArchive
-    );
-
     renderDaily();
 
 
@@ -4231,11 +4136,6 @@ function renderAllMedia() {
         baiRecords,
         baiArchive
     );
-
-    renderChefArchives(
-        leiRecords,
-        leiArchive
-    );
 }
 
 
@@ -4464,11 +4364,6 @@ renderDaily();
 renderChefArchives(
     baiRecords,
     baiArchive
-);
-
-renderChefArchives(
-    leiRecords,
-    leiArchive
 );
 
 </script>
