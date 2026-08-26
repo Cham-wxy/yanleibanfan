@@ -2217,12 +2217,17 @@ async function loadAppState(){
 async function restoreAppState(){
     try{
         const state=await loadAppState();
-        if(state){
-            calendarMarks=state.calendarMarks||{};
-            baiRecords=state.baiRecords||{};
-            leiRecords=state.leiRecords||{};
-            dailyNumbering=state.dailyNumbering||{};
-            return true;
+        // 有效数据检查：必须包含 baiRecords 或 leiRecords，且至少有一个有内容
+        if(state && typeof state === 'object'){
+            const hasBai = state.baiRecords && typeof state.baiRecords === 'object' && Object.keys(state.baiRecords).length > 0;
+            const hasLei = state.leiRecords && typeof state.leiRecords === 'object' && Object.keys(state.leiRecords).length > 0;
+            if(hasBai || hasLei){
+                calendarMarks = state.calendarMarks || {};
+                baiRecords = state.baiRecords || {};
+                leiRecords = state.leiRecords || {};
+                dailyNumbering = state.dailyNumbering || {};
+                return true;
+            }
         }
     }catch(e){
         console.warn("读取本地存档失败，将使用浏览器旧存储：",e);
@@ -2270,9 +2275,6 @@ async function getVideoPoster(source){
         const ctx=canvas.getContext("2d",{willReadFrequently:true});
         if(!ctx)throw new Error("无法创建封面画布");
 
-        // 不再死磕“严格 0 秒”。某些浏览器/编码器的 0 秒会是黑帧，
-        // 尤其是 MediaRecorder 生成的视频。我们尝试多个时间点，
-        // 自动选择一张真正有画面的帧；首帧正常时仍优先使用首帧。
         const duration=Number.isFinite(video.duration)?video.duration:0;
         const candidates=[0,0.08,0.20,0.50];
         if(duration>0.8)candidates.push(Math.max(0.1,duration-0.25));
@@ -2301,13 +2303,11 @@ async function getVideoPoster(source){
                 }
                 const avg=sum/(pixels.length/4);
                 const ratio=nonBlack/(pixels.length/4);
-                // 平均亮度 + 非黑像素比例；对明显黑屏给予强烈惩罚。
                 const score=avg*0.65+ratio*100*0.35;
                 if(score>bestScore){
                     bestScore=score;
                     bestData=canvas.toDataURL("image/jpeg",.92);
                 }
-                // 0 秒已经是正常画面，就直接采用它，不为了“更亮”去换掉真正首帧。
                 if(t===0 && avg>22 && ratio>0.12)break;
             }catch(_){ }
         }
@@ -2325,17 +2325,14 @@ function allStoredVideoRecords(){
     return out;
 }
 
-let calendarMarks =
-    readStoredJSON("calendarMarks");
-
-
-let baiRecords =
-    readStoredJSON("baiRecords");
-
-
-let leiRecords =
-    readStoredJSON("leiRecords");
-
+// ==================== 数据初始化 ====================
+// 不再从 localStorage 直接初始化 baiRecords / leiRecords
+// 改为由 restoreAppState() 从 IndexedDB 恢复，或从 localStorage 迁移
+let calendarMarks = readStoredJSON("calendarMarks", {});
+let baiRecords = {};
+let leiRecords = {};
+// 初始化时先尝试从 localStorage 读取作为 fallback，但会被 restoreAppState 覆盖
+// 但在 restoreAppState 完成前，页面还未渲染，所以没关系
 
 /*
     =====================================================
@@ -2483,45 +2480,22 @@ function formatChineseDate(
    SAVE
 ========================================================= */
 
-function saveData() {
-
+// 核心保存函数：保存到 IndexedDB（主要） + localStorage（备份/兼容）
+async function saveData() {
     try {
-
-        localStorage.setItem(
-            "calendarMarks",
-            JSON.stringify(calendarMarks)
-        );
-
-        localStorage.setItem(
-            "baiRecords",
-            JSON.stringify(baiRecords)
-        );
-
-        localStorage.setItem(
-            "leiRecords",
-            JSON.stringify(leiRecords)
-        );
-
-        // IndexedDB 是真正的本地媒体存档主保险；localStorage 失败时也不会影响它。
-        saveAppState().catch(error=>console.warn("IndexedDB 存档写入失败：",error));
+        // 1. 先保存到 localStorage（快速备份）
+        localStorage.setItem("calendarMarks", JSON.stringify(calendarMarks));
+        localStorage.setItem("baiRecords", JSON.stringify(baiRecords));
+        localStorage.setItem("leiRecords", JSON.stringify(leiRecords));
+        // 2. 再保存到 IndexedDB（主要存储，等待完成）
+        await saveAppState();
         return true;
-
-    }
-    catch (error) {
-
-        console.error(
-            "localStorage 保存失败：",
-            error
-        );
-
-        showToast(
-            "保存失败：浏览器存储空间不足，请删除一些旧图片/视频"
-        );
-
+    } catch (error) {
+        console.error("保存失败：", error);
+        showToast("保存失败：浏览器存储空间不足，请删除一些旧图片/视频");
         return false;
     }
 }
-
 
 /* =========================================================
    TOAST
@@ -2783,13 +2757,13 @@ document
     )
     .addEventListener(
         "click",
-        () => {
+        async () => {
 
             calendarMarks[
                 selectedDate
             ] = "pink";
 
-            saveData();
+            await saveData();
 
             renderCalendar();
 
@@ -2806,13 +2780,13 @@ document
     )
     .addEventListener(
         "click",
-        () => {
+        async () => {
 
             calendarMarks[
                 selectedDate
             ] = "green";
 
-            saveData();
+            await saveData();
 
             renderCalendar();
 
@@ -2829,13 +2803,13 @@ document
     )
     .addEventListener(
         "click",
-        () => {
+        async () => {
 
             delete calendarMarks[
                 selectedDate
             ];
 
-            saveData();
+            await saveData();
 
             renderCalendar();
 
@@ -3557,13 +3531,11 @@ function clearBackgroundMusic(chef){
 }
 async function extractMusicSource(file,chef){
     if(!file||!file.type.startsWith("video/"))throw new Error("请选择视频文件");
-    // 先用视频元素读取并确认存在音轨，再保留原 Blob 作为下一段视频的背景音源。
     const url=URL.createObjectURL(file),v=document.createElement("video");
     v.src=url;v.preload="metadata";v.playsInline=true;
     try{
         await new Promise((resolve,reject)=>{v.onloadedmetadata=resolve;v.onerror=()=>reject(new Error("无法读取该视频"));setTimeout(()=>reject(new Error("读取视频超时")),8000);});
         const hasAudio=v.mozHasAudio||v.webkitAudioDecodedByteCount>0||!!(v.audioTracks&&v.audioTracks.length);
-        // 某些浏览器不暴露 audioTracks，因此仍允许继续，后续混音时若没有音轨会给出明确提示。
         if(!hasAudio&&v.audioTracks&&v.audioTracks.length===0)console.warn("浏览器未暴露音轨信息，将在混音阶段继续检测");
         const old=backgroundMusicState[chef];if(old?.url)URL.revokeObjectURL(old.url);
         backgroundMusicState[chef]={blob:file,url, name:file.name, volume:0.32, keepOriginal:true};setMusicStatus(chef,file);showToast("音乐已提取，将用于下一段上传的视频");
@@ -3604,7 +3576,7 @@ async function mixVideoWithMusic(file,musicBlob,chef,musicVolume=0.32,keepOrigin
         const out=new Blob(chunks,{type:mime});if(!out.size)throw new Error("没有生成有效的背景音乐视频");return out;
     }finally{cancelAnimationFrame(raf);try{video.pause()}catch(_){}try{musicSource&&musicSource.stop()}catch(_){}try{if(rec&&rec.state!=="inactive")rec.stop()}catch(_){}try{ctx&&ctx.close()}catch(_){}if(stream)stream.getTracks().forEach(t=>{try{t.stop()}catch(_){}});URL.revokeObjectURL(url)}
 }
-function waitForMediaReady(media,timeout,message){return new Promise((resolve,reject)=>{let done=false;const ok=()=>{if(done)return;done=true;cleanup();resolve()};const fail=()=>{if(done)return;done=true;cleanup();reject(new Error(message))};const timer=setTimeout(fail,timeout);const cleanup=()=>{clearTimeout(timer);media.removeEventListener("loadedmetadata",ok);media.removeEventListener("canplay",ok);media.removeEventListener("error",fail)};media.addEventListener("loadedmetadata",ok,{once:true});media.addEventListener("canplay",ok,{once:true});media.addEventListener("error",fail,{once:true});if(media.readyState>=2)ok();else media.load()})}
+function waitForMediaReady(media,timeout,message){return new Promise((resolve,reject)=>{let done=false;const ok=()=>{if(done)return;done=true;cleanup;resolve()};const fail=()=>{if(done)return;done=true;cleanup;reject(new Error(message))};const timer=setTimeout(fail,timeout);const cleanup=()=>{clearTimeout(timer);media.removeEventListener("loadedmetadata",ok);media.removeEventListener("canplay",ok);media.removeEventListener("error",fail)};media.addEventListener("loadedmetadata",ok,{once:true});media.addEventListener("canplay",ok,{once:true});media.addEventListener("error",fail,{once:true});if(media.readyState>=2)ok();else media.load()})}
 
 /* =========================================================
    WATERMARK ENGINE
@@ -3695,11 +3667,6 @@ async function handleUpload(files,target){
                         }catch(testError){console.warn("打水印视频可播放性检测失败，将保留原视频播放：",testError);}
                         URL.revokeObjectURL(testUrl);
                     }
-                    // 封面永远取“原视频”的真实首帧，而不是取打水印后的 WebM。
-                    // MediaRecorder 生成的水印视频开头有时会先写入一帧黑画面，
-                    // 如果直接从 watermarkedBlob 截图，就会把这张黑帧当成封面。
-                    // 封面优先从原视频生成；如果原视频首帧/解码器异常，
-                    // 再尝试打水印视频的“非黑帧”，绝不让黑屏封面进入记录。
                     try{
                         poster=await getVideoPoster(originalBlob);
                     }catch(posterError){
@@ -3727,20 +3694,14 @@ async function handleUpload(files,target){
                     target[selectedDate].push({id:Date.now()+Math.random(),type:"image",name:file.name,src:watermarked||original,originalSrc:original,watermarkedSrc:watermarked,watermarkApplied:!!watermarked,chef,home:false});
                 }
                 successCount++;
-                // 每成功导入一个文件就立即保存记录。
-                // 这样即使批量上传过程中页面闪退，已经完成的文件也不会因为最后一次 saveData 尚未执行而丢失。
-                if(!saveData()){
-                    // localStorage 配额不足时，不再因此丢掉刚刚成功导入的内容；IndexedDB 仍负责主存档。
-                    console.warn("localStorage 已满，继续使用 IndexedDB 保存媒体记录");
-                }
-                await saveAppState();
+                // 每成功导入一个文件就立即保存 —— 这是数据可靠性的核心
+                await saveData();
                 renderChefArchives(baiRecords,baiArchive);
                 renderChefArchives(leiRecords,leiArchive);
                 renderDaily();
             }catch(e){console.error("单个文件导入失败：",file.name,e);}
         }
         if(!successCount){showToast("导入失败，请检查视频格式或浏览器存储权限");return;}
-        // 批量结束后再做一次完整保存，作为最后一道保险。
         saveData();
         renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
         showToast(`已导入 ${successCount} 个文件${shouldWatermark?" · 已自动打水印":""} · ${formatChineseDate(selectedDate)}`);
@@ -3773,9 +3734,7 @@ async function handleCollageUpload(files,target){
         }
         if(!target[selectedDate])target[selectedDate]=[];
         target[selectedDate].push({id:Date.now()+Math.random(),type:"collage",name:landscape?"四图纵向拼图 · 16:9":"四象限拼图 · 9:16",layout:landscape?"4x1":"2x2",items,chef,watermarkApplied:shouldWatermark,home:false});
-        // 拼图作为一个完整记录立即落盘。
-        if(!saveData()) console.warn("localStorage 已满，拼图继续使用 IndexedDB 保存");
-        await saveAppState();
+        await saveData();
         renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
         showToast(landscape?`16:9 四图已纵向拼好${shouldWatermark?"并完成逐张打水印":""} · ${formatChineseDate(selectedDate)}`:`9:16 四图已按四象限拼好${shouldWatermark?"并完成逐张打水印":""} · ${formatChineseDate(selectedDate)}`);
     }catch(e){console.error("四图拼图失败：",e);showToast("拼图失败：水印素材可能无法跨域读取，或浏览器存储空间不足");}
@@ -4451,7 +4410,7 @@ function createMediaCard(
    DELETE
 ========================================================= */
 
-function deleteMedia(
+async function deleteMedia(
     records,
     date,
     record
@@ -4494,7 +4453,7 @@ function deleteMedia(
     }
 
 
-    saveData();
+    await saveData();
 
 
     renderChefArchives(
@@ -4538,13 +4497,10 @@ function handleHomeToggle(
 
         record.home = false;
 
-        saveData();
-
-        renderAllMedia();
-
-        showToast(
-            "已取消「已回家」"
-        );
+        saveData().then(() => {
+            renderAllMedia();
+            showToast("已取消「已回家」");
+        });
 
         return;
     }
@@ -4553,13 +4509,10 @@ function handleHomeToggle(
 
         record.home = true;
 
-        saveData();
-
-        renderAllMedia();
-
-        showToast(
-            "已标记为「已回家」"
-        );
+        saveData().then(() => {
+            renderAllMedia();
+            showToast("已标记为「已回家」");
+        });
 
         return;
     }
@@ -4719,19 +4672,15 @@ function verifyPassword() {
             pendingHomeRecord.item.home =
                 true;
 
-            saveData();
+            saveData().then(() => {
+                renderAllMedia();
+                showToast("已标记为「已回家」");
+            });
         }
 
 
         closePasswordModal();
 
-
-        renderAllMedia();
-
-
-        showToast(
-            "已回家权限已开启 · 10分钟内免验证"
-        );
 
         return;
     }
@@ -4775,9 +4724,8 @@ passwordModal.addEventListener(
 let lastManualSaveAt = 0;
 
 async function manualSaveAll(){
-    try{ saveData(); }catch(_){}
     try{
-        await saveAppState();
+        await saveData();
         try{localStorage.setItem("yummyLastManualSaveAt",String(Date.now()));}catch(_){}
         lastManualSaveAt=Date.now();
         renderChefArchives(baiRecords,baiArchive);
@@ -4796,15 +4744,12 @@ document.getElementById("baiArchiveSaveButton")?.addEventListener("click", manua
 document.getElementById("leiArchiveSaveButton")?.addEventListener("click", manualSaveAll);
 
 // 离开页面、切后台、页面被冻结前再自动落一次盘。
-// 注意：这里不做异步视频处理，只保存已经完成的记录，避免离开页面时卡住。
 window.addEventListener("pagehide", () => {
-    try{ saveData(); }catch(_){}
-    saveAppState().catch(()=>{});
+    saveData().catch(()=>{});
 });
 document.addEventListener("visibilitychange", () => {
     if(document.visibilityState === "hidden"){
-        try{ saveData(); }catch(_){}
-        saveAppState().catch(()=>{});
+        saveData().catch(()=>{});
     }
 });
 
@@ -5063,18 +5008,85 @@ function syncWatermarkToggle(id,chef){const el=document.getElementById(id);if(!e
 syncWatermarkToggle("baiWatermarkToggle","bai");syncWatermarkToggle("leiWatermarkToggle","lei");bindMusicSettingsModal();
 
 /* =========================================================
-   INITIALIZE
+   INITIALIZE — 重构后的启动流程
+   核心原则：
+   1. 先打开 IndexedDB，恢复数据
+   2. 如果恢复成功，使用 IndexedDB 的数据
+   3. 如果恢复失败，从 localStorage 迁移数据（作为备用）
+   4. 然后再渲染页面
+   5. 确保数据恢复完成后再渲染，避免空数据覆盖
 ========================================================= */
 
-(async function initPersistentStorage(){
-    const restored=await restoreAppState();
-    if(!restored){
-        try{ await saveAppState(); }catch(e){ console.warn("旧数据迁移到 IndexedDB 失败：",e); }
+(async function initApp() {
+    try {
+        // 第一步：尝试从 IndexedDB 恢复数据
+        const restored = await restoreAppState();
+        
+        if (!restored) {
+            // 第二步：IndexedDB 中没有有效数据，尝试从 localStorage 迁移
+            console.log("IndexedDB 中无有效数据，尝试从 localStorage 迁移…");
+            const localBai = readStoredJSON("baiRecords", {});
+            const localLei = readStoredJSON("leiRecords", {});
+            const localMarks = readStoredJSON("calendarMarks", {});
+            const localNumbering = readStoredJSON("yummyDailyNumbering", {});
+            
+            const hasLocalData = Object.keys(localBai).length > 0 || Object.keys(localLei).length > 0;
+            if (hasLocalData) {
+                baiRecords = localBai;
+                leiRecords = localLei;
+                calendarMarks = localMarks;
+                dailyNumbering = localNumbering;
+                // 将 localStorage 中的数据迁移到 IndexedDB
+                await saveAppState();
+                console.log("已从 localStorage 迁移数据到 IndexedDB");
+            } else {
+                // 完全没有数据，使用空对象
+                baiRecords = {};
+                leiRecords = {};
+                calendarMarks = {};
+                dailyNumbering = {};
+                // 首次使用，初始化 IndexedDB
+                await saveAppState();
+                console.log("首次启动，已初始化 IndexedDB");
+            }
+        } else {
+            console.log("已从 IndexedDB 恢复数据");
+            // 数据恢复后，同步到 localStorage 作为备份
+            try {
+                localStorage.setItem("baiRecords", JSON.stringify(baiRecords));
+                localStorage.setItem("leiRecords", JSON.stringify(leiRecords));
+                localStorage.setItem("calendarMarks", JSON.stringify(calendarMarks));
+                localStorage.setItem("yummyDailyNumbering", JSON.stringify(dailyNumbering));
+            } catch (e) { /* 忽略备份写入失败 */ }
+        }
+        
+        // 第三步：所有数据准备就绪，渲染页面
+        renderCalendar();
+        renderDaily();
+        renderChefArchives(baiRecords, baiArchive);
+        renderChefArchives(leiRecords, leiArchive);
+        
+        console.log("🍚 落泪餐厅已启动，数据已恢复");
+    } catch (error) {
+        console.error("初始化失败：", error);
+        // 出错时尝试从 localStorage 恢复
+        try {
+            baiRecords = readStoredJSON("baiRecords", {});
+            leiRecords = readStoredJSON("leiRecords", {});
+            calendarMarks = readStoredJSON("calendarMarks", {});
+            dailyNumbering = readStoredJSON("yummyDailyNumbering", {});
+        } catch (e) {
+            baiRecords = {};
+            leiRecords = {};
+            calendarMarks = {};
+            dailyNumbering = {};
+        }
+        renderCalendar();
+        renderDaily();
+        renderChefArchives(baiRecords, baiArchive);
+        renderChefArchives(leiRecords, leiArchive);
+        showToast("数据恢复失败，请检查浏览器存储权限");
     }
-    renderCalendar();
-    renderDaily();
-    renderChefArchives(baiRecords,baiArchive);
-    renderChefArchives(leiRecords,leiArchive);
 })();
 
 </script>
