@@ -5,17 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>落泪餐厅</title>
-<link rel="icon" type="image/png" href="https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png">
-<link rel="apple-touch-icon" href="https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png">
-<meta name="apple-mobile-web-app-title" content="落泪餐厅">
-<meta name="application-name" content="落泪餐厅">
-<meta name="theme-color" content="#fffaf8">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href='data:application/manifest+json,{"name":"落泪餐厅","short_name":"落泪餐厅","start_url":".","display":"standalone","scope":"./","orientation":"portrait-primary","background_color":"#fffaf8","theme_color":"#fffaf8","icons":[{"src":"https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/4JgN/512X512/%E6%97%A0%E6%A0%87%E9%A2%9814_20260826045512.png","sizes":"512x512","type":"image/png"}]}'>
+<title>开饭记录 yummy</title>
 
 <style>
 
@@ -775,7 +765,6 @@ body {
         brightness(1.12)
         opacity(.38);
 }
-.media-card.home-state .video-stage video{filter:none;opacity:1}
 
 .home-overlay {
     position: absolute;
@@ -891,7 +880,6 @@ body {
 }
 
 .media-name {
-    display: none !important;
     overflow: hidden;
 
     white-space: nowrap;
@@ -990,23 +978,6 @@ body {
 .chef-date-header:hover {
     background: #fffaf8;
 }
-
-/* =========================================================
-   DAILY NUMBERING / LEAF TOGGLE
-========================================================= */
-.chef-date-head-row{display:flex;align-items:stretch;gap:7px;padding:0 8px 0 0}
-.chef-date-head-row .chef-date-header{flex:1;min-width:0}
-.daily-number-toggle{align-self:center;display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:66px;height:32px;padding:0 10px;border:1px solid #d8e9d7;border-radius:999px;background:linear-gradient(145deg,#f6fcf4,#edf7eb);color:#6d9670;box-shadow:0 5px 14px rgba(96,132,98,.10);cursor:pointer;font-size:10px;font-weight:700;transition:.22s ease;white-space:nowrap}
-.daily-number-toggle:hover{transform:translateY(-1px);box-shadow:0 7px 17px rgba(96,132,98,.15)}
-.daily-number-toggle .leaf{font-size:14px;line-height:1}
-.daily-number-toggle.active{background:linear-gradient(145deg,#cfe8cf,#b9ddb9);border-color:#afd1af;color:#4f7854;box-shadow:0 7px 18px rgba(91,133,94,.18)}
-.media-number-badge{position:absolute;top:12px;left:12px;z-index:8;min-width:48px;height:48px;padding:0 12px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(255,255,255,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(255,255,255,.52);box-shadow:0 5px 16px rgba(45,65,48,.14);color:#fff;font-size:22px;font-weight:850;line-height:1;text-shadow:0 1px 5px rgba(0,0,0,.28);pointer-events:none}
-.collage-cell .media-number-badge{top:10px;left:10px;min-width:42px;height:42px;font-size:19px;padding:0 10px;border-radius:13px}
-@media(max-width:700px){.daily-number-toggle{min-width:38px;width:38px;padding:0}.daily-number-toggle .leaf-label{display:none}.chef-date-head-row{padding-right:5px;gap:4px}}
-
-/* collage combined download */
-.collage-download-btn{border:0;border-radius:9px;padding:6px 9px;font-size:10px;cursor:pointer;background:#fff0e8;color:#bd805f;font-weight:700}.collage-download-btn:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.25)}
-
 
 .date-header-left {
     display: flex;
@@ -1269,7 +1240,6 @@ body {
    RESPONSIVE
 ========================================================= */
 
-.secret-nav-item{background:#f5f3ee;color:#81796e}.secret-nav-item:hover{background:#ece9df;color:#6f695f}.secret-fridge-section{padding:28px;border:1px solid #e6dfd1;background:linear-gradient(135deg,#fbfbf4,#fffaf7);box-shadow:0 18px 55px rgba(90,80,55,.06)}.secret-fridge-lock{text-align:center;padding:65px 20px;border:1px dashed #dcd4c7;border-radius:22px;background:rgba(255,255,255,.72)}.secret-lock-icon{font-size:32px;margin-bottom:12px}.secret-lock-title{font-size:16px;font-weight:800;color:#625b52}.secret-lock-sub{font-size:11px;color:#a59c91;margin-top:7px}.secret-intro{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px;font-size:12px;color:#887e72}.secret-status{padding:5px 9px;border-radius:999px;background:#edf5ec;color:#70916e}.memo-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.memo-category{border-radius:24px;padding:20px;border:1px solid rgba(120,120,100,.12);min-width:0}.memo-bai{background:linear-gradient(145deg,#f1f9f1,#fbfff9);border-color:#d9eadb}.memo-lei{background:linear-gradient(145deg,#fff1f3,#fffafa);border-color:#f1d9dd}.memo-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.memo-category-head h3{margin:0;font-size:17px;color:#526b55}.memo-lei .memo-category-head h3{color:#9a6871}.memo-category-head p{margin:6px 0 0;font-size:10px;color:#9e9b91}.memo-add-btn{border:0;border-radius:11px;padding:8px 11px;background:rgba(255,255,255,.8);color:#6f8b70;cursor:pointer;font-size:11px}.memo-lei .memo-add-btn{color:#a46f78}.memo-list{display:grid;gap:12px}.memo-empty{text-align:center;padding:35px 15px;color:#aaa39a;font-size:11px;border:1px dashed rgba(120,120,100,.2);border-radius:17px}.memo-card{position:relative;overflow:hidden;border-radius:18px;min-height:180px;background:#fff;border:1px solid rgba(120,110,100,.12);box-shadow:0 10px 25px rgba(70,60,50,.05)}.memo-bg{position:absolute;inset:0;background-position:center;background-size:cover;filter:blur(var(--memo-blur,0px));transform:scale(1.04);opacity:var(--memo-opacity,1)}.memo-shade{position:absolute;inset:0;background:rgba(255,255,255,.35)}.memo-body{position:relative;z-index:2;padding:17px;min-height:180px;display:flex;flex-direction:column}.memo-title{font-size:14px;font-weight:800;color:#514946;margin-bottom:8px}.memo-text{font-size:12px;line-height:1.75;color:#625a55;white-space:pre-wrap;word-break:break-word;flex:1}.memo-meta{margin-top:12px;font-size:9px;color:#a69b95}.memo-tools{display:flex;gap:6px;margin-top:10px}.memo-tools button{border:0;border-radius:9px;padding:6px 9px;font-size:10px;cursor:pointer;background:rgba(255,255,255,.88);color:#81766e}.memo-tools .danger{color:#b46d72}.memo-editor{padding:16px;border-radius:17px;background:rgba(255,255,255,.8);border:1px solid rgba(120,110,100,.12)}.memo-editor input,.memo-editor textarea{width:100%;border:1px solid #e6ddd7;border-radius:10px;padding:9px 10px;outline:none;background:rgba(255,255,255,.9);font:inherit;font-size:11px;color:#5e5652}.memo-editor textarea{min-height:110px;resize:vertical;line-height:1.7}.memo-editor-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px}.memo-editor-row label{font-size:10px;color:#8e837c;display:flex;align-items:center;gap:6px}.memo-editor input[type=range]{width:130px;padding:0}.memo-editor-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:10px}.memo-editor-actions button{border:0;border-radius:10px;padding:8px 11px;font-size:10px;cursor:pointer}.memo-save{background:#e9f3e8;color:#668167}.memo-lei .memo-save{background:#f9e6e9;color:#a16d76}.memo-cancel{background:#f3f0ee;color:#887d77}.preview-original-note{width:100%;font-size:9px;color:#b09f99;margin-top:-4px}.preview-original::after{content:'需密码';font-size:8px;margin-left:4px;opacity:.75}@media(max-width:700px){.memo-category-grid{grid-template-columns:1fr}.secret-fridge-section{padding:18px}.memo-category-head{align-items:flex-start;flex-direction:column}.memo-add-btn{align-self:flex-end}}
 @media (max-width: 900px) {
 
     .sidebar {
@@ -1386,156 +1356,6 @@ body {
     }
 }
 
-
-/* =========================================================
-   WATERMARK / PREVIEW
-========================================================= */
-.watermark-control{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;font-size:11px;cursor:pointer;user-select:none}.music-control-wrap{display:inline-flex;align-items:center;gap:6px}.music-btn{border:1px solid #eadbd7;border-radius:11px;background:#fffdfc;color:#8e7e79;padding:7px 10px;font-size:11px;cursor:pointer}.music-btn:hover{background:#fff4f1}.music-status{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#9a8b86;max-width:170px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-cancel{border:0;background:transparent;color:#c97b80;font-size:13px;cursor:pointer;padding:0 2px}.music-active{color:#c86f76;font-weight:600}.watermark-control input{accent-color:#d98287}.watermark-control.active{background:#fff0ef;color:#c86f76;border-color:#f0c6c4}.media-clickable{cursor:zoom-in}.collage-cell .media-clickable{cursor:zoom-in}.preview-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(34,27,25,.72);backdrop-filter:blur(8px);z-index:7000;opacity:0;pointer-events:none;transition:.22s ease}.preview-modal.show{opacity:1;pointer-events:auto}.preview-box{width:min(96vw,1100px);max-height:94vh;display:flex;flex-direction:column;background:#fffaf8;border-radius:22px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.28)}.preview-media-wrap{position:relative;min-height:180px;max-height:78vh;display:flex;align-items:center;justify-content:center;background:#1f1b1a;overflow:auto}.preview-media-wrap img,.preview-media-wrap video{max-width:100%;max-height:76vh;width:auto;height:auto;display:block;object-fit:contain}.preview-video-stage{position:relative;display:flex;align-items:center;justify-content:center;max-width:100%;max-height:76vh;line-height:0}.preview-video-stage video{max-width:100%;max-height:76vh}.preview-video-stage .video-play-button{left:50%;top:50%;right:auto;bottom:auto}.preview-info{padding:13px 16px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.preview-name{min-width:0;font-size:12px;color:#665b57;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.preview-actions{display:flex;gap:7px;flex-wrap:wrap}.preview-actions button{border:0;border-radius:10px;padding:8px 11px;font-size:11px;cursor:pointer}.preview-download{background:#ffe9e6;color:#c96f76;font-weight:700}.preview-original{background:#f4f1ef;color:#786b66}.preview-close{background:#514946;color:white}.preview-hint{width:100%;font-size:10px;color:#a69792}@media(max-width:700px){.preview-modal{padding:10px}.preview-box{border-radius:17px}.preview-media-wrap{max-height:72vh}.preview-media-wrap img,.preview-media-wrap video{max-height:70vh}.preview-info{padding:10px}.preview-actions{width:100%}.preview-actions button{flex:1 1 30%}}
-
-/* =========================================================
-   STANDALONE APP MODE
-========================================================= */
-html.standalone-mode, html.standalone-mode body{
-    overscroll-behavior-y:none;
-}
-@media (display-mode: standalone){
-    #appTools{display:none !important;}
-}
-
-.music-controls{display:inline-flex;align-items:center;gap:8px;margin-left:6px;vertical-align:middle;flex-wrap:wrap}.music-volume-label,.music-original-label{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:inherit;white-space:nowrap}.music-volume{width:78px;height:14px;accent-color:currentColor}.music-volume-value{min-width:30px;text-align:right;font-variant-numeric:tabular-nums}.music-original-toggle{margin:0}.music-cancel{margin-left:2px}.music-status{line-height:1.5}
-</style>
-
-<style id="music-mobile-fix">
-/* 提取音乐控制区：移动端不再和上传/折叠按钮抢同一行 */
-.music-status{
-    min-width:0;
-    box-sizing:border-box;
-}
-@media (max-width:700px){
-    .upload-box{
-        align-items:stretch;
-        row-gap:8px;
-    }
-    .upload-box .music-status{
-        flex:1 1 100%;
-        width:100%;
-        max-width:none;
-        min-width:0;
-        display:flex;
-        align-items:center;
-        flex-wrap:wrap;
-        gap:6px 8px;
-        white-space:normal;
-        overflow:visible;
-        text-overflow:clip;
-        line-height:1.5;
-        padding:7px 9px;
-        border:1px solid #f0dfdb;
-        border-radius:11px;
-        background:#fffaf8;
-    }
-    .upload-box .music-status.music-active{
-        color:#c86f76;
-    }
-    .music-controls{
-        flex:1 1 100%;
-        width:100%;
-        min-width:0;
-        margin-left:0;
-        display:grid;
-        grid-template-columns:minmax(0,1fr) auto;
-        grid-template-areas:
-            "volume cancel"
-            "original cancel";
-        align-items:center;
-        column-gap:8px;
-        row-gap:6px;
-    }
-    .music-volume-label{
-        grid-area:volume;
-        width:100%;
-        min-width:0;
-        display:grid;
-        grid-template-columns:auto minmax(80px,1fr) auto;
-        align-items:center;
-        gap:6px;
-    }
-    .music-volume{
-        width:100%;
-        min-width:0;
-    }
-    .music-original-label{
-        grid-area:original;
-        min-width:0;
-    }
-    .music-cancel{
-        grid-area:cancel;
-        align-self:center;
-        justify-self:center;
-        width:32px;
-        height:32px;
-        border-radius:10px;
-        background:#fff0ef;
-        font-size:18px;
-        line-height:1;
-    }
-}
-@media (max-width:380px){
-    .music-volume-label{
-        grid-template-columns:auto minmax(65px,1fr) auto;
-        gap:4px;
-        font-size:10px;
-    }
-    .music-original-label{
-        font-size:10px;
-    }
-}
-</style>
-
-
-<style id="music-name-fix">
-.music-file-name{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-@media(max-width:700px){
-    .music-file-name{
-        width:100%;
-        max-width:none;
-        white-space:normal;
-        overflow:visible;
-        overflow-wrap:anywhere;
-        word-break:break-word;
-    }
-}
-</style>
-
-
-<style id="music-settings-modal-css">
-.music-controls{display:none !important}
-.music-settings-open{border:0;border-radius:8px;padding:4px 7px;background:#fff0ef;color:#c86f76;font-size:10px;cursor:pointer;flex:0 0 auto}
-.music-file-name{min-width:0;flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.music-settings-modal{position:fixed;inset:0;background:rgba(35,28,26,.42);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;padding:16px;z-index:9000;opacity:0;pointer-events:none;transition:.18s}
-.music-settings-modal.show{opacity:1;pointer-events:auto}
-.music-settings-panel{width:min(520px,100%);background:#fffaf8;border-radius:18px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.music-settings-title{font-weight:700;color:#695c58;margin-bottom:12px}.music-settings-row{display:grid;grid-template-columns:88px minmax(0,1fr) 48px;gap:8px;align-items:center;margin:12px 0;color:#806f6a;font-size:12px}.music-settings-row input[type=range]{width:100%;min-width:0}.music-settings-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.music-settings-actions button{border:0;border-radius:10px;padding:8px 12px;cursor:pointer}.music-settings-close{background:#514946;color:#fff}.music-settings-ok{background:#ffe9e6;color:#c96f76;font-weight:700}
-@media(max-width:700px){.music-settings-modal{padding:10px}.music-settings-panel{padding:15px;border-radius:16px}.music-settings-row{grid-template-columns:78px minmax(0,1fr) 46px}.upload-box .music-status{flex:1 1 100%;width:100%;max-width:none;min-width:0}.music-file-name{white-space:normal;overflow-wrap:anywhere}}
-</style>
-<style id="manual-save-style">
-.archive-btn{
-    border:1px solid #ead6d2;
-    background:#fff8f6;
-    color:#9b6661;
-    border-radius:10px;
-    padding:8px 11px;
-    cursor:pointer;
-    font-size:12px;
-    line-height:1.2;
-    white-space:nowrap;
-    transition:.18s ease;
-}
-.archive-btn:hover{background:#fff0ed;transform:translateY(-1px);}
-.archive-btn:active{transform:translateY(0);}
-@media(max-width:700px){
-    .archive-btn{flex:0 0 auto;font-size:11px;padding:8px 9px;}
-}
 </style>
 </head>
 
@@ -1610,8 +1430,6 @@ html.standalone-mode, html.standalone-mode body{
             泪懵懵大厨
 
         </button>
-
-        <button class="nav-item secret-nav-item" data-target="secretFridge">🧊 秘密冰箱</button>
 
     </nav>
 
@@ -1829,11 +1647,6 @@ html.standalone-mode, html.standalone-mode body{
 
             </button>
 
-            <button class="music-btn" id="baiMusicButton" type="button">♫ 提取音乐</button>
-            <button class="archive-btn" id="baiArchiveSaveButton" type="button" title="立即保存当前网站内容">💾 手动存档</button>
-            <input type="file" accept="video/*" class="hidden-file-input" id="baiMusicUpload">
-            <span class="music-status" id="baiMusicStatus" hidden></span>
-
 
             <input
                 type="file"
@@ -1857,10 +1670,6 @@ html.standalone-mode, html.standalone-mode body{
                 class="hidden-file-input"
                 id="baiVideoUpload">
 
-            <label class="watermark-control" title="仅影响白咪饭大厨后续上传的图片、四图拼图和视频">
-                <input type="checkbox" id="baiWatermarkToggle">
-                自动打水印
-            </label>
 
             <button
                 class="section-collapse"
@@ -1937,11 +1746,6 @@ html.standalone-mode, html.standalone-mode body{
 
             </button>
 
-            <button class="music-btn" id="leiMusicButton" type="button">♫ 提取音乐</button>
-            <button class="archive-btn" id="leiArchiveSaveButton" type="button" title="立即保存当前网站内容">💾 手动存档</button>
-            <input type="file" accept="video/*" class="hidden-file-input" id="leiMusicUpload">
-            <span class="music-status" id="leiMusicStatus" hidden></span>
-
 
             <input
                 type="file"
@@ -1965,10 +1769,6 @@ html.standalone-mode, html.standalone-mode body{
                 class="hidden-file-input"
                 id="leiVideoUpload">
 
-            <label class="watermark-control" title="仅影响泪懵懵大厨后续上传的图片、四图拼图和视频">
-                <input type="checkbox" id="leiWatermarkToggle">
-                自动打水印
-            </label>
 
             <button
                 class="section-collapse"
@@ -1994,16 +1794,6 @@ html.standalone-mode, html.standalone-mode body{
 
 </section>
 
-<section class="category-section secret-fridge-section" id="secretFridge">
-<div class="section-head"><div class="section-title-wrap"><h2>秘密冰箱</h2><p>眼泪拌饭的秘密仓库</p></div><button class="section-collapse" data-section="secretFridge" title="展开 / 收缩"><span class="arrow">▼</span></button></div>
-<div class="section-body">
-<div class="secret-fridge-lock" id="secretFridgeLock"><div class="secret-lock-icon">🔐</div><div class="secret-lock-title">这里放着不能随便翻的备忘录</div><div class="secret-lock-sub">点击左侧「秘密冰箱」，输入独立密码后进入</div></div>
-<div id="secretFridgeContent" hidden><div class="secret-intro"><span>给白咪饭和泪懵懵的小小秘密备忘录</span><span class="secret-status">已解锁</span></div>
-<div class="memo-category-grid">
-<div class="memo-category memo-bai"><div class="memo-category-head"><div><h3>🍃 白咪饭的锅碗</h3><p>舒舒服服的浅绿色秘密角落</p></div><button class="memo-add-btn" data-memo-chef="bai">＋ 新备忘</button></div><div class="memo-list" id="memoListBai"></div></div>
-<div class="memo-category memo-lei"><div class="memo-category-head"><div><h3>🌸 泪懵懵的瓢盆</h3><p>软乎乎的浅粉色秘密角落</p></div><button class="memo-add-btn" data-memo-chef="lei">＋ 新备忘</button></div><div class="memo-list" id="memoListLei"></div></div>
-</div></div></div>
-</section>
 
 </div>
 
@@ -2089,13 +1879,6 @@ html.standalone-mode, html.standalone-mode body{
 </div>
 
 
-<!-- MEDIA PREVIEW / DOWNLOAD -->
-<div class="preview-modal" id="previewModal">
-<div class="preview-box" role="dialog" aria-modal="true">
-<div class="preview-media-wrap" id="previewMediaWrap"></div>
-<div class="preview-info"><div class="preview-name" id="previewName"></div><div class="preview-actions"><button class="preview-download" id="previewWatermarkedBtn">下载打水印图</button><button class="preview-original" id="previewOriginalBtn">下载未打水印原图</button><button class="preview-close" id="previewCloseBtn">关闭</button></div><div class="preview-hint" id="previewHint"></div><div class="preview-original-note">需密码，仅跑图老师可用</div></div>
-</div></div>
-
 <!-- =========================================================
      TOAST
 ========================================================= -->
@@ -2113,27 +1896,6 @@ html.standalone-mode, html.standalone-mode body{
 ========================================================= */
 
 const PASSWORD = "0730";
-const ORIGINAL_DOWNLOAD_PASSWORD = "0730";
-const SECRET_FRIDGE_PASSWORD = "0730";
-
-const WATERMARK_CONFIG = {
-    bai: {
-        background: "https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/RNHF/1080X1920/%E6%97%A0%E6%A0%87%E9%A2%9813_20260826012746.png",
-        mark: "https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/wwmk/1080X1920/%E6%97%A0%E6%A0%87%E9%A2%9813_20260826012807.png",
-        shadow: "https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/O6kk/1080X1920/%E6%97%A0%E6%A0%87%E9%A2%9813_20260826012812.png",
-        backgroundOpacity: .25, markOpacity: 1, shadowOpacity: .70, backgroundBlend: "overlay", markBlend: "overlay", cornerForLandscape: "left"
-    },
-    lei: {
-        background: "https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/qTpO/816X1456/7733780026d28026416bb3c61d058d76.png",
-        mark: "https://img2.tofaka.com/autoupload/fr/3GMqwYPSwtrO-_FTZePjVbXact77E9Lj-qwYM0-KpTqyl5f0KlZfm6UsKj-HyTuv/20260826/6O1i/1080X1920/%E6%97%A0%E6%A0%87%E9%A2%9813_20260826020620.png",
-        shadow: null, backgroundOpacity: 1, markOpacity: 1, shadowOpacity: 0, backgroundBlend: "overlay", markBlend: "source-over", cornerForLandscape: "right"
-    }
-};
-let watermarkSettings = readStoredJSON("yummyWatermarkSettings", {bai:true, lei:true});
-let dailyNumbering = readStoredJSON("yummyDailyNumbering", {});
-let pendingOriginalDownload = null;
-let secretFridgeUnlocked = false;
-
 
 
 /* =========================================================
@@ -2157,182 +1919,17 @@ function readStoredJSON(
 }
 
 
-/* =========================================================
-   VIDEO STORAGE
-   视频不再塞进 localStorage：改用 IndexedDB 保存 Blob，
-   避免刷新后丢失、超出 localStorage 配额以及巨型 Base64 卡顿。
-========================================================= */
-const VIDEO_DB_NAME="yummyVideoDB";
-const VIDEO_DB_VERSION=2;
-const VIDEO_STORE="videos";
-let videoDBPromise=null;
-function openVideoDB(){
-    if(videoDBPromise)return videoDBPromise;
-    videoDBPromise=new Promise((resolve,reject)=>{
-        if(!window.indexedDB){reject(new Error("当前浏览器不支持 IndexedDB"));return;}
-        const req=indexedDB.open(VIDEO_DB_NAME,VIDEO_DB_VERSION);
-        req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(VIDEO_STORE))db.createObjectStore(VIDEO_STORE);if(!db.objectStoreNames.contains("appState"))db.createObjectStore("appState");};
-        req.onsuccess=()=>resolve(req.result);
-        req.onerror=()=>reject(req.error||new Error("IndexedDB 打开失败"));
-    });
-    return videoDBPromise;
-}
-async function saveVideoBlob(blob){
-    const key=`video-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const db=await openVideoDB();
-    await new Promise((resolve,reject)=>{
-        const tx=db.transaction(VIDEO_STORE,"readwrite");
-        tx.objectStore(VIDEO_STORE).put(blob,key);
-        tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||new Error("视频保存失败"));
-    });
-    return key;
-}
-async function saveAppState(){
-    const db=await openVideoDB();
-    const state={
-        calendarMarks,
-        baiRecords,
-        leiRecords,
-        dailyNumbering,
-        savedAt:Date.now()
-    };
-    await new Promise((resolve,reject)=>{
-        const tx=db.transaction("appState","readwrite");
-        tx.objectStore("appState").put(state,"main");
-        tx.oncomplete=resolve;
-        tx.onerror=()=>reject(tx.error||new Error("本地存档写入失败"));
-        tx.onabort=()=>reject(tx.error||new Error("本地存档写入被中止"));
-    });
-    return true;
-}
-async function loadAppState(){
-    const db=await openVideoDB();
-    return await new Promise((resolve,reject)=>{
-        const tx=db.transaction("appState","readonly");
-        const req=tx.objectStore("appState").get("main");
-        req.onsuccess=()=>resolve(req.result||null);
-        req.onerror=()=>reject(req.error||new Error("本地存档读取失败"));
-    });
-}
-async function restoreAppState(){
-    try{
-        const state=await loadAppState();
-        // 有效数据检查：必须包含 baiRecords 或 leiRecords，且至少有一个有内容
-        if(state && typeof state === 'object'){
-            const hasBai = state.baiRecords && typeof state.baiRecords === 'object' && Object.keys(state.baiRecords).length > 0;
-            const hasLei = state.leiRecords && typeof state.leiRecords === 'object' && Object.keys(state.leiRecords).length > 0;
-            if(hasBai || hasLei){
-                calendarMarks = state.calendarMarks || {};
-                baiRecords = state.baiRecords || {};
-                leiRecords = state.leiRecords || {};
-                dailyNumbering = state.dailyNumbering || {};
-                return true;
-            }
-        }
-    }catch(e){
-        console.warn("读取本地存档失败，将使用浏览器旧存储：",e);
-    }
-    return false;
-}
+let calendarMarks =
+    readStoredJSON("calendarMarks");
 
-async function getVideoBlob(key){
-    if(!key)return null;
-    const db=await openVideoDB();
-    return await new Promise((resolve,reject)=>{
-        const tx=db.transaction(VIDEO_STORE,"readonly"),req=tx.objectStore(VIDEO_STORE).get(key);
-        req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error||new Error("视频读取失败"));
-    });
-}
-async function deleteVideoBlob(key){
-    if(!key)return;
-    try{const db=await openVideoDB();await new Promise((resolve,reject)=>{const tx=db.transaction(VIDEO_STORE,"readwrite");tx.objectStore(VIDEO_STORE).delete(key);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}catch(e){console.warn("删除视频 Blob 失败",e);}
-}
-async function getVideoObjectURL(record,watermarked=false){
-    const key=watermarked?record.videoWatermarkedKey:record.videoOriginalKey;
-    if(key){const blob=await getVideoBlob(key);if(blob)return URL.createObjectURL(blob);}
-    const legacy=watermarked?(record.watermarkedSrc||null):(record.originalSrc||record.src||null);
-    return legacy||null;
-}
-function fileToVideoBlob(file){return Promise.resolve(file);}
-async function getVideoPoster(source){
-    const url=source instanceof Blob?URL.createObjectURL(source):source;
-    const video=document.createElement("video");
-    video.muted=true;video.playsInline=true;video.preload="auto";video.src=url;
-    try{
-        await new Promise((resolve,reject)=>{
-            let done=false;
-            const ok=()=>{if(!done){done=true;resolve();}};
-            const fail=()=>{if(!done){done=true;reject(new Error("视频封面读取失败"));}};
-            video.onloadedmetadata=ok;video.onerror=fail;
-            setTimeout(()=>fail(),5000);
-        });
 
-        const w=video.videoWidth||640,h=video.videoHeight||360;
-        const scale=Math.min(1,1280/Math.max(w,h));
-        const canvas=document.createElement("canvas");
-        canvas.width=Math.max(1,Math.round(w*scale));
-        canvas.height=Math.max(1,Math.round(h*scale));
-        const ctx=canvas.getContext("2d",{willReadFrequently:true});
-        if(!ctx)throw new Error("无法创建封面画布");
+let baiRecords =
+    readStoredJSON("baiRecords");
 
-        const duration=Number.isFinite(video.duration)?video.duration:0;
-        const candidates=[0,0.08,0.20,0.50];
-        if(duration>0.8)candidates.push(Math.max(0.1,duration-0.25));
-        if(duration>0.2)candidates.push(Math.max(0.05,duration-0.05));
 
-        let bestData=null,bestScore=-1;
-        for(const t of [...new Set(candidates.map(x=>Math.max(0,Math.min(duration||x,x))))]){
-            try{
-                video.currentTime=t;
-                await new Promise(resolve=>{
-                    let settled=false;
-                    const done=()=>{if(!settled){settled=true;resolve();}};
-                    video.onseeked=done;
-                    if("requestVideoFrameCallback" in video)video.requestVideoFrameCallback(()=>done());
-                    setTimeout(done,900);
-                });
-                if(video.readyState<2)continue;
-                ctx.clearRect(0,0,canvas.width,canvas.height);
-                ctx.drawImage(video,0,0,canvas.width,canvas.height);
-                const pixels=ctx.getImageData(0,0,Math.min(canvas.width,320),Math.min(canvas.height,180)).data;
-                let sum=0,nonBlack=0;
-                for(let i=0;i<pixels.length;i+=4){
-                    const lum=(pixels[i]*299+pixels[i+1]*587+pixels[i+2]*114)/1000;
-                    sum+=lum;
-                    if(lum>18)nonBlack++;
-                }
-                const avg=sum/(pixels.length/4);
-                const ratio=nonBlack/(pixels.length/4);
-                const score=avg*0.65+ratio*100*0.35;
-                if(score>bestScore){
-                    bestScore=score;
-                    bestData=canvas.toDataURL("image/jpeg",.92);
-                }
-                if(t===0 && avg>22 && ratio>0.12)break;
-            }catch(_){ }
-        }
-        if(!bestData)throw new Error("没有取得有效视频画面");
-        return bestData;
-    }finally{
-        video.pause();video.removeAttribute("src");video.load();
-        if(source instanceof Blob)URL.revokeObjectURL(url);
-    }
-}
+let leiRecords =
+    readStoredJSON("leiRecords");
 
-function allStoredVideoRecords(){
-    const out=[];
-    for(const records of [baiRecords,leiRecords])for(const date of Object.keys(records||{}))for(const r of (records[date]||[]))if(r.type==="video")out.push(r);
-    return out;
-}
-
-// ==================== 数据初始化 ====================
-// 不再从 localStorage 直接初始化 baiRecords / leiRecords
-// 改为由 restoreAppState() 从 IndexedDB 恢复，或从 localStorage 迁移
-let calendarMarks = readStoredJSON("calendarMarks", {});
-let baiRecords = {};
-let leiRecords = {};
-// 初始化时先尝试从 localStorage 读取作为 fallback，但会被 restoreAppState 覆盖
-// 但在 restoreAppState 完成前，页面还未渲染，所以没关系
 
 /*
     =====================================================
@@ -2480,22 +2077,43 @@ function formatChineseDate(
    SAVE
 ========================================================= */
 
-// 核心保存函数：保存到 IndexedDB（主要） + localStorage（备份/兼容）
-async function saveData() {
+function saveData() {
+
     try {
-        // 1. 先保存到 localStorage（快速备份）
-        localStorage.setItem("calendarMarks", JSON.stringify(calendarMarks));
-        localStorage.setItem("baiRecords", JSON.stringify(baiRecords));
-        localStorage.setItem("leiRecords", JSON.stringify(leiRecords));
-        // 2. 再保存到 IndexedDB（主要存储，等待完成）
-        await saveAppState();
+
+        localStorage.setItem(
+            "calendarMarks",
+            JSON.stringify(calendarMarks)
+        );
+
+        localStorage.setItem(
+            "baiRecords",
+            JSON.stringify(baiRecords)
+        );
+
+        localStorage.setItem(
+            "leiRecords",
+            JSON.stringify(leiRecords)
+        );
+
         return true;
-    } catch (error) {
-        console.error("保存失败：", error);
-        showToast("保存失败：浏览器存储空间不足，请删除一些旧图片/视频");
+
+    }
+    catch (error) {
+
+        console.error(
+            "localStorage 保存失败：",
+            error
+        );
+
+        showToast(
+            "保存失败：浏览器存储空间不足，请删除一些旧图片/视频"
+        );
+
         return false;
     }
 }
+
 
 /* =========================================================
    TOAST
@@ -2757,13 +2375,13 @@ document
     )
     .addEventListener(
         "click",
-        async () => {
+        () => {
 
             calendarMarks[
                 selectedDate
             ] = "pink";
 
-            await saveData();
+            saveData();
 
             renderCalendar();
 
@@ -2780,13 +2398,13 @@ document
     )
     .addEventListener(
         "click",
-        async () => {
+        () => {
 
             calendarMarks[
                 selectedDate
             ] = "green";
 
-            await saveData();
+            saveData();
 
             renderCalendar();
 
@@ -2803,13 +2421,13 @@ document
     )
     .addEventListener(
         "click",
-        async () => {
+        () => {
 
             delete calendarMarks[
                 selectedDate
             ];
 
-            await saveData();
+            saveData();
 
             renderCalendar();
 
@@ -3175,8 +2793,6 @@ function openPasswordModal(
         passwordDescription.textContent =
             "请输入密码，验证后10分钟内可修改已回家状态";
     }
-    else if (mode === "originalDownload") { passwordFlower.textContent="⬇️"; passwordTitle.textContent="下载未打水印原图"; passwordDescription.textContent="请输入四位数密码 · 每次下载原图都需要验证"; }
-    else if (mode === "secretFridge") { passwordFlower.textContent="🧊"; passwordTitle.textContent="开启「秘密冰箱」"; passwordDescription.textContent="请输入秘密冰箱的独立四位数密码"; }
 
 
     passwordModal.classList.add(
@@ -3367,20 +2983,6 @@ document
 
 
 /* =========================================================
-   MUSIC INPUT EVENTS
-========================================================= */
-function bindMusicButton(chef){
-    document.getElementById(chef+"MusicButton")?.addEventListener("click",()=>{
-        requestUploadPermission(document.getElementById(chef+"MusicUpload"));
-    });
-    document.getElementById(chef+"MusicUpload")?.addEventListener("change",async e=>{
-        const file=e.target.files?.[0];e.target.value="";if(!file)return;
-        try{await extractMusicSource(file,chef);}catch(err){console.error("提取音乐失败",err);showToast("提取音乐失败：该视频可能没有可用音轨");}
-    });
-}
-bindMusicButton("bai");bindMusicButton("lei");
-
-/* =========================================================
    FILE INPUT EVENTS
 ========================================================= */
 
@@ -3503,304 +3105,254 @@ document
 
 
 /* =========================================================
-   BACKGROUND MUSIC
-   “提取音乐”内部保存的是视频的音轨来源；真正导入下一段视频时，
-   再把该音轨与原视频声音混合，不改变现有自动水印流程。
-========================================================= */
-const backgroundMusicState={bai:null,lei:null};
-function setMusicStatus(chef,file){
-    const status=document.getElementById(chef+"MusicStatus");
-    if(!status)return;
-    if(file){
-        status.hidden=false;status.classList.add("music-active");
-        status.innerHTML=`<span class="music-file-name">已提取音乐 · ${escapeHtml(file.name)}</span><button type="button" class="music-settings-open">设置</button><span class="music-controls"><label class="music-volume-label">音量 <input class="music-volume" type="range" min="0" max="100" value="32" step="1"><span class="music-volume-value">32%</span></label><label class="music-original-label"><input class="music-original-toggle" type="checkbox"> 保留原视频声音</label><button type="button" class="music-cancel" title="取消背景音乐">×</button></span>`;
-        status.querySelector(".music-cancel").addEventListener("click",()=>clearBackgroundMusic(chef));status.querySelector(".music-settings-open")?.addEventListener("click",()=>openMusicSettings(chef));
-    }else{status.hidden=true;status.textContent="";status.classList.remove("music-active");}
-}
-
-let activeMusicSettingsChef=null;
-function openMusicSettings(chef){const state=backgroundMusicState[chef];if(!state)return;activeMusicSettingsChef=chef;const m=document.getElementById("musicSettingsModal"),v=document.getElementById("musicSettingsVolume"),vv=document.getElementById("musicSettingsVolumeValue"),k=document.getElementById("musicSettingsOriginal");v.value=Math.round((state.volume??.32)*100);vv.textContent=v.value+"%";k.checked=state.keepOriginal!==false;m.classList.add("show");m.setAttribute("aria-hidden","false");}
-function closeMusicSettings(){const m=document.getElementById("musicSettingsModal");m.classList.remove("show");m.setAttribute("aria-hidden","true");activeMusicSettingsChef=null;}
-function bindMusicSettingsModal(){const v=document.getElementById("musicSettingsVolume"),vv=document.getElementById("musicSettingsVolumeValue"),k=document.getElementById("musicSettingsOriginal");v.addEventListener("input",()=>{vv.textContent=v.value+"%";if(activeMusicSettingsChef&&backgroundMusicState[activeMusicSettingsChef])backgroundMusicState[activeMusicSettingsChef].volume=Number(v.value)/100});k.addEventListener("change",()=>{if(activeMusicSettingsChef&&backgroundMusicState[activeMusicSettingsChef])backgroundMusicState[activeMusicSettingsChef].keepOriginal=k.checked});document.getElementById("musicSettingsClose").addEventListener("click",closeMusicSettings);document.getElementById("musicSettingsOk").addEventListener("click",closeMusicSettings);document.getElementById("musicSettingsModal").addEventListener("click",e=>{if(e.target.id==="musicSettingsModal")closeMusicSettings()});}
-
-function escapeHtml(value){return String(value||"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));}
-function clearBackgroundMusic(chef){
-    const state=backgroundMusicState[chef];
-    if(state?.url)URL.revokeObjectURL(state.url);
-    backgroundMusicState[chef]=null;setMusicStatus(chef,null);showToast("已取消背景音乐，下一段视频将保留原视频声音音");
-}
-async function extractMusicSource(file,chef){
-    if(!file||!file.type.startsWith("video/"))throw new Error("请选择视频文件");
-    const url=URL.createObjectURL(file),v=document.createElement("video");
-    v.src=url;v.preload="metadata";v.playsInline=true;
-    try{
-        await new Promise((resolve,reject)=>{v.onloadedmetadata=resolve;v.onerror=()=>reject(new Error("无法读取该视频"));setTimeout(()=>reject(new Error("读取视频超时")),8000);});
-        const hasAudio=v.mozHasAudio||v.webkitAudioDecodedByteCount>0||!!(v.audioTracks&&v.audioTracks.length);
-        if(!hasAudio&&v.audioTracks&&v.audioTracks.length===0)console.warn("浏览器未暴露音轨信息，将在混音阶段继续检测");
-        const old=backgroundMusicState[chef];if(old?.url)URL.revokeObjectURL(old.url);
-        backgroundMusicState[chef]={blob:file,url, name:file.name, volume:0.32, keepOriginal:true};setMusicStatus(chef,file);showToast("音乐已提取，将用于下一段上传的视频");
-    }finally{v.remove();}
-}
-async function decodeMusicSource(ctx,musicBlob,gainNode,dest){
-    const data=await musicBlob.arrayBuffer();
-    const buffer=await ctx.decodeAudioData(data.slice(0));
-    const source=ctx.createBufferSource();
-    source.buffer=buffer; source.loop=true;
-    source.connect(gainNode).connect(dest);
-    return source;
-}
-async function mixVideoWithMusic(file,musicBlob,chef,musicVolume=0.32,keepOriginal=true){
-    if(!musicBlob)return null;
-    if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频背景音乐合成");
-    const url=URL.createObjectURL(file); const video=document.createElement("video");
-    video.src=url;video.playsInline=true;video.preload="auto";video.muted=false;video.volume=1;
-    let ctx=null,rec=null,raf=0,stream=null,musicSource=null;
-    try{
-        await waitForMediaReady(video,8000,"视频读取失败");
-        const w=video.videoWidth,h=video.videoHeight;if(!w||!h||!video.duration)throw new Error("视频信息不完整");
-        const canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;const c=canvas.getContext("2d",{alpha:false});
-        stream=canvas.captureStream(30); ctx=new (window.AudioContext||window.webkitAudioContext)();
-        const dest=ctx.createMediaStreamDestination();
-        const originalSource=ctx.createMediaElementSource(video),originalGain=ctx.createGain(),musicGain=ctx.createGain();
-        originalGain.gain.value=keepOriginal?1:0;musicGain.gain.value=Math.max(0,Math.min(1,Number(musicVolume)||0));
-        originalSource.connect(originalGain).connect(dest);
-        musicSource=await decodeMusicSource(ctx,musicBlob,musicGain,dest);
-        dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
-        const mime=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"].find(m=>MediaRecorder.isTypeSupported(m));
-        if(!mime)throw new Error("当前浏览器不支持可用的视频录制格式");
-        const chunks=[];rec=new MediaRecorder(stream,{mimeType:mime});
-        const stopped=new Promise((resolve,reject)=>{rec.onstop=resolve;rec.onerror=e=>reject(e.error||new Error("背景音乐合成失败"));});
-        await ctx.resume(); await video.play(); musicSource.start(0); rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)}; rec.start(200);
-        await new Promise((resolve,reject)=>{const started=performance.now();let last=-1,stalled=0;const draw=()=>{if(video.ended||video.currentTime>=video.duration-.03){resolve();return;}if(performance.now()-started>Math.max(30000,video.duration*2500)){reject(new Error("视频处理超时，请尝试关闭自动打水印或缩短视频"));return;}if(video.currentTime===last)stalled++;else stalled=0;last=video.currentTime;if(stalled>120){reject(new Error("视频在处理时没有继续播放，请重试"));return;}c.drawImage(video,0,0,w,h);raf=requestAnimationFrame(draw)};draw()});
-        cancelAnimationFrame(raf);video.pause();try{musicSource.stop()}catch(_){}if(rec.state!=="inactive")rec.stop();await stopped;
-        const out=new Blob(chunks,{type:mime});if(!out.size)throw new Error("没有生成有效的背景音乐视频");return out;
-    }finally{cancelAnimationFrame(raf);try{video.pause()}catch(_){}try{musicSource&&musicSource.stop()}catch(_){}try{if(rec&&rec.state!=="inactive")rec.stop()}catch(_){}try{ctx&&ctx.close()}catch(_){}if(stream)stream.getTracks().forEach(t=>{try{t.stop()}catch(_){}});URL.revokeObjectURL(url)}
-}
-function waitForMediaReady(media,timeout,message){return new Promise((resolve,reject)=>{let done=false;const ok=()=>{if(done)return;done=true;cleanup;resolve()};const fail=()=>{if(done)return;done=true;cleanup;reject(new Error(message))};const timer=setTimeout(fail,timeout);const cleanup=()=>{clearTimeout(timer);media.removeEventListener("loadedmetadata",ok);media.removeEventListener("canplay",ok);media.removeEventListener("error",fail)};media.addEventListener("loadedmetadata",ok,{once:true});media.addEventListener("canplay",ok,{once:true});media.addEventListener("error",fail,{once:true});if(media.readyState>=2)ok();else media.load()})}
-
-/* =========================================================
-   WATERMARK ENGINE
-========================================================= */
-function getWatermarkEnabled(chef){return watermarkSettings[chef]!==false;}
-function saveWatermarkSettings(){try{localStorage.setItem("yummyWatermarkSettings",JSON.stringify(watermarkSettings));}catch(_) {}}
-function loadImageForCanvas(src){return new Promise((resolve,reject)=>{const img=new Image();img.crossOrigin="anonymous";img.onload=()=>resolve(img);img.onerror=()=>reject(new Error("水印素材加载失败，请确认素材网址允许跨域读取"));img.src=src;});}
-function isLandscapeRatio(w,h){return w/h>1.25;}
-function drawFullOverlay(ctx,img,w,h,opacity,blend,rotate90=false){ctx.save();ctx.globalAlpha=opacity;ctx.globalCompositeOperation=blend||"source-over";if(rotate90){ctx.translate(w/2,h/2);ctx.rotate(Math.PI/2);ctx.drawImage(img,-h/2,-w/2,h,w);}else{ctx.drawImage(img,0,0,w,h);}ctx.restore();ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;}
-function drawCornerMark(ctx,img,w,h,side="left",scale=.30,opacity=1,blend="source-over"){const ratio=img.naturalWidth/img.naturalHeight||1;const mh=Math.max(1,h*scale),mw=mh*ratio,margin=Math.max(18,Math.round(Math.min(w,h)*.035));const x=side==="right"?w-mw-margin:margin,y=h-mh-margin;ctx.save();ctx.globalAlpha=opacity;ctx.globalCompositeOperation=blend;ctx.drawImage(img,x,y,mw,mh);ctx.restore();ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;}
-async function makeWatermarkedImage(src,chef){const cfg=WATERMARK_CONFIG[chef];const source=await loadImageForCanvas(src);const w=source.naturalWidth||source.width,h=source.naturalHeight||source.height,landscape=isLandscapeRatio(w,h);const c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d");ctx.drawImage(source,0,0,w,h);const bg=await loadImageForCanvas(cfg.background);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);const mark=await loadImageForCanvas(cfg.mark);if(landscape){if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");}drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend);}else{if(cfg.shadow){const shadow=await loadImageForCanvas(cfg.shadow);drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");}drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend);}return c.toDataURL("image/webp",.92);}
-async function fileToWatermarkedImage(file,chef){const original=await fileToOriginalDataURL(file);return {original,watermarked:await makeWatermarkedImage(original,chef)};}
-async function makeWatermarkedVideo(file,chef,musicBlob=null,musicVolume=0.32,keepOriginal=true){
-    if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频自动打水印");
-    const cfg=WATERMARK_CONFIG[chef],url=URL.createObjectURL(file),video=document.createElement("video");
-    video.src=url;video.playsInline=true;video.preload="auto";video.muted=false;video.volume=1;
-    let audioCtx=null,musicSource=null,rec=null,raf=0,stream=null;
-    try{
-        await waitForMediaReady(video,8000,"视频读取失败");
-        const w=video.videoWidth,h=video.videoHeight;if(!w||!h||!Number.isFinite(video.duration)||video.duration<=0)throw new Error("视频信息不完整");
-        const c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d",{alpha:false});if(!ctx)throw new Error("浏览器无法创建视频画布");
-        stream=c.captureStream(30);
-        if(musicBlob){
-            audioCtx=new (window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();
-            const dest=audioCtx.createMediaStreamDestination();
-            const originalSource=audioCtx.createMediaElementSource(video),og=audioCtx.createGain(),mg=audioCtx.createGain();
-            og.gain.value=keepOriginal?1:0;mg.gain.value=Math.max(0,Math.min(1,Number(musicVolume)||0));
-            originalSource.connect(og).connect(dest);musicSource=await decodeMusicSource(audioCtx,musicBlob,mg,dest);
-            dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));
-        }else if(video.captureStream){video.captureStream().getAudioTracks().forEach(t=>stream.addTrack(t));}
-        const mime=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"].find(m=>MediaRecorder.isTypeSupported(m));if(!mime)throw new Error("当前浏览器不支持可用的视频录制格式");
-        rec=new MediaRecorder(stream,{mimeType:mime});const chunks=[];rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};const stopped=new Promise((resolve,reject)=>{rec.onstop=resolve;rec.onerror=e=>reject(e.error||new Error("视频录制失败"));});
-        const bg=await loadImageForCanvas(cfg.background),mark=await loadImageForCanvas(cfg.mark),shadow=cfg.shadow?await loadImageForCanvas(cfg.shadow):null,landscape=isLandscapeRatio(w,h);
-        await video.play();if(musicSource)musicSource.start(0);rec.start(250);
-        await new Promise((resolve,reject)=>{const started=performance.now();let lastTime=-1,stalled=0;const draw=()=>{if(video.ended||video.currentTime>=video.duration-.03){resolve();return;}if(performance.now()-started>Math.max(30000,video.duration*2500)){reject(new Error("视频处理超时，请尝试关闭自动打水印或缩短视频"));return;}if(video.currentTime===lastTime)stalled++;else stalled=0;lastTime=video.currentTime;if(stalled>120){reject(new Error("视频在处理时没有继续播放，请重试"));return;}ctx.clearRect(0,0,w,h);ctx.drawImage(video,0,0,w,h);drawFullOverlay(ctx,bg,w,h,cfg.backgroundOpacity,cfg.backgroundBlend,landscape);if(landscape){if(shadow)drawCornerMark(ctx,shadow,w,h,cfg.cornerForLandscape,.28,cfg.shadowOpacity,"source-over");drawCornerMark(ctx,mark,w,h,cfg.cornerForLandscape,chef==="bai"?.30:.25,cfg.markOpacity,cfg.markBlend)}else{if(shadow)drawFullOverlay(ctx,shadow,w,h,cfg.shadowOpacity,"source-over");drawFullOverlay(ctx,mark,w,h,cfg.markOpacity,cfg.markBlend)}raf=requestAnimationFrame(draw)};draw()});
-        cancelAnimationFrame(raf);video.pause();try{musicSource&&musicSource.stop()}catch(_){}if(rec.state!=="inactive")rec.stop();await stopped;const blob=new Blob(chunks,{type:mime});if(!blob.size)throw new Error("没有生成有效的打水印视频");return blob;
-    }finally{cancelAnimationFrame(raf);try{video.pause()}catch(_){}try{musicSource&&musicSource.stop()}catch(_){}try{if(rec&&rec.state!=="inactive")rec.stop()}catch(_){}try{audioCtx&&audioCtx.close()}catch(_){}if(stream)stream.getTracks().forEach(t=>{try{t.stop()}catch(_){}});URL.revokeObjectURL(url)}
-}
-
-async function fileToWatermarkedVideo(file,chef,musicBlob=null,musicVolume=0.32,keepOriginal=true){
-    const blob=await makeWatermarkedVideo(file,chef,musicBlob,musicVolume,keepOriginal);
-    return {originalBlob:file,watermarkedBlob:blob};
-}
-function currentChefFromTarget(target){return target===baiRecords?"bai":target===leiRecords?"lei":null;}
-
-/* =========================================================
    HANDLE UPLOAD
 ========================================================= */
 
-async function handleUpload(files,target){
-    if(!files||!files.length)return;
-    if(!target[selectedDate])target[selectedDate]=[];
-    const fileArray=Array.from(files),chef=currentChefFromTarget(target),shouldWatermark=chef?getWatermarkEnabled(chef):false;
-    let activeMusicState=chef?backgroundMusicState[chef]:null;
-    let activeMusicBlob=activeMusicState?.blob||null;
-    const activeMusicVolume=activeMusicState?.volume??0.32;
-    const keepOriginal=activeMusicState?.keepOriginal!==false;
-    let successCount=0;
-    try{
-        for(const file of fileArray){
-            try{
-                const isVideo=file.type.startsWith("video/");
-                let original=null,watermarked=null,originalBlob=null,watermarkedBlob=null,poster=null;
-                if(isVideo){
-                    if(activeMusicBlob && !shouldWatermark){
-                        try{showToast(`正在为视频 ${file.name} 添加背景音乐…`);originalBlob=await mixVideoWithMusic(file,activeMusicBlob,chef,activeMusicVolume,keepOriginal)}catch(mixError){console.error("背景音乐合成失败",mixError);originalBlob=file;showToast("背景音乐合成失败，本次先保留原视频，避免卡住或丢失视频");}
-                    } else if(shouldWatermark){
-                        showToast(activeMusicBlob?`正在为视频 ${file.name} 添加背景音乐并自动打水印…`:`正在为视频 ${file.name} 自动打水印…`);
-                        try{({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef,activeMusicBlob,activeMusicVolume,keepOriginal));}
-                        catch(processError){
-                            console.error("视频处理失败",processError);
-                            if(activeMusicBlob){
-                                try{showToast("背景音乐合成失败，改为仅自动打水印…");({originalBlob,watermarkedBlob}=await fileToWatermarkedVideo(file,chef,null,1,true));}
-                                catch(wmError){console.error("仅水印也失败",wmError);originalBlob=file;watermarkedBlob=null;showToast("视频处理失败，本次先保留原视频，避免卡住或丢失视频");}
-                            }else{originalBlob=file;watermarkedBlob=null;showToast("视频处理失败，本次先保留原视频，避免卡住或丢失视频");}
-                        }
-                    }else originalBlob=file;
-                    let playbackBlob=originalBlob;
-                    let watermarkPlayable=false;
-                    if(watermarkedBlob){
-                        const testUrl=URL.createObjectURL(watermarkedBlob);
-                        try{
-                            const testVideo=document.createElement("video");
-                            testVideo.muted=true;testVideo.playsInline=true;testVideo.preload="metadata";testVideo.src=testUrl;
-                            await new Promise((resolve,reject)=>{testVideo.onloadedmetadata=resolve;testVideo.onerror=()=>reject(new Error("当前浏览器无法直接播放打水印版本"));setTimeout(()=>reject(new Error("打水印视频兼容性检测超时")),5000);});
-                            watermarkPlayable=!!testVideo.videoWidth;
-                            if(watermarkPlayable)playbackBlob=watermarkedBlob;
-                        }catch(testError){console.warn("打水印视频可播放性检测失败，将保留原视频播放：",testError);}
-                        URL.revokeObjectURL(testUrl);
-                    }
-                    try{
-                        poster=await getVideoPoster(originalBlob);
-                    }catch(posterError){
-                        console.warn("原视频封面生成失败，尝试打水印版本：",posterError);
-                        if(watermarkedBlob){
-                            try{poster=await getVideoPoster(watermarkedBlob);}catch(_){poster=null;}
-                        }
-                    }
-                    const originalKey=await saveVideoBlob(originalBlob);
-                    const watermarkedKey=watermarkedBlob?await saveVideoBlob(watermarkedBlob):null;
-                    target[selectedDate].push({
-                        id:Date.now()+Math.random(),type:"video",name:file.name,
-                        src:null,originalSrc:null,watermarkedSrc:null,
-                        videoOriginalKey:originalKey,videoWatermarkedKey:watermarkedKey,
-                        poster,watermarkApplied:watermarkPlayable,chef,home:false
-                    });
-                    if(activeMusicBlob){
-                        clearBackgroundMusic(chef);
-                        activeMusicBlob=null;
-                    }
-                    if(watermarkedBlob&&!watermarkPlayable)showToast("水印视频已生成，但当前浏览器无法直接播放该格式；页面将播放原视频，打水印版仍可下载");
-                }else{
-                    if(shouldWatermark){showToast(`正在为图片 ${file.name} 自动打水印…`);({original,watermarked}=await fileToWatermarkedImage(file,chef));}
-                    else original=await fileToDataURL(file);
-                    target[selectedDate].push({id:Date.now()+Math.random(),type:"image",name:file.name,src:watermarked||original,originalSrc:original,watermarkedSrc:watermarked,watermarkApplied:!!watermarked,chef,home:false});
-                }
+async function handleUpload(
+    files,
+    target
+) {
+
+    if (!files || !files.length) {
+        return;
+    }
+
+    if (!target[selectedDate]) {
+        target[selectedDate] = [];
+    }
+
+    const fileArray = Array.from(files);
+    let successCount = 0;
+
+    try {
+
+        for (const file of fileArray) {
+
+            try {
+
+                const src =
+                    await fileToDataURL(file);
+
+                target[selectedDate].push({
+
+                    id:
+                        Date.now() +
+                        Math.random(),
+
+                    type:
+                        file.type.startsWith("video")
+                        ? "video"
+                        : "image",
+
+                    name:
+                        file.name,
+
+                    src:
+                        src,
+
+                    home:
+                        false
+                });
+
                 successCount++;
-                // 每成功导入一个文件就立即保存 —— 这是数据可靠性的核心
-                await saveData();
-                renderChefArchives(baiRecords,baiArchive);
-                renderChefArchives(leiRecords,leiArchive);
-                renderDaily();
-            }catch(e){console.error("单个文件导入失败：",file.name,e);}
+
+            }
+            catch (fileError) {
+
+                console.error(
+                    "单个文件导入失败：",
+                    file.name,
+                    fileError
+                );
+            }
         }
-        if(!successCount){showToast("导入失败，请检查视频格式或浏览器存储权限");return;}
+
+        if (!successCount) {
+
+            showToast(
+                "图片导入失败，请换一张图片再试"
+            );
+
+            return;
+        }
+
         saveData();
-        renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
-        showToast(`已导入 ${successCount} 个文件${shouldWatermark?" · 已自动打水印":""} · ${formatChineseDate(selectedDate)}`);
-    }catch(e){console.error("批量导入失败：",e);showToast("导入失败：浏览器存储空间可能不足");}
+
+        renderChefArchives(
+            baiRecords,
+            baiArchive
+        );
+
+        renderChefArchives(
+            leiRecords,
+            leiArchive
+        );
+
+        renderDaily();
+
+        showToast(
+            `已导入 ${successCount} 个文件 · ${formatChineseDate(selectedDate)}`
+        );
+
+    }
+    catch (error) {
+
+        console.error(
+            "批量导入失败：",
+            error
+        );
+
+        showToast(
+            "导入失败：浏览器存储空间可能不足"
+        );
+    }
 }
+
 
 /* =========================================================
    FOUR IMAGE COLLAGE UPLOAD
 ========================================================= */
 
-async function handleCollageUpload(files,target){
-    if(!files||files.length!==4){showToast("四图拼图需要一次选择正好 4 张图片");return;}
-    const imageFiles=Array.from(files);
-    if(imageFiles.some(file=>!file.type.startsWith("image/"))){showToast("四图拼图只能选择图片");return;}
-    const chef=currentChefFromTarget(target),shouldWatermark=chef?getWatermarkEnabled(chef):false;
-    try{
-        showToast(shouldWatermark?"正在读取原图并为四张图分别打水印…":"正在读取原图并制作拼图…");
-        const dimensions=[]; for(const file of imageFiles) dimensions.push(await getImageDimensions(file));
-        const PR=9/16,LR=16/9,T=.08;
-        const kind=(w,h)=>Math.abs(w/h-PR)<=T?"portrait":Math.abs(w/h-LR)<=T?"landscape":null;
-        const kinds=dimensions.map(d=>kind(d.width,d.height));
-        if(kinds.some(k=>!k)){showToast("四图拼图只支持 9:16 或 16:9 图片，请检查图片比例");return;}
-        const landscape=kinds[0]==="landscape";
-        if(!kinds.every(k=>k===kinds[0])){showToast("四张图的比例必须一致：请全部使用 9:16 或全部使用 16:9");return;}
-        const items=[];
-        for(let i=0;i<4;i++){
-            const file=imageFiles[i],original=await fileToOriginalDataURL(file);
-            const watermarked=shouldWatermark?await makeWatermarkedImage(original,chef):null;
-            items.push({id:Date.now()+Math.random(),name:file.name,src:watermarked||original,originalSrc:original,watermarkedSrc:watermarked,watermarkApplied:!!watermarked,chef,home:false,width:dimensions[i].width,height:dimensions[i].height});
-        }
-        if(!target[selectedDate])target[selectedDate]=[];
-        target[selectedDate].push({id:Date.now()+Math.random(),type:"collage",name:landscape?"四图纵向拼图 · 16:9":"四象限拼图 · 9:16",layout:landscape?"4x1":"2x2",items,chef,watermarkApplied:shouldWatermark,home:false});
-        await saveData();
-        renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
-        showToast(landscape?`16:9 四图已纵向拼好${shouldWatermark?"并完成逐张打水印":""} · ${formatChineseDate(selectedDate)}`:`9:16 四图已按四象限拼好${shouldWatermark?"并完成逐张打水印":""} · ${formatChineseDate(selectedDate)}`);
-    }catch(e){console.error("四图拼图失败：",e);showToast("拼图失败：水印素材可能无法跨域读取，或浏览器存储空间不足");}
-}
+async function handleCollageUpload(
+    files,
+    target
+) {
 
-/* =========================================================
-   DAILY NUMBERING ENGINE
-========================================================= */
-function numberingKey(chef,date){return `${chef||"unknown"}::${date}`;}
-function isDailyNumberingEnabled(chef,date){return !!dailyNumbering[numberingKey(chef,date)];}
-function setDailyNumbering(chef,date,enabled){dailyNumbering[numberingKey(chef,date)]=!!enabled;try{localStorage.setItem("yummyDailyNumbering",JSON.stringify(dailyNumbering));}catch(_){} }
-function getRecordChef(record){return record?.chef||(record?.items?.[0]?.chef)||null;}
-function getNumberingMap(records,date){
-    const list=records?.[date]||[];
-    const map=new Map(); let n=1;
-    const ordered=[...list].sort((a,b)=>((a.type==="video")?0:1)-((b.type==="video")?0:1));
-    for(const r of ordered){
-        if(r.type==="collage"){
-            for(const item of (r.items||[])){map.set(item.id,n++);}
-        }else{map.set(r.id,n++);}
+    if (!files || files.length !== 4) {
+
+        showToast(
+            "四图拼图需要一次选择正好 4 张图片"
+        );
+
+        return;
     }
-    return map;
+
+    const imageFiles = Array.from(files);
+
+    if (
+        imageFiles.some(
+            file => !file.type.startsWith("image/")
+        )
+    ) {
+
+        showToast(
+            "四图拼图只能选择图片"
+        );
+
+        return;
+    }
+
+    try {
+
+        showToast("正在读取原图并制作拼图…");
+
+        /*
+            重要：四图拼图不走普通图片压缩流程。
+            四张原图会原样保存，既不缩放，也不裁切，也不转 WebP。
+            这里只读取尺寸，用来判断 9:16 / 16:9 排布方式。
+        */
+        const dimensions = [];
+
+        for (const file of imageFiles) {
+            dimensions.push(await getImageDimensions(file));
+        }
+
+        /*
+            只接受用户约定的两种比例：9:16 / 16:9。
+            允许少量误差，例如导出时出现 1080×1918 这类尺寸。
+            不会为了拼图而裁切、拉伸或强行改成统一尺寸。
+        */
+        const PORTRAIT_RATIO = 9 / 16;
+        const LANDSCAPE_RATIO = 16 / 9;
+        const RATIO_TOLERANCE = 0.08;
+
+        function ratioKind(width, height) {
+            const ratio = width / height;
+            const portraitError = Math.abs(ratio - PORTRAIT_RATIO);
+            const landscapeError = Math.abs(ratio - LANDSCAPE_RATIO);
+
+            if (portraitError <= RATIO_TOLERANCE) return "portrait";
+            if (landscapeError <= RATIO_TOLERANCE) return "landscape";
+            return null;
+        }
+
+        const kinds = dimensions.map(dim =>
+            ratioKind(dim.width, dim.height)
+        );
+
+        if (kinds.some(kind => !kind)) {
+            showToast("四图拼图只支持 9:16 或 16:9 图片，请检查图片比例");
+            return;
+        }
+
+        const isLandscape = kinds[0] === "landscape";
+        const allSameOrientation = kinds.every(kind =>
+            kind === kinds[0]
+        );
+
+        if (!allSameOrientation) {
+            showToast("四张图的比例必须一致：请全部使用 9:16 或全部使用 16:9");
+            return;
+        }
+
+        const items = [];
+
+        for (let index = 0; index < 4; index++) {
+
+            const file = imageFiles[index];
+
+            /* 原文件直接转 DataURL：不压缩、不改尺寸 */
+            const src = await fileToOriginalDataURL(file);
+
+            items.push({
+                id: Date.now() + Math.random(),
+                name: file.name,
+                src,
+                home: false,
+                width: dimensions[index].width,
+                height: dimensions[index].height
+            });
+        }
+
+        if (!target[selectedDate]) {
+            target[selectedDate] = [];
+        }
+
+        target[selectedDate].push({
+            id: Date.now() + Math.random(),
+            type: "collage",
+            name: isLandscape
+                ? "四图纵向拼图 · 16:9"
+                : "四象限拼图 · 9:16",
+            layout: isLandscape
+                ? "4x1"
+                : "2x2",
+            items,
+            home: false
+        });
+
+        saveData();
+
+        renderChefArchives(baiRecords, baiArchive);
+        renderChefArchives(leiRecords, leiArchive);
+        renderDaily();
+
+        showToast(
+            isLandscape
+                ? `16:9 四图已纵向拼好 · ${formatChineseDate(selectedDate)}`
+                : `9:16 四图已按四象限拼好 · ${formatChineseDate(selectedDate)}`
+        );
+
+    }
+    catch (error) {
+
+        console.error("四图拼图失败：", error);
+
+        showToast(
+            "拼图失败：原图可能过大，或浏览器存储空间不足"
+        );
+    }
 }
-function getRecordNumber(record,records,date){
-    const chef=getRecordChef(record)||(records===baiRecords?"bai":records===leiRecords?"lei":null);
-    if(!record||!isDailyNumberingEnabled(chef,date))return null;
-    return getNumberingMap(records,date).get(record.id)||null;
-}
-function getCollageItemNumber(item,record,records,date){
-    const chef=getRecordChef(record)||(records===baiRecords?"bai":records===leiRecords?"lei":null);
-    if(!item||!isDailyNumberingEnabled(chef,date))return null;
-    return getNumberingMap(records,date).get(item.id)||null;
-}
-function createNumberBadge(number){if(number==null)return null;const el=document.createElement("div");el.className="media-number-badge";el.textContent=number;return el;}
-function roundedRectPath(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
-function drawNumberBadge(ctx,number,w,h){
-    if(number==null)return;
-    const size=Math.max(48,Math.round(Math.min(w,h)*.08)),font=Math.max(22,Math.round(size*.50)),pad=Math.max(12,Math.round(size*.34)),text=String(number);
-    ctx.save();ctx.font=`800 ${font}px system-ui,-apple-system,"Microsoft YaHei",sans-serif`;
-    const tw=ctx.measureText(text).width,bw=Math.max(size,tw+pad*2),bh=size,x=Math.max(12,Math.round(Math.min(w,h)*.035)),y=x;
-    roundedRectPath(ctx,x,y,bw,bh,Math.round(bh*.28));ctx.fillStyle="rgba(255,255,255,.28)";ctx.fill();ctx.strokeStyle="rgba(255,255,255,.48)";ctx.lineWidth=1;ctx.stroke();ctx.fillStyle="#fff";ctx.textAlign="center";ctx.textBaseline="middle";ctx.shadowColor="rgba(0,0,0,.22)";ctx.shadowBlur=4;ctx.fillText(text,x+bw/2,y+bh/2);ctx.restore();
-}
-async function makeNumberedImage(src,number){const img=await loadImageForCanvas(src),w=img.naturalWidth||img.width,h=img.naturalHeight||img.height,c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d");ctx.drawImage(img,0,0,w,h);drawNumberBadge(ctx,number,w,h);return c.toDataURL("image/webp",.94);}
-async function makeNumberedVideo(src,number){
-    if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)throw new Error("当前浏览器不支持视频计数导出");
-    const blob=await (await fetch(src)).blob(),url=URL.createObjectURL(blob),video=document.createElement("video");video.src=url;video.playsInline=true;video.preload="auto";
-    await new Promise((res,rej)=>{video.onloadedmetadata=res;video.onerror=()=>rej(new Error("视频读取失败"));});
-    const w=video.videoWidth,h=video.videoHeight,c=document.createElement("canvas");c.width=w;c.height=h;const ctx=c.getContext("2d"),stream=c.captureStream(30),srcStream=video.captureStream?video.captureStream():null;if(srcStream)srcStream.getAudioTracks().forEach(t=>stream.addTrack(t));
-    const types=["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"],mime=types.find(m=>MediaRecorder.isTypeSupported(m))||"",rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined),chunks=[];rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};const done=new Promise(r=>rec.onstop=r);rec.start(250);video.currentTime=0;await video.play().catch(()=>{});
-    await new Promise(resolve=>{const draw=()=>{if(video.ended||video.currentTime>=video.duration-.03){resolve();return;}ctx.clearRect(0,0,w,h);ctx.drawImage(video,0,0,w,h);drawNumberBadge(ctx,number,w,h);requestAnimationFrame(draw)};draw();});
-    rec.stop();await done;video.pause();URL.revokeObjectURL(url);return new Blob(chunks,{type:mime||"video/webm"});
-}
-async function numberAwareSource(record,src,number){if(number==null)return src;if(record?.type==="video")return await (async()=>{const blob=await makeNumberedVideo(src,number);return await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(blob);});})();return await makeNumberedImage(src,number);}
-async function buildCombinedCollageSrc(record,records,date){
-    const items=record.items||[];if(items.length!==4)throw new Error("拼图数据不完整");
-    const numbering=isDailyNumberingEnabled(getRecordChef(record),date),map=getNumberingMap(records,date),imgs=[];
-    for(const item of items){const src=getWatermarkedSrc(item);if(!src)throw new Error("拼图没有打水印版本");imgs.push(await loadImageForCanvas(src));}
-    const firstW=imgs[0].naturalWidth||imgs[0].width,firstH=imgs[0].naturalHeight||imgs[0].height,landscape=record.layout==="4x1";
-    let W,H;
-    if(landscape){W=Math.max(...imgs.map(i=>i.naturalWidth||i.width));H=imgs.reduce((sum,i)=>sum+(i.naturalHeight||i.height),0);}else{W=Math.max(...imgs.map(i=>i.naturalWidth||i.width))*2;H=Math.max(...imgs.map(i=>i.naturalHeight||i.height))*2;}
-    const c=document.createElement("canvas");c.width=W;c.height=H;const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,W,H);
-    if(landscape){let y=0;imgs.forEach((img,i)=>{const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,x=(W-iw)/2;ctx.drawImage(img,x,y,iw,ih);if(numbering)drawNumberBadgeAtCell(ctx,map.get(items[i].id),x,y,iw,ih);y+=ih;});}
-    else{const cw=W/2,ch=H/2;imgs.forEach((img,i)=>{const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height,row=Math.floor(i/2),col=i%2,x=col*cw+(cw-iw)/2,y=row*ch+(ch-ih)/2;ctx.drawImage(img,x,y,iw,ih);if(numbering)drawNumberBadgeAtCell(ctx,map.get(items[i].id),x,y,cw,ch);});}
-    return c.toDataURL("image/webp",.94);
-}
-function drawNumberBadgeAtCell(ctx,number,x,y,w,h){if(number==null)return;ctx.save();ctx.translate(x,y);drawNumberBadge(ctx,number,w,h);ctx.restore();}
 
 /* =========================================================
    CALENDAR DAILY SYNC
@@ -3867,8 +3419,7 @@ function renderDaily() {
                 createMediaCard(
                     record,
                     "daily",
-                    selectedDate,
-                    record.chef === "lei" ? leiRecords : baiRecords
+                    selectedDate
                 )
             );
 
@@ -3930,25 +3481,45 @@ function renderChefArchives(
                 "chef-date-group";
 
 
-            const headRow = document.createElement("div");
-            headRow.className = "chef-date-head-row";
-            const header = document.createElement("button");
-            header.className = "chef-date-header";
-            const chefForDate = records === baiRecords ? "bai" : records === leiRecords ? "lei" : null;
-            const numberingEnabled = isDailyNumberingEnabled(chefForDate,date);
+            const header =
+                document.createElement(
+                    "button"
+                );
+
+            header.className =
+                "chef-date-header";
+
+
             header.innerHTML = `
+
                 <div class="date-header-left">
-                    <div class="date-icon">🍚</div>
-                    <div>${formatChineseDate(date)} <span class="date-count">· ${records[date].length} 条记录</span></div>
+
+                    <div class="date-icon">
+                        🍚
+                    </div>
+
+                    <div>
+
+                        ${formatChineseDate(date)}
+
+                        <span class="date-count">
+
+                            ·
+                            ${records[date].length}
+                            条记录
+
+                        </span>
+
+                    </div>
+
                 </div>
-                <div class="expand-icon">▼</div>`;
-            const countToggle=document.createElement("button");
-            countToggle.type="button";
-            countToggle.className=`daily-number-toggle${numberingEnabled?" active":""}`;
-            countToggle.innerHTML=`<span class="leaf">🍃</span><span class="leaf-label">${numberingEnabled?"已计数":"开启计数"}</span>`;
-            countToggle.title=numberingEnabled?"关闭当天图片 / 视频排序数字":"开启当天图片 / 视频排序数字";
-            countToggle.addEventListener("click",event=>{event.stopPropagation();const next=!isDailyNumberingEnabled(chefForDate,date);setDailyNumbering(chefForDate,date,next);renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();showToast(`${formatChineseDate(date)} 已${next?"开启":"关闭"}排序计数`);});
-            headRow.appendChild(header);headRow.appendChild(countToggle);
+
+
+                <div class="expand-icon">
+                    ▼
+                </div>
+
+            `;
 
 
             const content =
@@ -4002,7 +3573,9 @@ function renderChefArchives(
             );
 
 
-            group.appendChild(headRow);
+            group.appendChild(
+                header
+            );
 
             group.appendChild(
                 content
@@ -4020,58 +3593,6 @@ function renderChefArchives(
 /* =========================================================
    MEDIA CARD
 ========================================================= */
-
-/* =========================================================
-   PREVIEW / DOWNLOAD
-========================================================= */
-const previewModal=document.getElementById("previewModal"),previewMediaWrap=document.getElementById("previewMediaWrap"),previewName=document.getElementById("previewName"),previewHint=document.getElementById("previewHint"),previewWatermarkedBtn=document.getElementById("previewWatermarkedBtn"),previewOriginalBtn=document.getElementById("previewOriginalBtn"),previewCloseBtn=document.getElementById("previewCloseBtn");let previewState=null;
-function getOriginalSrc(r){return r.originalSrc||r.src} function getWatermarkedSrc(r){return r.watermarkedSrc||(r.watermarkApplied?r.src:null)}
-function downloadDataURL(dataUrl,filename){if(!dataUrl)return;const a=document.createElement("a");a.href=dataUrl;a.download=filename||"yummy-media";document.body.appendChild(a);a.click();a.remove()}
-async function downloadRecord(r,wm=false){
-    try{
-        let src=await getVideoObjectURL(r,wm);
-        if(r.type!=="video")src=wm?getWatermarkedSrc(r):getOriginalSrc(r);
-        if(!src){showToast(wm?"这条记录没有可下载的打水印版本":"这条记录没有可下载的原图");return}
-        const number=r.__downloadNumber!=null?r.__downloadNumber:null;
-        if(number!=null)src=await numberAwareSource(r,src,number);
-        const suffix=wm?"-已打水印":"-原图",base=(r.name||"美食记录").replace(/\.[^.]+$/,"");
-        if(r.type==="video"&&!number){
-            const blob=await getVideoBlob(wm?r.videoWatermarkedKey:r.videoOriginalKey);
-            if(blob){const u=URL.createObjectURL(blob);const a=document.createElement("a");a.href=u;a.download=`${base}${suffix}.${blob.type.includes("webm")?"webm":"mp4"}`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);return;}
-        }
-        const mime=(src.match(/^data:([^;]+)/)||[])[1]||"image/webp";
-        const ext=mime.includes("webm")?".webm":mime.includes("png")?".png":mime.includes("jpeg")||mime.includes("jpg")?".jpg":".webp";
-        downloadDataURL(src,`${base}${suffix}${number!=null?`-${number}`:""}${ext}`);
-    }catch(e){console.error("下载失败：",e);showToast("下载失败，请重试");}
-}
-async function openMediaPreview(r,nameOverride){
-    previewState={record:r};previewMediaWrap.innerHTML="";
-    if(r.type==="video"){
-        const stage=document.createElement("div");stage.className="preview-video-stage";
-        const v=document.createElement("video");v.playsInline=true;v.preload="metadata";v.poster=r.poster||"";
-        const src=await getVideoObjectURL(r,!!r.watermarkApplied);if(src)v.src=src;
-        const play=document.createElement("button");play.className="video-play-button center";play.type="button";play.textContent="▶";play.title="播放";
-        play.addEventListener("click",async e=>{e.stopPropagation();try{await v.play();stage.classList.add("playing");v.controls=true;}catch(_){showToast("当前浏览器无法播放此视频");}});
-        v.addEventListener("play",()=>stage.classList.add("playing"));v.addEventListener("pause",()=>stage.classList.remove("playing"));
-        stage.addEventListener("click",e=>{if(e.target===stage||e.target===v){}});
-        stage.appendChild(v);stage.appendChild(play);previewMediaWrap.appendChild(stage);
-    }else{const img=document.createElement("img");img.src=getWatermarkedSrc(r)||getOriginalSrc(r);img.alt=r.name||"美食记录";previewMediaWrap.appendChild(img)}
-    previewName.textContent=nameOverride||r.name||"美食记录";
-    const hasWm=!!(r.type==="video"?r.videoWatermarkedKey||r.watermarkedSrc:r.watermarkedSrc);
-    const hasOriginal=!!(r.type==="video"?r.videoOriginalKey||r.originalSrc||r.src:getOriginalSrc(r));
-    previewHint.textContent=hasWm?"当前预览为打水印版本；可选择下载原图或打水印图。":"当前记录没有单独保存打水印版本，因此只提供原图下载。";
-    previewWatermarkedBtn.style.display=hasWm?"inline-block":"none";previewOriginalBtn.style.display=hasOriginal?"inline-block":"none";previewModal.classList.add("show");
-}
-function openCollageItemPreview(item){const temp={type:"image",name:item.name,src:item.src,originalSrc:item.originalSrc||item.src,watermarkedSrc:item.watermarkedSrc||null,watermarkApplied:!!item.watermarkApplied,__downloadNumber:item.__downloadNumber??null};openMediaPreview(temp,item.name||"拼图图片")}
-previewWatermarkedBtn.addEventListener("click",()=>{if(previewState?.record)downloadRecord(previewState.record,true)});previewOriginalBtn.addEventListener("click",()=>{if(previewState?.record){pendingOriginalDownload=previewState.record;openPasswordModal("originalDownload")}});previewCloseBtn.addEventListener("click",()=>{previewModal.classList.remove("show");previewMediaWrap.innerHTML=""});previewModal.addEventListener("click",e=>{if(e.target===previewModal){previewModal.classList.remove("show");previewMediaWrap.innerHTML=""}});document.addEventListener("keydown",e=>{if(e.key==="Escape"){previewModal.classList.remove("show");previewMediaWrap.innerHTML=""}});
-
-async function hydrateVideoElement(record,video){
-    try{
-        const src=await getVideoObjectURL(record,!!record.watermarkApplied);
-        if(!src)return;
-        video.dataset.objectUrl=src;video.src=src;video.load();
-    }catch(e){console.warn("视频读取失败",e);showToast("视频读取失败，请重新导入该视频");}
-}
 
 function createMediaCard(
     record,
@@ -4129,15 +3650,7 @@ function createMediaCard(
                     item.name ||
                     "拼图";
 
-                img.classList.add("media-clickable");
-                img.addEventListener("click", event => { event.stopPropagation(); openCollageItemPreview(item); });
                 cell.appendChild(img);
-                img.classList.add("media-clickable");
-                img.addEventListener("click",event=>{event.stopPropagation();openCollageItemPreview(item);});
-                const itemNumber=getCollageItemNumber(item,record,records,date);
-                item.__downloadNumber=itemNumber;
-                const numberBadge=createNumberBadge(itemNumber);
-                if(numberBadge)cell.appendChild(numberBadge);
 
                 const overlay =
                     document.createElement("div");
@@ -4221,15 +3734,6 @@ function createMediaCard(
 
         info.appendChild(badge);
 
-        const collageDownloadBtn=document.createElement("button");
-        collageDownloadBtn.className="collage-download-btn";
-        collageDownloadBtn.textContent="下载整张拼图";
-        const hasAllWatermarked=(record.items||[]).every(item=>!!getWatermarkedSrc(item));
-        collageDownloadBtn.disabled=!hasAllWatermarked;
-        collageDownloadBtn.title=hasAllWatermarked?"直接保存当前四张拼在一起的打水印版本":"当前拼图没有完整的打水印版本";
-        collageDownloadBtn.addEventListener("click",async event=>{event.stopPropagation();if(collageDownloadBtn.disabled)return;try{showToast("正在生成整张拼图…");const src=await buildCombinedCollageSrc(record,records,date);downloadDataURL(src,`${(record.name||"四图拼图").replace(/[^\w\u4e00-\u9fa5-]+/g,"_")}-整张拼图.webp`);showToast("整张拼图已保存");}catch(e){console.error(e);showToast("整张拼图保存失败");}});
-        info.appendChild(collageDownloadBtn);
-
         if (type === "chef") {
 
             const deleteBtn =
@@ -4279,38 +3783,34 @@ function createMediaCard(
 
     let media;
 
-    let videoStage=null,videoPlayButton=null;
     if (record.type === "video") {
-        videoStage=document.createElement("div");
-        videoStage.className="video-stage";
-        media=document.createElement("video");
-        media.poster=record.poster||"";
-        media.preload="metadata";
-        media.playsInline=true;
-        media.muted=false;
-        const playbackSrc=record.watermarkApplied?getWatermarkedSrc(record):getOriginalSrc(record);
-        if(playbackSrc)media.src=playbackSrc;
-        videoPlayButton=document.createElement("button");
-        videoPlayButton.type="button";videoPlayButton.className="video-play-button corner";videoPlayButton.textContent="▶";videoPlayButton.title="播放";
-        videoPlayButton.addEventListener("click",async event=>{event.stopPropagation();try{await media.play();videoStage.classList.add("playing");media.controls=true;}catch(_){showToast("当前浏览器无法播放此视频");}});
-        media.addEventListener("play",()=>videoStage.classList.add("playing"));
-        media.addEventListener("pause",()=>videoStage.classList.remove("playing"));
-        media.addEventListener("ended",()=>videoStage.classList.remove("playing"));
-        videoStage.addEventListener("click",event=>{if(!videoStage.classList.contains("playing")&&(event.target===videoStage||event.target===media)){event.stopPropagation();openMediaPreview(record);}});
-        videoStage.appendChild(media);videoStage.appendChild(videoPlayButton);card.appendChild(videoStage);
-        if(record.videoOriginalKey||record.videoWatermarkedKey) hydrateVideoElement(record,media);
-    } else {
-        media=document.createElement("img");
-        media.src=record.src;
-        media.loading="lazy";
-        media.classList.add("media-clickable");
-        media.addEventListener("click",event=>{event.stopPropagation();openMediaPreview(record);});
-        card.appendChild(media);
+
+        media =
+            document.createElement("video");
+
+        media.src =
+            record.src;
+
+        media.controls =
+            true;
+
+        media.preload =
+            "metadata";
+
     }
-    const ordinaryNumber=getRecordNumber(record,records,date);
-    record.__downloadNumber=ordinaryNumber;
-    const ordinaryBadge=createNumberBadge(ordinaryNumber);
-    if(ordinaryBadge)card.appendChild(ordinaryBadge);
+    else {
+
+        media =
+            document.createElement("img");
+
+        media.src =
+            record.src;
+
+        media.loading =
+            "lazy";
+    }
+
+    card.appendChild(media);
 
     const homeOverlay =
         document.createElement("div");
@@ -4410,7 +3910,7 @@ function createMediaCard(
    DELETE
 ========================================================= */
 
-async function deleteMedia(
+function deleteMedia(
     records,
     date,
     record
@@ -4433,13 +3933,14 @@ async function deleteMedia(
         );
 
 
-    if (index !== -1) {
-        const removed=list[index];
-        list.splice(index,1);
-        if(removed?.type==="video"){
-            deleteVideoBlob(removed.videoOriginalKey);
-            deleteVideoBlob(removed.videoWatermarkedKey);
-        }
+    if (
+        index !== -1
+    ) {
+
+        list.splice(
+            index,
+            1
+        );
     }
 
 
@@ -4453,7 +3954,7 @@ async function deleteMedia(
     }
 
 
-    await saveData();
+    saveData();
 
 
     renderChefArchives(
@@ -4497,10 +3998,13 @@ function handleHomeToggle(
 
         record.home = false;
 
-        saveData().then(() => {
-            renderAllMedia();
-            showToast("已取消「已回家」");
-        });
+        saveData();
+
+        renderAllMedia();
+
+        showToast(
+            "已取消「已回家」"
+        );
 
         return;
     }
@@ -4509,10 +4013,13 @@ function handleHomeToggle(
 
         record.home = true;
 
-        saveData().then(() => {
-            renderAllMedia();
-            showToast("已标记为「已回家」");
-        });
+        saveData();
+
+        renderAllMedia();
+
+        showToast(
+            "已标记为「已回家」"
+        );
 
         return;
     }
@@ -4581,15 +4088,6 @@ function verifyPassword() {
         return;
     }
 
-
-    if (passwordMode === "originalDownload") {
-        if (value !== ORIGINAL_DOWNLOAD_PASSWORD) { passwordError.textContent="密码错误，请重新输入"; passwordInput.value=""; passwordInput.focus(); return; }
-        const pending=pendingOriginalDownload; closePasswordModal(); pendingOriginalDownload=null; if(pending) downloadRecord(pending,false); return;
-    }
-    if (passwordMode === "secretFridge") {
-        if (value !== SECRET_FRIDGE_PASSWORD) { passwordError.textContent="密码错误，请重新输入"; passwordInput.value=""; passwordInput.focus(); return; }
-        secretFridgeUnlocked=true; closePasswordModal(); showSecretFridge(); showToast("秘密冰箱已开启"); return;
-    }
 
     /*
         ==========================================
@@ -4672,15 +4170,19 @@ function verifyPassword() {
             pendingHomeRecord.item.home =
                 true;
 
-            saveData().then(() => {
-                renderAllMedia();
-                showToast("已标记为「已回家」");
-            });
+            saveData();
         }
 
 
         closePasswordModal();
 
+
+        renderAllMedia();
+
+
+        showToast(
+            "已回家权限已开启 · 10分钟内免验证"
+        );
 
         return;
     }
@@ -4717,54 +4219,6 @@ passwordModal.addEventListener(
 );
 
 
-/* =========================================================
-   MANUAL ARCHIVE / AUTOSAVE SAFETY
-========================================================= */
-
-let lastManualSaveAt = 0;
-
-async function manualSaveAll(){
-    try{
-        await saveData();
-        try{localStorage.setItem("yummyLastManualSaveAt",String(Date.now()));}catch(_){}
-        lastManualSaveAt=Date.now();
-        renderChefArchives(baiRecords,baiArchive);
-        renderChefArchives(leiRecords,leiArchive);
-        renderDaily();
-        showToast("💾 已手动存档 · 已保存到本机数据库");
-        return true;
-    }catch(error){
-        console.error("手动存档失败：",error);
-        showToast("存档失败，请检查浏览器是否允许网站存储");
-        return false;
-    }
-}
-
-document.getElementById("baiArchiveSaveButton")?.addEventListener("click", manualSaveAll);
-document.getElementById("leiArchiveSaveButton")?.addEventListener("click", manualSaveAll);
-
-// 离开页面、切后台、页面被冻结前再自动落一次盘。
-window.addEventListener("pagehide", () => {
-    saveData().catch(()=>{});
-});
-document.addEventListener("visibilitychange", () => {
-    if(document.visibilityState === "hidden"){
-        saveData().catch(()=>{});
-    }
-});
-
-/* =========================================================
-   SECRET FRIDGE
-========================================================= */
-let secretMemos=readStoredJSON("yummySecretMemos",{bai:[],lei:[]});
-function saveSecretMemos(){try{localStorage.setItem("yummySecretMemos",JSON.stringify(secretMemos));}catch(e){showToast("备忘录保存失败：浏览器存储空间可能不足");}}
-function memoEscape(v){return String(v??"").replace(/[&<>\"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));}
-function fileToDataURLSimple(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);});}
-function renderMemoList(chef){const el=document.getElementById(chef==="bai"?"memoListBai":"memoListLei");if(!el)return;el.innerHTML="";const list=secretMemos[chef]||[];if(!list.length){el.innerHTML='<div class="memo-empty">还没有秘密备忘录<br><br>可以先藏一条小秘密进去 ♡</div>';return;}list.forEach(m=>{const card=document.createElement("div");card.className="memo-card";if(m.bg){const bg=document.createElement("div");bg.className="memo-bg";bg.style.backgroundImage=`url("${m.bg}")`;bg.style.setProperty("--memo-blur",`${Number(m.blur)||0}px`);bg.style.setProperty("--memo-opacity",`${Number(m.opacity??1)}`);card.appendChild(bg);}const shade=document.createElement("div");shade.className="memo-shade";card.appendChild(shade);const body=document.createElement("div");body.className="memo-body";body.innerHTML=`<div class="memo-title">${memoEscape(m.title||"无题备忘")}</div><div class="memo-text">${memoEscape(m.text||"")}</div><div class="memo-meta">背景模糊 ${Number(m.blur)||0}px · 背景透明度 ${Math.round(Number(m.opacity??1)*100)}%</div>`;const tools=document.createElement("div");tools.className="memo-tools";const edit=document.createElement("button");edit.textContent="编辑";edit.onclick=()=>openMemoEditor(chef,m.id);const del=document.createElement("button");del.textContent="删除";del.className="danger";del.onclick=()=>{if(confirm("确定要把这条秘密备忘录扔掉吗？")){secretMemos[chef]=secretMemos[chef].filter(x=>x.id!==m.id);saveSecretMemos();renderMemoList(chef);}};tools.append(edit,del);body.appendChild(tools);card.appendChild(body);el.appendChild(card);});}
-function openMemoEditor(chef,id=null){const list=secretMemos[chef]||[];const existing=id?list.find(x=>x.id===id):null;const host=document.getElementById(chef==="bai"?"memoListBai":"memoListLei");const editor=document.createElement("div");editor.className="memo-editor";editor.innerHTML=`<input id="memoTitleInput" placeholder="备忘录标题" value="${memoEscape(existing?.title||"")}"><textarea id="memoTextInput" placeholder="写下只有这里知道的小秘密……">${memoEscape(existing?.text||"")}</textarea><div class="memo-editor-row"><label>背景图 <input id="memoBgInput" type="file" accept="image/*"></label></div><div class="memo-editor-row"><label>模糊度 <input id="memoBlurInput" type="range" min="0" max="18" step="1" value="${existing?.blur??4}"><span id="memoBlurValue">${existing?.blur??4}px</span></label><label>透明度 <input id="memoOpacityInput" type="range" min="0.1" max="1" step="0.05" value="${existing?.opacity??0.65}"><span id="memoOpacityValue">${Math.round((existing?.opacity??0.65)*100)}%</span></label></div><div class="memo-editor-actions"><button class="memo-cancel">取消</button><button class="memo-save">藏进冰箱</button></div>`;host.prepend(editor);const blur=editor.querySelector("#memoBlurInput"),blurVal=editor.querySelector("#memoBlurValue"),op=editor.querySelector("#memoOpacityInput"),opVal=editor.querySelector("#memoOpacityValue");blur.oninput=()=>blurVal.textContent=`${blur.value}px`;op.oninput=()=>opVal.textContent=`${Math.round(op.value*100)}%`;editor.querySelector(".memo-cancel").onclick=()=>editor.remove();editor.querySelector(".memo-save").onclick=async()=>{const title=editor.querySelector("#memoTitleInput").value.trim()||"无题备忘",text=editor.querySelector("#memoTextInput").value.trim();let bg=existing?.bg||"";const file=editor.querySelector("#memoBgInput").files?.[0];if(file)bg=await fileToDataURLSimple(file);const memo={id:existing?.id||Date.now()+Math.random(),title,text,bg,blur:Number(blur.value),opacity:Number(op.value),updatedAt:Date.now()};if(existing){const i=list.findIndex(x=>x.id===existing.id);list[i]=memo;}else list.unshift(memo);secretMemos[chef]=list;saveSecretMemos();editor.remove();renderMemoList(chef);showToast("秘密已经悄悄藏进冰箱了");};}
-function showSecretFridge(){document.getElementById("secretFridgeLock").hidden=true;document.getElementById("secretFridgeContent").hidden=false;renderMemoList("bai");renderMemoList("lei");document.getElementById("secretFridge")?.scrollIntoView({behavior:"smooth"});}
-function requestSecretFridge(){if(secretFridgeUnlocked)showSecretFridge();else openPasswordModal("secretFridge");}
-document.querySelectorAll(".memo-add-btn").forEach(btn=>btn.addEventListener("click",()=>openMemoEditor(btn.dataset.memoChef)));
 /* =========================================================
    RENDER ALL
 ========================================================= */
@@ -4887,8 +4341,6 @@ navItems.forEach(
             "click",
             () => {
 
-                if (item.dataset.target === "secretFridge") { requestSecretFridge(); if (window.innerWidth <= 900) closeSidebar(); return; }
-
                 const target =
                     document.getElementById(
                         item.dataset.target
@@ -5002,128 +4454,24 @@ catch (error) {
 
 
 /* =========================================================
-   WATERMARK TOGGLES
-========================================================= */
-function syncWatermarkToggle(id,chef){const el=document.getElementById(id);if(!el)return;el.checked=getWatermarkEnabled(chef);el.closest(".watermark-control")?.classList.toggle("active",el.checked);el.addEventListener("change",()=>{watermarkSettings[chef]=el.checked;saveWatermarkSettings();el.closest(".watermark-control")?.classList.toggle("active",el.checked);showToast(`${chef==="bai"?"白咪饭大厨":"泪懵懵大厨"}后续上传将${el.checked?"自动打水印":"不自动打水印"}`)})}
-syncWatermarkToggle("baiWatermarkToggle","bai");syncWatermarkToggle("leiWatermarkToggle","lei");bindMusicSettingsModal();
-
-/* =========================================================
-   INITIALIZE — 重构后的启动流程
-   核心原则：
-   1. 先打开 IndexedDB，恢复数据
-   2. 如果恢复成功，使用 IndexedDB 的数据
-   3. 如果恢复失败，从 localStorage 迁移数据（作为备用）
-   4. 然后再渲染页面
-   5. 确保数据恢复完成后再渲染，避免空数据覆盖
+   INITIALIZE
 ========================================================= */
 
-(async function initApp() {
-    try {
-        // 第一步：尝试从 IndexedDB 恢复数据
-        const restored = await restoreAppState();
-        
-        if (!restored) {
-            // 第二步：IndexedDB 中没有有效数据，尝试从 localStorage 迁移
-            console.log("IndexedDB 中无有效数据，尝试从 localStorage 迁移…");
-            const localBai = readStoredJSON("baiRecords", {});
-            const localLei = readStoredJSON("leiRecords", {});
-            const localMarks = readStoredJSON("calendarMarks", {});
-            const localNumbering = readStoredJSON("yummyDailyNumbering", {});
-            
-            const hasLocalData = Object.keys(localBai).length > 0 || Object.keys(localLei).length > 0;
-            if (hasLocalData) {
-                baiRecords = localBai;
-                leiRecords = localLei;
-                calendarMarks = localMarks;
-                dailyNumbering = localNumbering;
-                // 将 localStorage 中的数据迁移到 IndexedDB
-                await saveAppState();
-                console.log("已从 localStorage 迁移数据到 IndexedDB");
-            } else {
-                // 完全没有数据，使用空对象
-                baiRecords = {};
-                leiRecords = {};
-                calendarMarks = {};
-                dailyNumbering = {};
-                // 首次使用，初始化 IndexedDB
-                await saveAppState();
-                console.log("首次启动，已初始化 IndexedDB");
-            }
-        } else {
-            console.log("已从 IndexedDB 恢复数据");
-            // 数据恢复后，同步到 localStorage 作为备份
-            try {
-                localStorage.setItem("baiRecords", JSON.stringify(baiRecords));
-                localStorage.setItem("leiRecords", JSON.stringify(leiRecords));
-                localStorage.setItem("calendarMarks", JSON.stringify(calendarMarks));
-                localStorage.setItem("yummyDailyNumbering", JSON.stringify(dailyNumbering));
-            } catch (e) { /* 忽略备份写入失败 */ }
-        }
-        
-        // 第三步：所有数据准备就绪，渲染页面
-        renderCalendar();
-        renderDaily();
-        renderChefArchives(baiRecords, baiArchive);
-        renderChefArchives(leiRecords, leiArchive);
-        
-        console.log("🍚 落泪餐厅已启动，数据已恢复");
-    } catch (error) {
-        console.error("初始化失败：", error);
-        // 出错时尝试从 localStorage 恢复
-        try {
-            baiRecords = readStoredJSON("baiRecords", {});
-            leiRecords = readStoredJSON("leiRecords", {});
-            calendarMarks = readStoredJSON("calendarMarks", {});
-            dailyNumbering = readStoredJSON("yummyDailyNumbering", {});
-        } catch (e) {
-            baiRecords = {};
-            leiRecords = {};
-            calendarMarks = {};
-            dailyNumbering = {};
-        }
-        renderCalendar();
-        renderDaily();
-        renderChefArchives(baiRecords, baiArchive);
-        renderChefArchives(leiRecords, leiArchive);
-        showToast("数据恢复失败，请检查浏览器存储权限");
-    }
-})();
+renderCalendar();
+
+renderDaily();
+
+renderChefArchives(
+    baiRecords,
+    baiArchive
+);
+
+renderChefArchives(
+    leiRecords,
+    leiArchive
+);
 
 </script>
 
-
-<script>
-(function(){
-  const standalone = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-  if(standalone) document.documentElement.classList.add("standalone-mode");
-  let deferredInstall=null;
-  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;showAppButtons();});
-  function showAppButtons(){const b=document.getElementById("appInstallButton");if(b)b.hidden=false;}
-  function makeAppButton(){
-    if(document.getElementById("appInstallButton"))return;
-    const wrap=document.createElement("div");wrap.id="appTools";
-    wrap.innerHTML='<button id="appInstallButton" hidden>＋ 添加到主屏幕</button><button id="appFullscreenButton" title="进入网页全屏">⛶ 全屏</button>';
-    document.body.appendChild(wrap);
-    const style=document.createElement("style");
-    style.textContent=`#appTools{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:99999;display:flex;gap:8px;align-items:center}#appTools button{border:0;border-radius:999px;padding:9px 13px;background:rgba(255,255,255,.88);color:#6f5555;box-shadow:0 4px 18px rgba(80,40,40,.12);backdrop-filter:blur(10px);font-size:13px}#appTools button[hidden]{display:none}@media(max-width:600px){#appTools button{font-size:12px;padding:8px 11px}}`;
-    document.head.appendChild(style);
-    const install=document.getElementById("appInstallButton");
-    install.onclick=async()=>{
-      if(deferredInstall){deferredInstall.prompt();try{await deferredInstall.userChoice}catch(_){}deferredInstall=null;install.hidden=true;return;}
-      showToast("请在浏览器菜单中选择“添加到主屏幕”。如果打开后仍有地址栏，说明当前浏览器把它作为普通网页快捷方式打开，而不是独立 App 模式。");
-    };
-    document.getElementById("appFullscreenButton").onclick=async()=>{
-      try{
-        if(document.fullscreenElement){await document.exitFullscreen();return;}
-        if(document.documentElement.requestFullscreen){await document.documentElement.requestFullscreen();showToast("已进入网页全屏");}
-        else showToast("当前 iPhone Safari 不支持网页强制全屏；请使用“添加到主屏幕”的独立 App 模式");
-      }catch(_){showToast("当前浏览器不允许网页全屏；请使用“添加到主屏幕”的独立 App 模式");}
-    };
-  }
-  if(!standalone){
-    if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",makeAppButton);else makeAppButton();
-  }
-})();
-</script>
-<div class="music-settings-modal" id="musicSettingsModal" aria-hidden="true"><div class="music-settings-panel"><div class="music-settings-title">🎵 背景音乐设置</div><div class="music-settings-row"><span>音乐音量</span><input id="musicSettingsVolume" type="range" min="0" max="100" step="1" value="32"><span id="musicSettingsVolumeValue">32%</span></div><div class="music-settings-row" style="grid-template-columns:1fr auto"><label><input id="musicSettingsOriginal" type="checkbox" checked> 保留原视频声音</label></div><div class="music-settings-actions"><button class="music-settings-close" id="musicSettingsClose">取消</button><button class="music-settings-ok" id="musicSettingsOk">完成</button></div></div></div></body>
+</body>
 </html>
