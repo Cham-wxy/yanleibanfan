@@ -1518,6 +1518,25 @@ html.standalone-mode, html.standalone-mode body{
 .music-settings-title{font-weight:700;color:#695c58;margin-bottom:12px}.music-settings-row{display:grid;grid-template-columns:88px minmax(0,1fr) 48px;gap:8px;align-items:center;margin:12px 0;color:#806f6a;font-size:12px}.music-settings-row input[type=range]{width:100%;min-width:0}.music-settings-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.music-settings-actions button{border:0;border-radius:10px;padding:8px 12px;cursor:pointer}.music-settings-close{background:#514946;color:#fff}.music-settings-ok{background:#ffe9e6;color:#c96f76;font-weight:700}
 @media(max-width:700px){.music-settings-modal{padding:10px}.music-settings-panel{padding:15px;border-radius:16px}.music-settings-row{grid-template-columns:78px minmax(0,1fr) 46px}.upload-box .music-status{flex:1 1 100%;width:100%;max-width:none;min-width:0}.music-file-name{white-space:normal;overflow-wrap:anywhere}}
 </style>
+<style id="manual-save-style">
+.archive-btn{
+    border:1px solid #ead6d2;
+    background:#fff8f6;
+    color:#9b6661;
+    border-radius:10px;
+    padding:8px 11px;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1.2;
+    white-space:nowrap;
+    transition:.18s ease;
+}
+.archive-btn:hover{background:#fff0ed;transform:translateY(-1px);}
+.archive-btn:active{transform:translateY(0);}
+@media(max-width:700px){
+    .archive-btn{flex:0 0 auto;font-size:11px;padding:8px 9px;}
+}
+</style>
 </head>
 
 
@@ -1811,6 +1830,7 @@ html.standalone-mode, html.standalone-mode body{
             </button>
 
             <button class="music-btn" id="baiMusicButton" type="button">♫ 提取音乐</button>
+            <button class="archive-btn" id="baiArchiveSaveButton" type="button" title="立即保存当前网站内容">💾 手动存档</button>
             <input type="file" accept="video/*" class="hidden-file-input" id="baiMusicUpload">
             <span class="music-status" id="baiMusicStatus" hidden></span>
 
@@ -1918,6 +1938,7 @@ html.standalone-mode, html.standalone-mode body{
             </button>
 
             <button class="music-btn" id="leiMusicButton" type="button">♫ 提取音乐</button>
+            <button class="archive-btn" id="leiArchiveSaveButton" type="button" title="立即保存当前网站内容">💾 手动存档</button>
             <input type="file" accept="video/*" class="hidden-file-input" id="leiMusicUpload">
             <span class="music-status" id="leiMusicStatus" hidden></span>
 
@@ -3661,9 +3682,18 @@ async function handleUpload(files,target){
                     target[selectedDate].push({id:Date.now()+Math.random(),type:"image",name:file.name,src:watermarked||original,originalSrc:original,watermarkedSrc:watermarked,watermarkApplied:!!watermarked,chef,home:false});
                 }
                 successCount++;
+                // 每成功导入一个文件就立即保存记录。
+                // 这样即使批量上传过程中页面闪退，已经完成的文件也不会因为最后一次 saveData 尚未执行而丢失。
+                if(!saveData()){
+                    throw new Error("记录保存失败");
+                }
+                renderChefArchives(baiRecords,baiArchive);
+                renderChefArchives(leiRecords,leiArchive);
+                renderDaily();
             }catch(e){console.error("单个文件导入失败：",file.name,e);}
         }
         if(!successCount){showToast("导入失败，请检查视频格式或浏览器存储权限");return;}
+        // 批量结束后再做一次完整保存，作为最后一道保险。
         saveData();
         renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
         showToast(`已导入 ${successCount} 个文件${shouldWatermark?" · 已自动打水印":""} · ${formatChineseDate(selectedDate)}`);
@@ -3696,7 +3726,9 @@ async function handleCollageUpload(files,target){
         }
         if(!target[selectedDate])target[selectedDate]=[];
         target[selectedDate].push({id:Date.now()+Math.random(),type:"collage",name:landscape?"四图纵向拼图 · 16:9":"四象限拼图 · 9:16",layout:landscape?"4x1":"2x2",items,chef,watermarkApplied:shouldWatermark,home:false});
-        saveData();renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
+        // 拼图作为一个完整记录立即落盘。
+        if(!saveData()) throw new Error("拼图记录保存失败");
+        renderChefArchives(baiRecords,baiArchive);renderChefArchives(leiRecords,leiArchive);renderDaily();
         showToast(landscape?`16:9 四图已纵向拼好${shouldWatermark?"并完成逐张打水印":""} · ${formatChineseDate(selectedDate)}`:`9:16 四图已按四象限拼好${shouldWatermark?"并完成逐张打水印":""} · ${formatChineseDate(selectedDate)}`);
     }catch(e){console.error("四图拼图失败：",e);showToast("拼图失败：水印素材可能无法跨域读取，或浏览器存储空间不足");}
 }
@@ -4687,6 +4719,46 @@ passwordModal.addEventListener(
     }
 );
 
+
+/* =========================================================
+   MANUAL ARCHIVE / AUTOSAVE SAFETY
+========================================================= */
+
+let lastManualSaveAt = 0;
+
+function manualSaveAll(){
+    const ok = saveData();
+    if(!ok) return false;
+
+    // 同步记录当前存档时间，便于确认“真的保存过了”。
+    try{
+        localStorage.setItem("yummyLastManualSaveAt", String(Date.now()));
+    }catch(_){}
+
+    lastManualSaveAt = Date.now();
+
+    // 重新读取当前页面内容，确保存档后界面与内存数据一致。
+    renderChefArchives(baiRecords,baiArchive);
+    renderChefArchives(leiRecords,leiArchive);
+    renderDaily();
+
+    showToast("💾 已手动存档 · 当前内容已保存");
+    return true;
+}
+
+document.getElementById("baiArchiveSaveButton")?.addEventListener("click", manualSaveAll);
+document.getElementById("leiArchiveSaveButton")?.addEventListener("click", manualSaveAll);
+
+// 离开页面、切后台、页面被冻结前再自动落一次盘。
+// 注意：这里不做异步视频处理，只保存已经完成的记录，避免离开页面时卡住。
+window.addEventListener("pagehide", () => {
+    try{ saveData(); }catch(_){}
+});
+document.addEventListener("visibilitychange", () => {
+    if(document.visibilityState === "hidden"){
+        try{ saveData(); }catch(_){}
+    }
+});
 
 /* =========================================================
    SECRET FRIDGE
